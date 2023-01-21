@@ -1,5 +1,5 @@
 <div class="card shadow-lg mt-3 mb-5" style="width: 18rem">
-  <div class="p-2">
+  <div class="img-wrapper">
     <img src="assets/images/property-img.jpg" class="card-img-top" alt="..." />
   </div>
   <div class="card-body">
@@ -7,6 +7,11 @@
       <h2>{{ property.Name }}</h2>
       <h5>{{ property.Type }}</h5>
       <h5>{{ property.Price }}</h5>
+    </div>
+    <div class="details-btn mt-3">
+      <button class="btn btn-secondary w-100 p-2">
+        <i class="fa-solid fa-circle-info"></i> &nbsp; Details
+      </button>
     </div>
   </div>
 </div>
