@@ -1,0 +1,12 @@
+S:\Self_Learning\Projects\Real Estate App ( ASP.Net core )\server\DAL\bin\Debug\net6.0\DAL.deps.json
+S:\Self_Learning\Projects\Real Estate App ( ASP.Net core )\server\DAL\bin\Debug\net6.0\DAL.dll
+S:\Self_Learning\Projects\Real Estate App ( ASP.Net core )\server\DAL\bin\Debug\net6.0\DAL.pdb
+S:\Self_Learning\Projects\Real Estate App ( ASP.Net core )\server\DAL\obj\Debug\net6.0\DAL.csproj.AssemblyReference.cache
+S:\Self_Learning\Projects\Real Estate App ( ASP.Net core )\server\DAL\obj\Debug\net6.0\DAL.GeneratedMSBuildEditorConfig.editorconfig
+S:\Self_Learning\Projects\Real Estate App ( ASP.Net core )\server\DAL\obj\Debug\net6.0\DAL.AssemblyInfoInputs.cache
+S:\Self_Learning\Projects\Real Estate App ( ASP.Net core )\server\DAL\obj\Debug\net6.0\DAL.AssemblyInfo.cs
+S:\Self_Learning\Projects\Real Estate App ( ASP.Net core )\server\DAL\obj\Debug\net6.0\DAL.csproj.CoreCompileInputs.cache
+S:\Self_Learning\Projects\Real Estate App ( ASP.Net core )\server\DAL\obj\Debug\net6.0\DAL.dll
+S:\Self_Learning\Projects\Real Estate App ( ASP.Net core )\server\DAL\obj\Debug\net6.0\refint\DAL.dll
+S:\Self_Learning\Projects\Real Estate App ( ASP.Net core )\server\DAL\obj\Debug\net6.0\DAL.pdb
+S:\Self_Learning\Projects\Real Estate App ( ASP.Net core )\server\DAL\obj\Debug\net6.0\ref\DAL.dll
