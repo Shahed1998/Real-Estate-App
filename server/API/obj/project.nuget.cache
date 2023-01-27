@@ -1,14 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "V/dVSSmy9qTf2hDeyb4R+63h6Py+M+crEdjTpGVIq1bjOO9fVm5i687rG1QZVFEucBJuQ1Wq8NgHXDtJjfEe0g==",
+  "dgSpecHash": "P9RHuHCi2xOXTPvH3FavS/nWeq9Le5hl0LSkI4kteq5nhgnEeOTikgURYdAwGLoP4ibp5851OCqzkTFDwZp8MA==",
   "success": true,
   "projectFilePath": "S:\\Self_Learning\\Projects\\Real Estate App ( ASP.Net core )\\server\\API\\API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\shahed\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\shahed\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\shahed\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\shahed\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\shahed\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
-    "C:\\Users\\shahed\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\shahed\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\shahed\\.nuget\\packages\\microsoft.data.sqlclient\\5.0.1\\microsoft.data.sqlclient.5.0.1.nupkg.sha512",
     "C:\\Users\\shahed\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\5.0.1\\microsoft.data.sqlclient.sni.runtime.5.0.1.nupkg.sha512",
     "C:\\Users\\shahed\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.2\\microsoft.entityframeworkcore.7.0.2.nupkg.sha512",
