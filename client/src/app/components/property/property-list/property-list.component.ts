@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { IProperty } from '../Interfaces/iproperty';
 
 @Component({
   selector: 'app-property-list',
@@ -7,7 +8,7 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./property-list.component.css'],
 })
 export class PropertyListComponent implements OnInit {
-  properties!: any;
+  properties!: Array<IProperty>;
 
   constructor(private apiservice: ApiService) {}
 
