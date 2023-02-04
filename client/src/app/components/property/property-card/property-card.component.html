@@ -9,7 +9,10 @@
       <h5>{{ property.Price }}</h5>
     </div>
     <div class="details-btn mt-3">
-      <button class="btn btn-secondary w-100 p-2">
+      <button
+        class="btn btn-secondary w-100 p-2"
+        routerLink="/property-detail/{{ property.Id }}"
+      >
         <i class="fa-solid fa-circle-info"></i> &nbsp; Details
       </button>
     </div>
