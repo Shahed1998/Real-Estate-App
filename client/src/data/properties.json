@@ -1,26 +1,33 @@
 [
   {
     "Id": 1,
+    "SellRent": 1,
     "Name": "Alfonzo",
     "Type": "Apartment",
-    "Price": 35000
+    "Price": 35000,
+    "Image": "prop-1"
   },
   {
     "Id": 2,
+    "SellRent": 1,
     "Name": "Birla",
     "Type": "Building",
-    "Price": 135000
+    "Price": 135000,
+    "Image": "prop-2"
   },
   {
     "Id": 3,
+    "SellRent": 2,
     "Name": "Prof. Ansar",
     "Type": "Apartment",
     "Price": 15000
   },
   {
     "Id": 4,
+    "SellRent": 2,
     "Name": "Chowdhury",
     "Type": "Apartment",
-    "Price": 45000
+    "Price": 45000,
+    "Image": "prop-3"
   }
 ]

@@ -1,6 +1,17 @@
 <div class="card shadow-lg mt-3 mb-5" style="width: 18rem">
   <div class="img-wrapper">
-    <img src="assets/images/property-img.jpg" class="card-img-top" alt="..." />
+    <img
+      *ngIf="!property.Image"
+      src="assets/images/prop-default.jpg"
+      class="card-img-top"
+      alt="..."
+    />
+    <img
+      *ngIf="property.Image"
+      src="assets/images/{{ property.Image }}.jpg"
+      class="card-img-top"
+      alt="..."
+    />
   </div>
   <div class="card-body">
     <div class="card-text">
