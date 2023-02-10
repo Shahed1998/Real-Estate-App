@@ -18,10 +18,13 @@ export class PropertyListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.apiservice.getAllProperties().subscribe(
+    var param = this.activatedRoute.snapshot.url.toString();
+    if (param) {
+      this.SellRent = 2;
+    }
+    this.apiservice.getAllProperties(this.SellRent).subscribe(
       (res) => {
         this.properties = res;
-        console.log(this.activatedRoute.snapshot.url.toString());
       },
       (err) => {
         console.log(err);
