@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { Routes, RouterModule } from '@angular/router';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 
 import { PropertyCardComponent } from './components/property/property-card/property-card.component';
 import { PropertyListComponent } from './components/property/property-list/property-list.component';
@@ -30,7 +31,12 @@ const appRoutes: Routes = [
     PropertyDetailComponent,
     PageNotFoundComponent,
   ],
-  imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(appRoutes)],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes),
+    LazyLoadImageModule,
+  ],
   providers: [ApiService],
   bootstrap: [AppComponent],
 })
