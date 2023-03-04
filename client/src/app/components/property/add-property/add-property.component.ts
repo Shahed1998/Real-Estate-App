@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -6,8 +6,11 @@ import { NgForm } from '@angular/forms';
   templateUrl: './add-property.component.html',
   styleUrls: ['./add-property.component.css'],
 })
-export class AddPropertyComponent {
-  onSubmit(Form: NgForm) {
-    console.log(Form.value); // do validations
+export class AddPropertyComponent implements OnInit {
+  @ViewChild('Form') addPropertyForm!: NgForm; // we can access data reference even before submission
+  constructor() {}
+  ngOnInit(): void {}
+  onSubmit() {
+    console.log(this.addPropertyForm); // do validations
   }
 }

@@ -1,10 +1,25 @@
 <div class="card mt-3">
   <div class="card-header">Add new property</div>
   <div class="card-body">
-    <form (ngSubmit)="onSubmit(Form)" #Form="ngForm">
+    <form (ngSubmit)="onSubmit()" #Form="ngForm">
       <div class="mb-3">
         <label for="Name" class="form-label">Name</label>
-        <input type="text" class="form-control" id="Name" ngModel name="Name" />
+        <input
+          type="text"
+          class="form-control"
+          id="Name"
+          ngModel
+          name="Name"
+          #propName="ngModel"
+          minlength="5"
+          required
+        />
+        <span *ngIf="!propName.valid && propName.touched" class="err-msg">
+          <span *ngIf="propName.hasError('required')">Please Enter Name</span>
+          <span *ngIf="propName.hasError('minlength')"
+            >Name must be at least 5 characters long
+          </span>
+        </span>
       </div>
       <div class="mb-3">
         <label for="type" class="form-label">Type</label>
@@ -21,7 +36,9 @@
         />
       </div>
       <button type="reset" class="btn btn-danger me-2">Cancel</button>
-      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" [disabled]="!Form.valid" class="btn btn-primary">
+        Save
+      </button>
     </form>
   </div>
 </div>
