@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { Routes, RouterModule } from '@angular/router';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { FormsModule } from '@angular/forms';
 
 import { PropertyCardComponent } from './components/property/property-card/property-card.component';
 import { PropertyListComponent } from './components/property/property-list/property-list.component';
@@ -36,6 +37,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     LazyLoadImageModule,
+    FormsModule,
   ],
   providers: [ApiService],
   bootstrap: [AppComponent],
