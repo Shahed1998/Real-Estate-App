@@ -24,7 +24,18 @@
       </div>
       <div class="mb-3">
         <label for="type" class="form-label">Type</label>
-        <input type="text" class="form-control" id="type" ngModel name="Type" />
+        <input
+          type="text"
+          class="form-control"
+          id="type"
+          ngModel
+          name="Type"
+          required
+          #propType="ngModel"
+        />
+        <span *ngIf="propType.touched" class="err-msg">
+          <span *ngIf="propType.hasError('required')">Please Enter Type</span>
+        </span>
       </div>
       <div class="mb-3">
         <label for="price" class="form-label">Price</label>
@@ -34,7 +45,12 @@
           id="price"
           ngModel
           name="Price"
+          required
+          #propPrice="ngModel"
         />
+        <span *ngIf="propPrice.touched" class="err-msg">
+          <span *ngIf="propPrice.hasError('required')">Please Enter Price</span>
+        </span>
       </div>
       <button type="reset" class="btn btn-danger me-2">Cancel</button>
       <button type="submit" [disabled]="!Form.valid" class="btn btn-primary">
