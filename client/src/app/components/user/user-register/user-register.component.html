@@ -15,6 +15,14 @@
           id="name"
           formControlName="name"
         />
+        <span
+          class="err-msg"
+          *ngIf="
+            !registrationForm.get('name')?.valid &&
+            registrationForm.get('name')?.touched
+          "
+          >Please provide name</span
+        >
       </div>
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
@@ -24,6 +32,14 @@
           id="email"
           formControlName="email"
         />
+        <span
+          class="err-msg"
+          *ngIf="
+            !registrationForm.get('email')?.valid &&
+            registrationForm.get('email')?.touched
+          "
+          >Please provide email</span
+        >
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
@@ -33,6 +49,14 @@
           id="password"
           formControlName="password"
         />
+        <span
+          class="err-msg"
+          *ngIf="
+            !registrationForm.get('password')?.valid &&
+            registrationForm.get('password')?.touched
+          "
+          >Please provide password</span
+        >
       </div>
       <div class="mb-3">
         <label for="cpassword" class="form-label">Confirm Password</label>
@@ -42,6 +66,14 @@
           id="cpassword"
           formControlName="confirmPassword"
         />
+        <span
+          class="err-msg"
+          *ngIf="
+            !registrationForm.get('confirmPassword')?.valid &&
+            registrationForm.get('confirmPassword')?.touched
+          "
+          >Please provide confirm password</span
+        >
       </div>
       <div class="mb-3">
         <label for="phone" class="form-label">Phone number</label>
@@ -51,6 +83,14 @@
           id="phone"
           formControlName="phoneNumber"
         />
+        <span
+          class="err-msg"
+          *ngIf="
+            !registrationForm.get('phoneNumber')?.valid &&
+            registrationForm.get('phoneNumber')?.touched
+          "
+          >Please provide confirm phone number</span
+        >
       </div>
       <button type="reset" class="btn btn-danger me-2">Cancel</button>
       <button type="submit" class="btn btn-primary">Save</button>
