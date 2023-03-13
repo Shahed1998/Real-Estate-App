@@ -15,12 +15,7 @@
           id="name"
           formControlName="name"
         />
-        <span
-          class="err-msg"
-          *ngIf="
-            !registrationForm.get('name')?.valid &&
-            registrationForm.get('name')?.touched
-          "
+        <span class="err-msg" *ngIf="!Name.valid && Name.touched"
           >Please provide name</span
         >
       </div>
@@ -32,14 +27,12 @@
           id="email"
           formControlName="email"
         />
-        <span
-          class="err-msg"
-          *ngIf="
-            !registrationForm.get('email')?.valid &&
-            registrationForm.get('email')?.touched
-          "
-          >Please provide email</span
-        >
+        <span class="err-msg" *ngIf="!Email.valid && Email.touched">
+          <span *ngIf="Email.hasError('required')">Please provide email</span>
+          <span *ngIf="Email.hasError('email')"
+            >Please provide a valid email</span
+          >
+        </span>
       </div>
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
@@ -49,14 +42,14 @@
           id="password"
           formControlName="password"
         />
-        <span
-          class="err-msg"
-          *ngIf="
-            !registrationForm.get('password')?.valid &&
-            registrationForm.get('password')?.touched
-          "
-          >Please provide password</span
-        >
+        <span class="err-msg" *ngIf="!Password.valid && Password.touched">
+          <span *ngIf="Password.hasError('required')"
+            >Please provide password</span
+          >
+          <span *ngIf="Password.hasError('minlength')"
+            >Password must be at least 8 characters long</span
+          >
+        </span>
       </div>
       <div class="mb-3">
         <label for="cpassword" class="form-label">Confirm Password</label>
@@ -68,12 +61,19 @@
         />
         <span
           class="err-msg"
-          *ngIf="
-            !registrationForm.get('confirmPassword')?.valid &&
-            registrationForm.get('confirmPassword')?.touched
-          "
-          >Please provide confirm password</span
+          *ngIf="!ConfirmPassword.valid && ConfirmPassword.touched"
         >
+          <span *ngIf="ConfirmPassword.hasError('required')"
+            >Please provide confirm password</span
+          >
+          <!-- Fix cross validation error -->
+          <!-- <span
+            *ngIf="
+              registrationForm.hasError('notmatched') && ConfirmPassword.valid
+            "
+            >Password not matched</span
+          > -->
+        </span>
       </div>
       <div class="mb-3">
         <label for="phone" class="form-label">Phone number</label>
@@ -83,13 +83,8 @@
           id="phone"
           formControlName="phoneNumber"
         />
-        <span
-          class="err-msg"
-          *ngIf="
-            !registrationForm.get('phoneNumber')?.valid &&
-            registrationForm.get('phoneNumber')?.touched
-          "
-          >Please provide confirm phone number</span
+        <span class="err-msg" *ngIf="!PhoneNumber.valid && PhoneNumber.touched"
+          >Please provide phone number</span
         >
       </div>
       <button type="reset" class="btn btn-danger me-2">Cancel</button>
