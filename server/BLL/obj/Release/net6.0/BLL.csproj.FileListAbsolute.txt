@@ -1,0 +1,15 @@
+S:\Self_Learning\Projects\ASP.NET core\Real Estate App ( ASP.Net core )\server\BLL\bin\Release\net6.0\BLL.deps.json
+S:\Self_Learning\Projects\ASP.NET core\Real Estate App ( ASP.Net core )\server\BLL\bin\Release\net6.0\BLL.dll
+S:\Self_Learning\Projects\ASP.NET core\Real Estate App ( ASP.Net core )\server\BLL\bin\Release\net6.0\BLL.pdb
+S:\Self_Learning\Projects\ASP.NET core\Real Estate App ( ASP.Net core )\server\BLL\bin\Release\net6.0\DAL.dll
+S:\Self_Learning\Projects\ASP.NET core\Real Estate App ( ASP.Net core )\server\BLL\bin\Release\net6.0\DAL.pdb
+S:\Self_Learning\Projects\ASP.NET core\Real Estate App ( ASP.Net core )\server\BLL\obj\Release\net6.0\BLL.csproj.AssemblyReference.cache
+S:\Self_Learning\Projects\ASP.NET core\Real Estate App ( ASP.Net core )\server\BLL\obj\Release\net6.0\BLL.GeneratedMSBuildEditorConfig.editorconfig
+S:\Self_Learning\Projects\ASP.NET core\Real Estate App ( ASP.Net core )\server\BLL\obj\Release\net6.0\BLL.AssemblyInfoInputs.cache
+S:\Self_Learning\Projects\ASP.NET core\Real Estate App ( ASP.Net core )\server\BLL\obj\Release\net6.0\BLL.AssemblyInfo.cs
+S:\Self_Learning\Projects\ASP.NET core\Real Estate App ( ASP.Net core )\server\BLL\obj\Release\net6.0\BLL.csproj.CoreCompileInputs.cache
+S:\Self_Learning\Projects\ASP.NET core\Real Estate App ( ASP.Net core )\server\BLL\obj\Release\net6.0\BLL.csproj.CopyComplete
+S:\Self_Learning\Projects\ASP.NET core\Real Estate App ( ASP.Net core )\server\BLL\obj\Release\net6.0\BLL.dll
+S:\Self_Learning\Projects\ASP.NET core\Real Estate App ( ASP.Net core )\server\BLL\obj\Release\net6.0\refint\BLL.dll
+S:\Self_Learning\Projects\ASP.NET core\Real Estate App ( ASP.Net core )\server\BLL\obj\Release\net6.0\BLL.pdb
+S:\Self_Learning\Projects\ASP.NET core\Real Estate App ( ASP.Net core )\server\BLL\obj\Release\net6.0\ref\BLL.dll

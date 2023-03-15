@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6nYakaViqlI6CiMXQnqR8BTc57cgileRnsA+UQCemjfi11+7ZaT4Q4jbws2iBCpgLTCOTCraziQXoGytlDZMLg==",
+  "dgSpecHash": "rqeGF5hS9D4/9jSQG56sVWy0IVgwFb97E3lUlQybIpX83jx5z1gUg/8yNeonihD2ToVkSHM59W8lBFB73ba/YQ==",
   "success": true,
-  "projectFilePath": "S:\\Self_Learning\\Projects\\Real Estate App ( ASP.Net core )\\server\\BLL\\BLL.csproj",
+  "projectFilePath": "S:\\Self_Learning\\Projects\\ASP.NET core\\Real Estate App ( ASP.Net core )\\server\\BLL\\BLL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\shahed\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\shahed\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",

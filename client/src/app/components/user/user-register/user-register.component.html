@@ -63,17 +63,16 @@
           class="err-msg"
           *ngIf="!ConfirmPassword.valid && ConfirmPassword.touched"
         >
-          <span *ngIf="ConfirmPassword.hasError('required')"
+          <!-- Fix with if else -->
+          <!-- <span *ngIf="ConfirmPassword.hasError('required')"
             >Please provide confirm password</span
           >
-          <!-- Fix cross validation error -->
-          <!-- <span
-            *ngIf="
-              registrationForm.hasError('notmatched') && ConfirmPassword.valid
-            "
+          <span *ngIf="registrationForm.hasError('notmatched')"
             >Password not matched</span
           > -->
         </span>
+
+        <!-- Fix cross validation error -->
       </div>
       <div class="mb-3">
         <label for="phone" class="form-label">Phone number</label>

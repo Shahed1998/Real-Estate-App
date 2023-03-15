@@ -4083,11 +4083,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "S:\\Self_Learning\\Projects\\Real Estate App ( ASP.Net core )\\server\\API\\API.csproj",
+      "projectUniqueName": "S:\\Self_Learning\\Projects\\ASP.NET core\\Real Estate App ( ASP.Net core )\\server\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "S:\\Self_Learning\\Projects\\Real Estate App ( ASP.Net core )\\server\\API\\API.csproj",
+      "projectPath": "S:\\Self_Learning\\Projects\\ASP.NET core\\Real Estate App ( ASP.Net core )\\server\\API\\API.csproj",
       "packagesPath": "C:\\Users\\shahed\\.nuget\\packages\\",
-      "outputPath": "S:\\Self_Learning\\Projects\\Real Estate App ( ASP.Net core )\\server\\API\\obj\\",
+      "outputPath": "S:\\Self_Learning\\Projects\\ASP.NET core\\Real Estate App ( ASP.Net core )\\server\\API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\shahed\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4104,8 +4104,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "S:\\Self_Learning\\Projects\\Real Estate App ( ASP.Net core )\\server\\BLL\\BLL.csproj": {
-              "projectPath": "S:\\Self_Learning\\Projects\\Real Estate App ( ASP.Net core )\\server\\BLL\\BLL.csproj"
+            "S:\\Self_Learning\\Projects\\ASP.NET core\\Real Estate App ( ASP.Net core )\\server\\BLL\\BLL.csproj": {
+              "projectPath": "S:\\Self_Learning\\Projects\\ASP.NET core\\Real Estate App ( ASP.Net core )\\server\\BLL\\BLL.csproj"
             }
           }
         }

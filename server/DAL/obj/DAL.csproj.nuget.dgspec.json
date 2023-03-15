@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "S:\\Self_Learning\\Projects\\Real Estate App ( ASP.Net core )\\server\\DAL\\DAL.csproj": {}
+    "S:\\Self_Learning\\Projects\\ASP.NET core\\Real Estate App ( ASP.Net core )\\server\\DAL\\DAL.csproj": {}
   },
   "projects": {
-    "S:\\Self_Learning\\Projects\\Real Estate App ( ASP.Net core )\\server\\DAL\\DAL.csproj": {
+    "S:\\Self_Learning\\Projects\\ASP.NET core\\Real Estate App ( ASP.Net core )\\server\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "S:\\Self_Learning\\Projects\\Real Estate App ( ASP.Net core )\\server\\DAL\\DAL.csproj",
+        "projectUniqueName": "S:\\Self_Learning\\Projects\\ASP.NET core\\Real Estate App ( ASP.Net core )\\server\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "S:\\Self_Learning\\Projects\\Real Estate App ( ASP.Net core )\\server\\DAL\\DAL.csproj",
+        "projectPath": "S:\\Self_Learning\\Projects\\ASP.NET core\\Real Estate App ( ASP.Net core )\\server\\DAL\\DAL.csproj",
         "packagesPath": "C:\\Users\\shahed\\.nuget\\packages\\",
-        "outputPath": "S:\\Self_Learning\\Projects\\Real Estate App ( ASP.Net core )\\server\\DAL\\obj\\",
+        "outputPath": "S:\\Self_Learning\\Projects\\ASP.NET core\\Real Estate App ( ASP.Net core )\\server\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\shahed\\AppData\\Roaming\\NuGet\\NuGet.Config",
