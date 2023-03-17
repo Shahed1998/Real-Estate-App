@@ -7,6 +7,9 @@
     {{ registrationForm.status | json }}
     <!-- Test -->
     <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+      <!-- ----------------------------------------------------------------- -->
+      <!-- Name -->
+      <!-- ----------------------------------------------------------------- -->
       <div class="mb-3">
         <label for="name" class="form-label">Name</label>
         <input
@@ -19,6 +22,9 @@
           >Please provide name</span
         >
       </div>
+      <!-- ----------------------------------------------------------------- -->
+      <!-- Email address -->
+      <!-- ----------------------------------------------------------------- -->
       <div class="mb-3">
         <label for="email" class="form-label">Email</label>
         <input
@@ -34,6 +40,9 @@
           >
         </span>
       </div>
+      <!-- ----------------------------------------------------------------- -->
+      <!-- Password -->
+      <!-- ----------------------------------------------------------------- -->
       <div class="mb-3">
         <label for="password" class="form-label">Password</label>
         <input
@@ -51,6 +60,9 @@
           >
         </span>
       </div>
+      <!-- ----------------------------------------------------------------- -->
+      <!-- Confirm Password -->
+      <!-- ----------------------------------------------------------------- -->
       <div class="mb-3">
         <label for="cpassword" class="form-label">Confirm Password</label>
         <input
@@ -63,17 +75,21 @@
           class="err-msg"
           *ngIf="!ConfirmPassword.valid && ConfirmPassword.touched"
         >
-          <!-- Fix with if else -->
-          <!-- <span *ngIf="ConfirmPassword.hasError('required')"
+          <span *ngIf="ConfirmPassword.hasError('required')"
             >Please provide confirm password</span
           >
-          <span *ngIf="registrationForm.hasError('notmatched')"
-            >Password not matched</span
-          > -->
         </span>
-
-        <!-- Fix cross validation error -->
+        <span
+          class="err-msg"
+          *ngIf="
+            registrationForm.hasError('notmatched') && ConfirmPassword.valid
+          "
+          >Password not matched</span
+        >
       </div>
+      <!-- ----------------------------------------------------------------- -->
+      <!-- Phone number -->
+      <!-- ----------------------------------------------------------------- -->
       <div class="mb-3">
         <label for="phone" class="form-label">Phone number</label>
         <input
@@ -86,6 +102,9 @@
           >Please provide phone number</span
         >
       </div>
+      <!-- ----------------------------------------------------------------- -->
+      <!-- Form buttons -->
+      <!-- ----------------------------------------------------------------- -->
       <button type="reset" class="btn btn-danger me-2">Cancel</button>
       <button type="submit" class="btn btn-primary">Save</button>
     </form>

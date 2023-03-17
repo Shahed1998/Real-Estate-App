@@ -24,10 +24,7 @@ export class UserRegisterComponent implements OnInit {
           Validators.required,
           Validators.minLength(8),
         ]),
-        confirmPassword: new FormControl(null, [
-          Validators.required,
-          Validators.minLength(8),
-        ]),
+        confirmPassword: new FormControl(null, [Validators.required]),
         phoneNumber: new FormControl(null, [
           Validators.required,
           Validators.maxLength(11),
