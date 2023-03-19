@@ -4,6 +4,7 @@
   <div class="card-body">
     <!-- Test -->
     {{ registrationForm.value | json }}
+    <!-- Using pipe to convert to json -->
     {{ registrationForm.status | json }}
     <!-- Test -->
     <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
@@ -106,7 +107,13 @@
       <!-- Form buttons -->
       <!-- ----------------------------------------------------------------- -->
       <button type="reset" class="btn btn-danger me-2">Cancel</button>
-      <button type="submit" class="btn btn-primary">Save</button>
+      <button
+        [disabled]="!registrationForm.valid"
+        type="submit"
+        class="btn btn-primary"
+      >
+        Save
+      </button>
     </form>
   </div>
 </div>
