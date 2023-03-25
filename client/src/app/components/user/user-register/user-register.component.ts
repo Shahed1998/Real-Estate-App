@@ -8,6 +8,8 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { User } from 'src/app/model/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-user-register',
@@ -16,8 +18,8 @@ import {
 })
 export class UserRegisterComponent implements OnInit {
   registrationForm!: FormGroup;
-  users: any = {};
-  constructor(private fb: FormBuilder) {}
+  users!: User;
+  constructor(private fb: FormBuilder, private userService: UserService) {}
   ngOnInit(): void {
     this.createRegistrationForm();
   }
@@ -65,14 +67,20 @@ export class UserRegisterComponent implements OnInit {
   // Form submission
   // -------------------------------------------------------------------------
   onSubmit() {
-    console.log(this.registrationForm);
-    this.users = Object.assign(this.users, this.registrationForm.value);
-    this.addUsers(JSON.stringify(this.users));
+    if (this.registrationForm.valid) {
+      this.userService.addUsers(this.userData());
+      this.registrationForm.reset();
+    }
   }
 
-  addUsers(user: any) {
-    // Fix: get user list from localstorage and add new user to it
-    // localStorage.setItem('users');
+  // Mapping user to its model and using it onSubmit
+  userData(): User {
+    return (this.users = {
+      name: this.Name.value,
+      email: this.Email.value,
+      password: this.Password.value,
+      phoneNumber: this.PhoneNumber.value,
+    });
   }
 }
 
