@@ -10,6 +10,7 @@ import {
 } from '@angular/forms';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-register',
@@ -19,7 +20,11 @@ import { UserService } from 'src/app/services/user.service';
 export class UserRegisterComponent implements OnInit {
   registrationForm!: FormGroup;
   users!: User;
-  constructor(private fb: FormBuilder, private userService: UserService) {}
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private toastr: ToastrService
+  ) {}
   ngOnInit(): void {
     this.createRegistrationForm();
   }
@@ -69,6 +74,10 @@ export class UserRegisterComponent implements OnInit {
   onSubmit() {
     if (this.registrationForm.valid) {
       this.userService.addUsers(this.userData());
+      // Toaster message
+      this.toastr.success('User added', 'Success', {
+        timeOut: 3000,
+      });
       this.registrationForm.reset();
     }
   }
