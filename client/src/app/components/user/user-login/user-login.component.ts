@@ -5,6 +5,7 @@ import {
   Validators,
   FormControl,
 } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-user-login',
@@ -14,7 +15,7 @@ import {
 export class UserLoginComponent implements OnInit {
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.loginFormBuilder();
@@ -44,6 +45,10 @@ export class UserLoginComponent implements OnInit {
   }
 
   login() {
-    console.log(this.loginForm);
+    let token = this.authService.authenticate(this.loginForm.value);
+    if (token) {
+      localStorage.setItem('token', token.name);
+      console.log(token);
+    }
   }
 }

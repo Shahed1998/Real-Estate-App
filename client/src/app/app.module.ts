@@ -18,6 +18,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { UserLoginComponent } from './components/user/user-login/user-login.component';
 import { UserRegisterComponent } from './components/user/user-register/user-register.component';
 import { UserService } from './services/user.service';
+import { AuthService } from './services/auth.service';
 
 const appRoutes: Routes = [
   { path: '', component: PropertyListComponent },
@@ -53,7 +54,7 @@ const appRoutes: Routes = [
       positionClass: 'toast-top-right',
     }),
   ],
-  providers: [ApiService, UserService],
+  providers: [ApiService, UserService, AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
