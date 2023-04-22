@@ -32,13 +32,26 @@
           >List property (Free)</a
         >
         <a
+          *ngIf="!onLogin()"
           class="nav-link"
           routerLinkActive="active"
           routerLink="/user/register"
           >Register</a
         >
-        <a class="nav-link" routerLinkActive="active" routerLink="/user/login"
+        <a
+          *ngIf="!onLogin()"
+          class="nav-link"
+          routerLinkActive="active"
+          routerLink="/user/login"
           >Login</a
+        >
+        <a
+          *ngIf="onLogin()"
+          class="nav-link"
+          routerLinkActive="active"
+          (click)="onLogout()"
+          style="cursor: pointer"
+          >Logout</a
         >
       </div>
     </div>

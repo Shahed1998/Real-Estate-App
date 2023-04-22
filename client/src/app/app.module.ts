@@ -51,7 +51,8 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      positionClass: 'toast-top-right',
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
     }),
   ],
   providers: [ApiService, UserService, AuthService],

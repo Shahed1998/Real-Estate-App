@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -6,6 +6,7 @@ import {
   FormControl,
 } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-login',
@@ -14,8 +15,12 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class UserLoginComponent implements OnInit {
   loginForm!: FormGroup;
+  // Dependency injections: only available from angular 14
+  fb = inject(FormBuilder);
+  authService = inject(AuthService);
+  toastr = inject(ToastrService);
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.loginFormBuilder();
@@ -48,7 +53,9 @@ export class UserLoginComponent implements OnInit {
     let token = this.authService.authenticate(this.loginForm.value);
     if (token) {
       localStorage.setItem('token', token.name);
-      console.log(token);
+      this.toastr.success('Logged in successfully');
+    } else {
+      this.toastr.error('Failed to login');
     }
   }
 }
