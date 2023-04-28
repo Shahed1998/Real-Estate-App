@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit, ViewChild, inject } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-property',
@@ -7,10 +7,20 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./add-property.component.css'],
 })
 export class AddPropertyComponent implements OnInit {
-  @ViewChild('Form') addPropertyForm!: NgForm; // we can access data reference even before submission
+  addPropertyForm!: FormGroup;
+  fb = inject(FormBuilder);
+
   constructor() {}
-  ngOnInit(): void {}
-  onSubmit() {
-    console.log(this.addPropertyForm); // do validations
+
+  ngOnInit(): void {
+    this.addPropertyFormBuilder();
   }
+
+  addPropertyFormBuilder() {
+    this.addPropertyForm = this.fb.group({
+      name: [null, [Validators.required, Validators.minLength(5)]],
+    });
+  }
+
+  onSubmit() {}
 }
