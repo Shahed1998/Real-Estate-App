@@ -1,5 +1,10 @@
 import { Component, OnInit, ViewChild, inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-add-property',
@@ -18,8 +23,23 @@ export class AddPropertyComponent implements OnInit {
 
   addPropertyFormBuilder() {
     this.addPropertyForm = this.fb.group({
+      // Basic info tab
       name: [null, [Validators.required, Validators.minLength(5)]],
+      type: [null, [Validators.required]],
+      price: [null, [Validators.required]],
     });
+  }
+
+  get Name() {
+    return this.addPropertyForm.get('name') as FormControl;
+  }
+
+  get Type() {
+    return this.addPropertyForm.get('type') as FormControl;
+  }
+
+  get Price() {
+    return this.addPropertyForm.get('price') as FormControl;
   }
 
   onSubmit() {}

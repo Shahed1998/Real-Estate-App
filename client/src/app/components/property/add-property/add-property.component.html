@@ -7,12 +7,12 @@
         <li class="nav-item" role="presentation">
           <button
             class="nav-link active"
-            id="home-tab"
+            id="basic-info-tab"
             data-bs-toggle="tab"
-            data-bs-target="#home"
+            data-bs-target="#basic-info"
             type="button"
             role="tab"
-            aria-controls="home"
+            aria-controls="basic-info"
             aria-selected="true"
           >
             Basic info
@@ -20,13 +20,14 @@
         </li>
         <li class="nav-item" role="presentation">
           <button
+            [disabled]="Name.invalid || Type.invalid || Price.invalid"
             class="nav-link"
-            id="profile-tab"
+            id="pricing-area-tab"
             data-bs-toggle="tab"
-            data-bs-target="#profile"
+            data-bs-target="#pricing-area"
             type="button"
             role="tab"
-            aria-controls="profile"
+            aria-controls="pricing-area"
             aria-selected="false"
           >
             Pricing and Area
@@ -35,12 +36,12 @@
         <li class="nav-item" role="presentation">
           <button
             class="nav-link"
-            id="contact-tab"
+            id="address-tab"
             data-bs-toggle="tab"
-            data-bs-target="#contact"
+            data-bs-target="#address"
             type="button"
             role="tab"
-            aria-controls="contact"
+            aria-controls="address"
             aria-selected="false"
           >
             Address
@@ -78,9 +79,9 @@
       <div class="tab-content" id="myTabContent">
         <div
           class="tab-pane fade show active"
-          id="home"
+          id="basic-info"
           role="tabpanel"
-          aria-labelledby="home-tab"
+          aria-labelledby="basic-info-tab"
         >
           <div class="mb-3">
             <label for="Name" class="form-label">Name</label>
@@ -91,22 +92,43 @@
               formControlName="name"
             />
           </div>
+          <div class="mb-3">
+            <label for="Type" class="form-label">Type</label>
+            <input
+              type="text"
+              id="Type"
+              class="form-control"
+              formControlName="type"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="Price" class="form-label">Price</label>
+            <input
+              type="text"
+              id="Price"
+              class="form-control"
+              formControlName="price"
+            />
+          </div>
+          <div class="mb-3">
+            <button class="btn btn-primary w-100">Next</button>
+          </div>
         </div>
         <div
           class="tab-pane fade"
-          id="profile"
+          id="pricing-area"
           role="tabpanel"
-          aria-labelledby="profile-tab"
+          aria-labelledby="pricing-area-tab"
         >
           Tab 2
         </div>
         <div
           class="tab-pane fade"
-          id="contact"
+          id="address"
           role="tabpanel"
-          aria-labelledby="contact-tab"
+          aria-labelledby="address-tab"
         >
-          Tab 3
+          Tab 3 Address
         </div>
         <div
           class="tab-pane fade"
