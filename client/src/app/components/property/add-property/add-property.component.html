@@ -29,8 +29,17 @@
             role="tab"
             aria-controls="pricing-area"
             aria-selected="false"
+            #pricingArea
           >
             Pricing and Area
+            <!-- Fields -->
+            <!--
+              Price (in USD)
+              Security (in USD)
+              Maintenance (in USD)
+              Built area (in sq.ft)
+              Carpet area (in sq.ft)
+            -->
           </button>
         </li>
         <li class="nav-item" role="presentation">
@@ -45,6 +54,13 @@
             aria-selected="false"
           >
             Address
+            <!-- Fields -->
+            <!--
+              Floor
+              Total floors
+              Address
+              Landmark
+            -->
           </button>
         </li>
         <li class="nav-item" role="presentation">
@@ -59,6 +75,15 @@
             aria-selected="false"
           >
             Other details
+            <!-- Fields -->
+            <!--
+              Ready to move (options: Yes/No)
+              Available from (date)
+              Age of property
+              Gated community
+              Main entrance
+              Description
+            -->
           </button>
         </li>
         <li class="nav-item" role="presentation">
@@ -73,10 +98,19 @@
             aria-selected="false"
           >
             Photos
+            <!-- Fields -->
+            <!-- Photo upload option -->
           </button>
         </li>
       </ul>
+
+      <!-- --------------------------------------------------------------------- -->
+      <!-- Tab content -->
+      <!-- --------------------------------------------------------------------- -->
       <div class="tab-content" id="myTabContent">
+        <!-- --------------------------------------------------------------------- -->
+        <!-- Basic Info Tab -->
+        <!-- --------------------------------------------------------------------- -->
         <div
           class="tab-pane fade show active"
           id="basic-info"
@@ -111,9 +145,18 @@
             />
           </div>
           <div class="mb-3">
-            <button class="btn btn-primary w-100">Next</button>
+            <button
+              [disabled]="Name.invalid || Type.invalid || Price.invalid"
+              class="btn btn-primary w-100"
+              (click)="nextBtn($event, 'pricingArea')"
+            >
+              Next
+            </button>
           </div>
         </div>
+        <!-- --------------------------------------------------------------------- -->
+        <!-- Pricing and Area Tab -->
+        <!-- --------------------------------------------------------------------- -->
         <div
           class="tab-pane fade"
           id="pricing-area"
@@ -122,6 +165,9 @@
         >
           Tab 2
         </div>
+        <!-- --------------------------------------------------------------------- -->
+        <!-- Address Tab -->
+        <!-- --------------------------------------------------------------------- -->
         <div
           class="tab-pane fade"
           id="address"
@@ -130,6 +176,9 @@
         >
           Tab 3 Address
         </div>
+        <!-- --------------------------------------------------------------------- -->
+        <!-- Other details Tab -->
+        <!-- --------------------------------------------------------------------- -->
         <div
           class="tab-pane fade"
           id="other-details"
@@ -138,6 +187,9 @@
         >
           Tab 4
         </div>
+        <!-- --------------------------------------------------------------------- -->
+        <!-- Photos Tab -->
+        <!-- --------------------------------------------------------------------- -->
         <div
           class="tab-pane fade"
           id="photos"

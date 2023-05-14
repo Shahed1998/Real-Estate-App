@@ -1,4 +1,10 @@
-import { Component, OnInit, ViewChild, inject } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -14,6 +20,7 @@ import {
 export class AddPropertyComponent implements OnInit {
   addPropertyForm!: FormGroup;
   fb = inject(FormBuilder);
+  @ViewChild('pricingArea') pA!: ElementRef;
 
   constructor() {}
 
@@ -40,6 +47,10 @@ export class AddPropertyComponent implements OnInit {
 
   get Price() {
     return this.addPropertyForm.get('price') as FormControl;
+  }
+
+  nextBtn(event: Event, openTab: string) {
+    if (openTab === 'pricingArea') this.pA.nativeElement.click();
   }
 
   onSubmit() {}
