@@ -14,13 +14,14 @@
             role="tab"
             aria-controls="basic-info"
             aria-selected="true"
+            #basicInfo
           >
             Basic info
           </button>
         </li>
         <li class="nav-item" role="presentation">
+          <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
           <button
-            [disabled]="Name.invalid || Type.invalid || Price.invalid"
             class="nav-link"
             id="pricing-area-tab"
             data-bs-toggle="tab"
@@ -52,6 +53,7 @@
             role="tab"
             aria-controls="address"
             aria-selected="false"
+            #address
           >
             Address
             <!-- Fields -->
@@ -73,6 +75,7 @@
             role="tab"
             aria-controls="other-details"
             aria-selected="false"
+            #otherDetails
           >
             Other details
             <!-- Fields -->
@@ -96,6 +99,7 @@
             role="tab"
             aria-controls="photos"
             aria-selected="false"
+            #photos
           >
             Photos
             <!-- Fields -->
@@ -117,7 +121,7 @@
           role="tabpanel"
           aria-labelledby="basic-info-tab"
         >
-          <div class="mb-3">
+          <div class="mb-3 mt-3">
             <label for="Name" class="form-label">Name</label>
             <input
               type="text"
@@ -145,10 +149,10 @@
             />
           </div>
           <div class="mb-3">
+            <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
             <button
-              [disabled]="Name.invalid || Type.invalid || Price.invalid"
               class="btn btn-primary w-100"
-              (click)="nextBtn($event, 'pricingArea')"
+              (click)="tabChangeBtn('pricingArea')"
             >
               Next
             </button>
@@ -163,7 +167,83 @@
           role="tabpanel"
           aria-labelledby="pricing-area-tab"
         >
-          Tab 2
+          <!-- Fields -->
+          <!--
+              Price (in USD)
+              Security (in USD)
+              Maintenance (in USD)
+              Built area (in sq.ft)
+              Carpet area (in sq.ft)
+            -->
+          <div class="mb-3">
+            <label for="pAPrice" class="form-label mt-3">Price (in USD)</label>
+            <input
+              type="text"
+              id="pAPrice"
+              class="form-control"
+              formControlName="pAPrice"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="pASecurity" class="form-label">Security (in USD)</label>
+            <input
+              type="text"
+              id="pASecurity"
+              class="form-control"
+              formControlName="pASecurity"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="pAMaintenance" class="form-label"
+              >Maintenance (in USD)</label
+            >
+            <input
+              type="text"
+              id="pAMaintenance"
+              class="form-control"
+              formControlName="pAMaintenance"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="pABuiltArea" class="form-label"
+              >Built Area (in sq.ft)</label
+            >
+            <input
+              type="text"
+              id="pABuiltArea"
+              class="form-control"
+              formControlName="pABuiltArea"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="pACarpetArea" class="form-label"
+              >Carpet Area (in sq.ft)</label
+            >
+            <input
+              type="text"
+              id="pACarpetArea"
+              class="form-control"
+              formControlName="pACarpetArea"
+            />
+          </div>
+          <div class="mb-3">
+            <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
+            <button
+              class="btn btn-primary w-100"
+              (click)="tabChangeBtn('basicInfo')"
+            >
+              Previous
+            </button>
+          </div>
+          <div class="mb-3">
+            <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
+            <button
+              class="btn btn-primary w-100"
+              (click)="tabChangeBtn('address')"
+            >
+              Next
+            </button>
+          </div>
         </div>
         <!-- --------------------------------------------------------------------- -->
         <!-- Address Tab -->
@@ -175,6 +255,24 @@
           aria-labelledby="address-tab"
         >
           Tab 3 Address
+          <div class="mb-3">
+            <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
+            <button
+              class="btn btn-primary w-100"
+              (click)="tabChangeBtn('pricingArea')"
+            >
+              Previous
+            </button>
+          </div>
+          <div class="mb-3">
+            <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
+            <button
+              class="btn btn-primary w-100"
+              (click)="tabChangeBtn('otherDetails')"
+            >
+              Next
+            </button>
+          </div>
         </div>
         <!-- --------------------------------------------------------------------- -->
         <!-- Other details Tab -->
@@ -186,6 +284,24 @@
           aria-labelledby="other-details-tab"
         >
           Tab 4
+          <div class="mb-3">
+            <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
+            <button
+              class="btn btn-primary w-100"
+              (click)="tabChangeBtn('address')"
+            >
+              Previous
+            </button>
+          </div>
+          <div class="mb-3">
+            <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
+            <button
+              class="btn btn-primary w-100"
+              (click)="tabChangeBtn('photos')"
+            >
+              Next
+            </button>
+          </div>
         </div>
         <!-- --------------------------------------------------------------------- -->
         <!-- Photos Tab -->
@@ -197,6 +313,15 @@
           aria-labelledby="photos-tab"
         >
           Tab 5
+          <div class="mb-3">
+            <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
+            <button
+              class="btn btn-primary w-100"
+              (click)="tabChangeBtn('otherDetails')"
+            >
+              Previous
+            </button>
+          </div>
         </div>
       </div>
     </form>

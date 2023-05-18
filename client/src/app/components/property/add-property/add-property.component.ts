@@ -20,12 +20,23 @@ import {
 export class AddPropertyComponent implements OnInit {
   addPropertyForm!: FormGroup;
   fb = inject(FormBuilder);
+
+  pricingAreaTabDisabled = true;
   @ViewChild('pricingArea') pA!: ElementRef;
+  @ViewChild('basicInfo') bI!: ElementRef;
+  @ViewChild('address') add!: ElementRef;
+  @ViewChild('otherDetails') odt!: ElementRef;
+  @ViewChild('photos') photo!: ElementRef;
 
   constructor() {}
 
   ngOnInit(): void {
     this.addPropertyFormBuilder();
+    if (this.Name.valid && this.Price.valid && this.Type.valid) {
+      this.pricingAreaTabDisabled = false;
+    } else {
+      this.pricingAreaTabDisabled = true;
+    }
   }
 
   addPropertyFormBuilder() {
@@ -34,6 +45,12 @@ export class AddPropertyComponent implements OnInit {
       name: [null, [Validators.required, Validators.minLength(5)]],
       type: [null, [Validators.required]],
       price: [null, [Validators.required]],
+      // Pricing and Area tab
+      pAPrice: [null, [Validators.required]],
+      pASecurity: [null, [Validators.required]],
+      pAMaintenance: [null, [Validators.required]],
+      pABuiltArea: [null, [Validators.required]],
+      pACarpetArea: [null, [Validators.required]],
     });
   }
 
@@ -49,8 +66,12 @@ export class AddPropertyComponent implements OnInit {
     return this.addPropertyForm.get('price') as FormControl;
   }
 
-  nextBtn(event: Event, openTab: string) {
+  tabChangeBtn(openTab: string) {
+    if (openTab === 'basicInfo') this.bI.nativeElement.click();
     if (openTab === 'pricingArea') this.pA.nativeElement.click();
+    if (openTab === 'address') this.add.nativeElement.click();
+    if (openTab === 'otherDetails') this.odt.nativeElement.click();
+    if (openTab === 'photos') this.photo.nativeElement.click();
   }
 
   onSubmit() {}
