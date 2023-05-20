@@ -1,7 +1,9 @@
 import {
   Component,
   ElementRef,
+  OnChanges,
   OnInit,
+  SimpleChanges,
   ViewChild,
   inject,
 } from '@angular/core';
@@ -42,15 +44,27 @@ export class AddPropertyComponent implements OnInit {
   addPropertyFormBuilder() {
     this.addPropertyForm = this.fb.group({
       // Basic info tab
-      name: [null, [Validators.required, Validators.minLength(5)]],
-      type: [null, [Validators.required]],
-      price: [null, [Validators.required]],
+      name: ['', [Validators.required, Validators.minLength(5)]],
+      type: ['', [Validators.required]],
+      price: ['', [Validators.required]],
       // Pricing and Area tab
-      pAPrice: [null, [Validators.required]],
-      pASecurity: [null, [Validators.required]],
-      pAMaintenance: [null, [Validators.required]],
-      pABuiltArea: [null, [Validators.required]],
-      pACarpetArea: [null, [Validators.required]],
+      pAPrice: ['', [Validators.required]],
+      pASecurity: ['', [Validators.required]],
+      pAMaintenance: ['', [Validators.required]],
+      pABuiltArea: ['', [Validators.required]],
+      pACarpetArea: ['', [Validators.required]],
+      // Address tab
+      AddFloor: ['', Validators.required],
+      AddTotalFloors: ['', Validators.required],
+      AddAddress: ['', Validators.required],
+      AddLandmark: ['', Validators.required],
+      // Others tab
+      otTabRTM: ['Yes', Validators.required], // ready to move field
+      otTabAF: [new Date().toISOString().split('T')[0], [Validators.required]], // sets date to current date initially
+      otTabAOP: ['', [Validators.required]], // Age of property
+      otTabGC: ['', [Validators.required]], // Gated community
+      otTabME: ['', [Validators.required]], // Main entrance
+      otTabDesc: ['', [Validators.required]], // Description
     });
   }
 

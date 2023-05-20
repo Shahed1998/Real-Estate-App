@@ -1,4 +1,4 @@
-<!-- Template driven form -->
+<!-- Reactive form -->
 <div class="card form-card mx-auto mt-3">
   <div class="card-header">Add new property</div>
   <div class="card-body">
@@ -33,14 +33,6 @@
             #pricingArea
           >
             Pricing and Area
-            <!-- Fields -->
-            <!--
-              Price (in USD)
-              Security (in USD)
-              Maintenance (in USD)
-              Built area (in sq.ft)
-              Carpet area (in sq.ft)
-            -->
           </button>
         </li>
         <li class="nav-item" role="presentation">
@@ -56,13 +48,6 @@
             #address
           >
             Address
-            <!-- Fields -->
-            <!--
-              Floor
-              Total floors
-              Address
-              Landmark
-            -->
           </button>
         </li>
         <li class="nav-item" role="presentation">
@@ -78,15 +63,6 @@
             #otherDetails
           >
             Other details
-            <!-- Fields -->
-            <!--
-              Ready to move (options: Yes/No)
-              Available from (date)
-              Age of property
-              Gated community
-              Main entrance
-              Description
-            -->
           </button>
         </li>
         <li class="nav-item" role="presentation">
@@ -167,14 +143,6 @@
           role="tabpanel"
           aria-labelledby="pricing-area-tab"
         >
-          <!-- Fields -->
-          <!--
-              Price (in USD)
-              Security (in USD)
-              Maintenance (in USD)
-              Built area (in sq.ft)
-              Carpet area (in sq.ft)
-            -->
           <div class="mb-3">
             <label for="pAPrice" class="form-label mt-3">Price (in USD)</label>
             <input
@@ -254,7 +222,43 @@
           role="tabpanel"
           aria-labelledby="address-tab"
         >
-          Tab 3 Address
+          <div class="mb-3 mt-3">
+            <label for="AddFloor" class="form-label">Floor</label>
+            <input
+              type="text"
+              id="AddFloor"
+              class="form-control"
+              formControlName="AddFloor"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="AddTotalFloors" class="form-label">Total floors</label>
+            <input
+              type="text"
+              id="AddTotalFloors"
+              class="form-control"
+              formControlName="AddTotalFloors"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="AddAddress" class="form-label">Address</label>
+            <input
+              type="text"
+              id="AddAddress"
+              class="form-control"
+              formControlName="AddAddress"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="AddLandmark" class="form-label">Landmark</label>
+            <input
+              type="text"
+              id="AddLandmark"
+              class="form-control"
+              formControlName="AddLandmark"
+            />
+          </div>
+
           <div class="mb-3">
             <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
             <button
@@ -283,7 +287,89 @@
           role="tabpanel"
           aria-labelledby="other-details-tab"
         >
-          Tab 4
+          <!-- Fields -->
+          <!--
+              Ready to move (options: Yes/No)
+              Available from (date)
+              Age of property
+              Gated community
+              Main entrance
+              Description
+            -->
+          <!-- {{ addPropertyForm.value | json }} -->
+          <div class="mb-3 mt-3">
+            <label for="AddLandmark" class="form-label me-3"
+              >Ready to move:</label
+            >
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                formControlName="otTabRTM"
+                id="inlineRadio1"
+                value="Yes"
+                checked
+              />
+              <label class="form-check-label" for="inlineRadio1">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input
+                class="form-check-input"
+                type="radio"
+                formControlName="otTabRTM"
+                id="inlineRadio2"
+                value="No"
+              />
+              <label class="form-check-label" for="inlineRadio2">No</label>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="otTabAF" class="form-label">Available from</label>
+            <input
+              type="date"
+              id="otTabAF"
+              class="form-control"
+              formControlName="otTabAF"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="otTabAOP" class="form-label">Age of property</label>
+            <input
+              type="text"
+              id="otTabAOP"
+              class="form-control"
+              formControlName="otTabAOP"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="otTabGC" class="form-label">Gated community</label>
+            <input
+              type="text"
+              id="otTabGC"
+              class="form-control"
+              formControlName="otTabGC"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="otTabME" class="form-label">Main entrance</label>
+            <input
+              type="text"
+              id="otTabME"
+              class="form-control"
+              formControlName="otTabME"
+            />
+          </div>
+          <div class="mb-3">
+            <div class="form-group">
+              <label for="otTabDesc">Description</label>
+              <textarea
+                class="form-control"
+                formControlName="otTabDesc"
+                id="otTabDesc"
+                rows="3"
+              ></textarea>
+            </div>
+          </div>
           <div class="mb-3">
             <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
             <button
