@@ -1,9 +1,7 @@
 import {
   Component,
   ElementRef,
-  OnChanges,
   OnInit,
-  SimpleChanges,
   ViewChild,
   inject,
 } from '@angular/core';
@@ -89,4 +87,12 @@ export class AddPropertyComponent implements OnInit {
   }
 
   onSubmit() {}
+
+  onReset() {
+    this.addPropertyForm.reset();
+    this.addPropertyForm.patchValue({
+      otTabRTM: 'Yes',
+      otTabAF: new Date().toISOString().split('T')[0],
+    });
+  }
 }

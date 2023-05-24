@@ -398,7 +398,20 @@
           role="tabpanel"
           aria-labelledby="photos-tab"
         >
-          Tab 5
+          <div class="mt-3 mb-3 photo-tab">
+            {{ addPropertyForm.value | json }}
+            <div>
+              <label for="photo" class="form-label w-100">Upload photo</label
+              ><br />
+              <!-- <input
+              type="text"
+              id="otTabME"
+              class="form-control"
+              formControlName="otTabME"
+            /> -->
+              <input type="file" class="form-control-file" id="photo" />
+            </div>
+          </div>
           <div class="mb-3">
             <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
             <button
@@ -406,6 +419,14 @@
               (click)="tabChangeBtn('otherDetails')"
             >
               Previous
+            </button>
+          </div>
+          <div class="mb-3">
+            <button class="btn btn-primary w-100">Submit</button>
+          </div>
+          <div class="mb-3">
+            <button class="btn btn-primary w-100" (click)="onReset()">
+              Reset
             </button>
           </div>
         </div>
