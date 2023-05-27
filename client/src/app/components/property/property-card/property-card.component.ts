@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { IProperty } from '../Interfaces/iproperty';
 
 @Component({
@@ -6,6 +6,11 @@ import { IProperty } from '../Interfaces/iproperty';
   templateUrl: './property-card.component.html',
   styleUrls: ['./property-card.component.css'],
 })
-export class PropertyCardComponent {
+export class PropertyCardComponent implements OnInit {
   @Input() property!: IProperty;
+  imgLoading: boolean = true;
+
+  ngOnInit(): void {
+    console.log(this.property);
+  }
 }

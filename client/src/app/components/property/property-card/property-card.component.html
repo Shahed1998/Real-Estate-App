@@ -1,16 +1,24 @@
 <div class="card shadow-lg mt-3 mb-5" style="width: 18rem">
   <div class="img-wrapper">
+    <div
+      class="image-loading w-100 h-100 d-flex align-items-center justify-content-center"
+      *ngIf="imgLoading"
+    >
+      Loading...
+    </div>
     <img
       *ngIf="!property.Image"
       src="assets/images/prop-default.jpg"
       class="card-img-top"
       alt="..."
+      (load)="imgLoading = false"
     />
     <img
       *ngIf="property.Image"
       src="assets/images/{{ property.Image }}.jpg"
       class="card-img-top"
       alt="..."
+      (load)="imgLoading = false"
     />
   </div>
   <div class="card-body">

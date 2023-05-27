@@ -1,5 +1,22 @@
 .img-wrapper {
+  content: "";
   overflow: hidden;
+  width: 17.9rem;
+  height: 12rem;
+}
+
+.img-wrapper .image-loading {
+  background: rgba(44, 51, 51, 0.5);
+  color: #fff;
+  font-size: large;
+  font-weight: 700;
+}
+
+.card img {
+  width: 18rem;
+  transform: scale(1, 1);
+  transition-duration: 500ms;
+  transition-timing-function: ease-out;
 }
 
 .card:hover img {
@@ -7,10 +24,4 @@
   transition-duration: 500ms;
   transition-timing-function: ease-out;
   opacity: 0.5;
-}
-
-.card img {
-  transform: scale(1, 1);
-  transition-duration: 500ms;
-  transition-timing-function: ease-out;
 }
