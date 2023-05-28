@@ -1,5 +1,5 @@
 <div class="card shadow-lg mt-3 mb-5" style="width: 18rem">
-  <div class="img-wrapper">
+  <div class="img-wrapper w-100">
     <div
       class="image-loading w-100 h-100 d-flex align-items-center justify-content-center"
       *ngIf="imgLoading"
@@ -23,7 +23,10 @@
   </div>
   <div class="card-body">
     <div class="card-text">
-      <h2>{{ property.Name }}</h2>
+      <h2>
+        {{ property.Name }}
+      </h2>
+      <span class="wishlist"><i class="fa-regular fa-bookmark"></i></span>
       <h5>{{ property.Type }}</h5>
       <h5>{{ property.Price }}</h5>
     </div>
