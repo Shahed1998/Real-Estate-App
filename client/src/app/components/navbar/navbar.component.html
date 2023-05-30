@@ -13,6 +13,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <!-- ms-auto: for moving the nav items to the right -->
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
           <a
@@ -58,6 +59,24 @@
             >Login</a
           >
         </li>
+        <li class="nav-item">
+          <a
+            *ngIf="onLogin()"
+            class="nav-link"
+            routerLinkActive="active"
+            routerLink="/wishlist"
+            ><i class="fa-regular fa-heart"></i> Wishlist
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            *ngIf="onLogin()"
+            class="nav-link"
+            routerLinkActive="active"
+            routerLink="/cart"
+            ><i class="fa-solid fa-cart-shopping"> </i> Cart</a
+          >
+        </li>
         <li *ngIf="onLogin()" class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
@@ -69,7 +88,10 @@
           >
             Welcome {{ loggedInUser }}
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="navbarDropdownMenuLink"
+          >
             <li>
               <a class="dropdown-item" href="#"
                 ><i class="fa-solid fa-gauge"></i> View dashboard</a

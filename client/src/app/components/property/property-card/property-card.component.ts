@@ -9,8 +9,20 @@ import { IProperty } from '../Interfaces/iproperty';
 export class PropertyCardComponent implements OnInit {
   @Input() property!: IProperty;
   imgLoading: boolean = true;
+  loggedInUser!: string | null;
+  wishListed: boolean = false;
 
   ngOnInit(): void {
     console.log(this.property);
+  }
+
+  onLogin() {
+    this.loggedInUser = localStorage.getItem('token');
+    return this.loggedInUser;
+  }
+
+  Wishlist() {
+    if (!this.wishListed) this.wishListed = true;
+    else if (this.wishListed) this.wishListed = false;
   }
 }

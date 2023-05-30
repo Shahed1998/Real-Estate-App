@@ -24,9 +24,26 @@
   <div class="card-body">
     <div class="card-text">
       <h2>
-        {{ property.Name }}
+        {{
+          property.Name.length > 10
+            ? property.Name.slice(0, 10) + "..."
+            : property.Name
+        }}
       </h2>
-      <span class="wishlist"><i class="fa-regular fa-bookmark"></i></span>
+      <span
+        *ngIf="onLogin()"
+        class="wishlist"
+        placement="top"
+        ngbTooltip="Add to wishlist"
+        tooltipClass="custom-tooltip-class"
+        (click)="Wishlist()"
+        ><i *ngIf="!wishListed" class="fa-regular fa-heart"></i>
+        <i
+          *ngIf="wishListed"
+          style="color: #f2d8d8"
+          class="fa-solid fa-heart"
+        ></i
+      ></span>
       <h5>{{ property.Type }}</h5>
       <h5>{{ property.Price }}</h5>
     </div>

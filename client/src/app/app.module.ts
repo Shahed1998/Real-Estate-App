@@ -7,6 +7,7 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { PropertyCardComponent } from './components/property/property-card/property-card.component';
 import { PropertyListComponent } from './components/property/property-list/property-list.component';
@@ -19,6 +20,8 @@ import { UserLoginComponent } from './components/user/user-login/user-login.comp
 import { UserRegisterComponent } from './components/user/user-register/user-register.component';
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
+import { WishlistComponent } from './components/user/wishlist/wishlist.component';
+import { CartComponent } from './components/user/cart/cart.component';
 
 const appRoutes: Routes = [
   { path: '', component: PropertyListComponent },
@@ -27,6 +30,8 @@ const appRoutes: Routes = [
   { path: 'property-detail/:id', component: PropertyDetailComponent },
   { path: 'user/login', component: UserLoginComponent },
   { path: 'user/register', component: UserRegisterComponent },
+  { path: 'wishlist', component: WishlistComponent },
+  { path: 'cart', component: CartComponent },
   { path: '**', component: PageNotFoundComponent, data: { navbar: false } },
 ];
 
@@ -41,6 +46,8 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     UserLoginComponent,
     UserRegisterComponent,
+    WishlistComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +61,7 @@ const appRoutes: Routes = [
       timeOut: 3000,
       positionClass: 'toast-bottom-right',
     }),
+    NgbTooltipModule,
   ],
   providers: [ApiService, UserService, AuthService],
   bootstrap: [AppComponent],

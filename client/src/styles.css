@@ -6,6 +6,18 @@
   margin-bottom: 16px;
 }
 
+/* Custom NgbTooltip */
+.custom-tooltip-class .tooltip-inner {
+  background-color: #5c636a;
+  font-size: 100%;
+  padding: 8px;
+  transform: translateX(40px);
+}
+
+.custom-tooltip-class.bs-tooltip-top .tooltip-arrow::before {
+  border-top-color: #5c636a;
+}
+
 @media only screen and (max-width: 1000px) {
   .form-card {
     width: 80%;

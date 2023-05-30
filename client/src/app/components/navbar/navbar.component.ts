@@ -16,6 +16,11 @@ export class NavbarComponent implements OnInit {
 
   onLogin() {
     this.loggedInUser = localStorage.getItem('token');
+    let temp = '';
+    this.loggedInUser?.split(' ').forEach((word) => {
+      temp += word[0];
+    });
+    this.loggedInUser = temp;
     return this.loggedInUser;
   }
   onLogout() {
