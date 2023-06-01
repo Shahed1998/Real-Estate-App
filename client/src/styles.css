@@ -6,16 +6,33 @@
   margin-bottom: 16px;
 }
 
-/* Custom NgbTooltip */
-.custom-tooltip-class .tooltip-inner {
-  background-color: #5c636a;
-  font-size: 100%;
-  padding: 8px;
-  transform: translateX(40px);
+/* Tooltip */
+.popover {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
-.custom-tooltip-class.bs-tooltip-top .tooltip-arrow::before {
-  border-top-color: #5c636a;
+.popover-arrow {
+  position: absolute;
+}
+
+.tooltip {
+  position: absolute;
+}
+
+.tooltip-arrow {
+  position: absolute;
+}
+
+.tooltip.top .tooltip-arrow {
+  display: none;
+}
+
+.tooltip-inner {
+  border: 1px solid #ddd;
+  background-color: #fff;
+  color: #000000;
 }
 
 @media only screen and (max-width: 1000px) {

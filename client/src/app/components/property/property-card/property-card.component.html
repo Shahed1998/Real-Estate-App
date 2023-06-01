@@ -32,18 +32,19 @@
       </h2>
       <span
         *ngIf="onLogin()"
+        #wishlistSpan
         class="wishlist"
+        tooltip="Add to wishlist"
         placement="top"
-        ngbTooltip="Add to wishlist"
-        tooltipClass="custom-tooltip-class"
         (click)="Wishlist()"
-        ><i *ngIf="!wishListed" class="fa-regular fa-heart"></i>
+      >
+        <i *ngIf="!wishListed" class="fa-regular fa-heart"></i>
         <i
           *ngIf="wishListed"
-          style="color: #f2d8d8"
+          style="color: #b46060"
           class="fa-solid fa-heart"
-        ></i
-      ></span>
+        ></i>
+      </span>
       <h5>{{ property.Type }}</h5>
       <h5>{{ property.Price }}</h5>
     </div>
