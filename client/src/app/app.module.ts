@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 import { PropertyCardComponent } from './components/property/property-card/property-card.component';
 import { PropertyListComponent } from './components/property/property-list/property-list.component';
@@ -62,6 +63,7 @@ const appRoutes: Routes = [
       positionClass: 'toast-bottom-right',
     }),
     TooltipModule.forRoot(),
+    ButtonsModule.forRoot(),
   ],
   providers: [ApiService, UserService, AuthService],
   bootstrap: [AppComponent],

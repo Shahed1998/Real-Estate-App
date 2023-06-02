@@ -20,6 +20,7 @@ import {
 export class AddPropertyComponent implements OnInit {
   addPropertyForm!: FormGroup;
   fb = inject(FormBuilder);
+  bhk = [1, 2, 3, 4];
 
   pricingAreaTabDisabled = true;
   @ViewChild('pricingArea') pA!: ElementRef;
@@ -45,6 +46,8 @@ export class AddPropertyComponent implements OnInit {
       name: ['', [Validators.required, Validators.minLength(5)]],
       type: ['', [Validators.required]],
       price: ['', [Validators.required]],
+      SellRent: ['sell', [Validators.required]],
+      BHK: ['1', [Validators.required]],
       // Pricing and Area tab
       pAPrice: ['', [Validators.required]],
       pASecurity: ['', [Validators.required]],
@@ -91,6 +94,8 @@ export class AddPropertyComponent implements OnInit {
   onReset() {
     this.addPropertyForm.reset();
     this.addPropertyForm.patchValue({
+      SellRent: 'sell',
+      BHK: '1',
       otTabRTM: 'Yes',
       otTabAF: new Date().toISOString().split('T')[0],
     });

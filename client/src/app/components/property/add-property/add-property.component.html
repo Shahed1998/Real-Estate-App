@@ -97,7 +97,29 @@
           role="tabpanel"
           aria-labelledby="basic-info-tab"
         >
-          <div class="mb-3 mt-3">
+          <div class="mt-3 mb-3">
+            <span class="d-block mb-2">I want to</span>
+            <div class="btn-group" btnRadioGroup formControlName="SellRent">
+              <label btnRadio="sell" class="btn btn-outline-primary mb-0"
+                >Sell</label
+              >
+              <label btnRadio="rent" class="btn btn-outline-primary mb-0"
+                >Rent</label
+              >
+            </div>
+          </div>
+          <div class="mb-3">
+            <span class="d-block mb-2">BHK ( Bedroom, Hall, and Kitchen )</span>
+            <div class="btn-group" btnRadioGroup formControlName="BHK">
+              <label
+                *ngFor="let i of bhk"
+                btnRadio="{{ i }}"
+                class="btn btn-outline-primary mb-0"
+                >{{ i }}</label
+              >
+            </div>
+          </div>
+          <div class="mb-3">
             <label for="Name" class="form-label">Name</label>
             <input
               type="text"
