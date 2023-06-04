@@ -11,6 +11,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { IProperty } from '../Interfaces/iproperty';
 
 @Component({
   selector: 'app-add-property',
@@ -21,7 +22,23 @@ export class AddPropertyComponent implements OnInit {
   addPropertyForm!: FormGroup;
   fb = inject(FormBuilder);
   bhk = [1, 2, 3, 4];
-
+  propertyType = ['House', 'Apartment', 'Duplex'];
+  furnishType = ['Fully', 'Semi', 'Unfurnished'];
+  mainEntrance = ['East', 'West', 'North', 'South'];
+  // <!-- Ngx-bootstrap datepicker -->
+  bsConfig = {
+    isAnimated: true,
+    containerClass: 'theme-dark-blue',
+    dateInputFormat: 'DD/MM/YYYY',
+  };
+  propertyView: IProperty = {
+    Id: null,
+    SellRent: null,
+    Name: '',
+    Type: '',
+    Price: null,
+    Image: '',
+  };
   pricingAreaTabDisabled = true;
   @ViewChild('pricingArea') pA!: ElementRef;
   @ViewChild('basicInfo') bI!: ElementRef;
@@ -38,16 +55,24 @@ export class AddPropertyComponent implements OnInit {
     } else {
       this.pricingAreaTabDisabled = true;
     }
+
+    // detects value change in the form
+    this.addPropertyForm.valueChanges.subscribe((data) => {
+      this.propertyView.Name = data.name;
+      this.propertyView.Type = data.PropertyType;
+      this.propertyView.Price = data.pAPrice;
+    });
   }
 
   addPropertyFormBuilder() {
     this.addPropertyForm = this.fb.group({
       // Basic info tab
       name: ['', [Validators.required, Validators.minLength(5)]],
-      type: ['', [Validators.required]],
-      price: ['', [Validators.required]],
-      SellRent: ['sell', [Validators.required]],
-      BHK: ['1', [Validators.required]],
+      City: ['', [Validators.required]],
+      SellRent: ['', [Validators.required]],
+      BHK: ['', [Validators.required]],
+      PropertyType: ['', [Validators.required]],
+      FurnishType: ['', [Validators.required]],
       // Pricing and Area tab
       pAPrice: ['', [Validators.required]],
       pASecurity: ['', [Validators.required]],
@@ -60,8 +85,8 @@ export class AddPropertyComponent implements OnInit {
       AddAddress: ['', Validators.required],
       AddLandmark: ['', Validators.required],
       // Others tab
-      otTabRTM: ['Yes', Validators.required], // ready to move field
-      otTabAF: [new Date().toISOString().split('T')[0], [Validators.required]], // sets date to current date initially
+      otTabRTM: ['', Validators.required], // ready to move field
+      otTabAF: [new Date(), [Validators.required]], // sets date to current date initially
       otTabAOP: ['', [Validators.required]], // Age of property
       otTabGC: ['', [Validators.required]], // Gated community
       otTabME: ['', [Validators.required]], // Main entrance
@@ -74,7 +99,7 @@ export class AddPropertyComponent implements OnInit {
   }
 
   get Type() {
-    return this.addPropertyForm.get('type') as FormControl;
+    return this.addPropertyForm.get('PropertyType') as FormControl;
   }
 
   get Price() {
@@ -94,10 +119,15 @@ export class AddPropertyComponent implements OnInit {
   onReset() {
     this.addPropertyForm.reset();
     this.addPropertyForm.patchValue({
-      SellRent: 'sell',
-      BHK: '1',
-      otTabRTM: 'Yes',
-      otTabAF: new Date().toISOString().split('T')[0],
+      otTabAF: new Date(),
+      // // Basic info
+      // SellRent: 'sell',
+      // BHK: '1',
+      // PropertyType: 'House',
+      // FurnishType: 'Fully',
+      // // Other details
+      // otTabRTM: 'Yes',
+      // otTabGC: 'Yes',
     });
   }
 }

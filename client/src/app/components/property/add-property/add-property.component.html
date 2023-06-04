@@ -1,458 +1,490 @@
 <!-- Reactive form -->
-<div class="card form-card mx-auto mt-3">
-  <div class="card-header">Add new property</div>
-  <div class="card-body">
-    <form [formGroup]="addPropertyForm">
-      <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button
-            class="nav-link active"
-            id="basic-info-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#basic-info"
-            type="button"
-            role="tab"
-            aria-controls="basic-info"
-            aria-selected="true"
-            #basicInfo
-          >
-            Basic info
-          </button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
-          <button
-            class="nav-link"
-            id="pricing-area-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#pricing-area"
-            type="button"
-            role="tab"
-            aria-controls="pricing-area"
-            aria-selected="false"
-            #pricingArea
-          >
-            Pricing and Area
-          </button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button
-            class="nav-link"
-            id="address-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#address"
-            type="button"
-            role="tab"
-            aria-controls="address"
-            aria-selected="false"
-            #address
-          >
-            Address
-          </button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button
-            class="nav-link"
-            id="other-details-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#other-details"
-            type="button"
-            role="tab"
-            aria-controls="other-details"
-            aria-selected="false"
-            #otherDetails
-          >
-            Other details
-          </button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button
-            class="nav-link"
-            id="photos-tab"
-            data-bs-toggle="tab"
-            data-bs-target="#photos"
-            type="button"
-            role="tab"
-            aria-controls="photos"
-            aria-selected="false"
-            #photos
-          >
-            Photos
-            <!-- Fields -->
-            <!-- Photo upload option -->
-          </button>
-        </li>
-      </ul>
+<div class="row">
+  <div class="col-lg-8">
+    <div class="card w-100 form-card mx-auto mt-3">
+      <div class="card-header">Add new property</div>
+      <div class="card-body">
+        <form [formGroup]="addPropertyForm">
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link active"
+                id="basic-info-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#basic-info"
+                type="button"
+                role="tab"
+                aria-controls="basic-info"
+                aria-selected="true"
+                #basicInfo
+              >
+                Basic info
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
+              <button
+                class="nav-link"
+                id="pricing-area-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#pricing-area"
+                type="button"
+                role="tab"
+                aria-controls="pricing-area"
+                aria-selected="false"
+                #pricingArea
+              >
+                Pricing and Area
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="address-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#address"
+                type="button"
+                role="tab"
+                aria-controls="address"
+                aria-selected="false"
+                #address
+              >
+                Address
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="other-details-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#other-details"
+                type="button"
+                role="tab"
+                aria-controls="other-details"
+                aria-selected="false"
+                #otherDetails
+              >
+                Other details
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="photos-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#photos"
+                type="button"
+                role="tab"
+                aria-controls="photos"
+                aria-selected="false"
+                #photos
+              >
+                Photos
+                <!-- Fields -->
+                <!-- Photo upload option -->
+              </button>
+            </li>
+          </ul>
 
-      <!-- --------------------------------------------------------------------- -->
-      <!-- Tab content -->
-      <!-- --------------------------------------------------------------------- -->
-      <div class="tab-content" id="myTabContent">
-        <!-- --------------------------------------------------------------------- -->
-        <!-- Basic Info Tab -->
-        <!-- --------------------------------------------------------------------- -->
-        <div
-          class="tab-pane fade show active"
-          id="basic-info"
-          role="tabpanel"
-          aria-labelledby="basic-info-tab"
-        >
-          <div class="mt-3 mb-3">
-            <span class="d-block mb-2">I want to</span>
-            <div class="btn-group" btnRadioGroup formControlName="SellRent">
-              <label btnRadio="sell" class="btn btn-outline-primary mb-0"
-                >Sell</label
-              >
-              <label btnRadio="rent" class="btn btn-outline-primary mb-0"
-                >Rent</label
-              >
+          <!-- --------------------------------------------------------------------- -->
+          <!-- Tab content -->
+          <!-- --------------------------------------------------------------------- -->
+          <div class="tab-content" id="myTabContent">
+            <!-- --------------------------------------------------------------------- -->
+            <!-- Basic Info Tab -->
+            <!-- --------------------------------------------------------------------- -->
+            <div
+              class="tab-pane fade show active"
+              id="basic-info"
+              role="tabpanel"
+              aria-labelledby="basic-info-tab"
+            >
+              <div class="mt-3 mb-3">
+                <span class="d-block mb-2">I want to</span>
+                <div class="btn-group" btnRadioGroup formControlName="SellRent">
+                  <label btnRadio="sell" class="btn btn-outline-primary mb-0"
+                    >Sell</label
+                  >
+                  <label btnRadio="rent" class="btn btn-outline-primary mb-0"
+                    >Rent</label
+                  >
+                </div>
+              </div>
+              <div class="mb-3">
+                <span class="d-block mb-2"
+                  >BHK ( Bedroom, Hall, and Kitchen )</span
+                >
+                <div class="btn-group" btnRadioGroup formControlName="BHK">
+                  <label
+                    *ngFor="let i of bhk"
+                    btnRadio="{{ i }}"
+                    class="btn btn-outline-primary mb-0"
+                    >{{ i }}</label
+                  >
+                </div>
+              </div>
+              <div class="mb-3">
+                <span class="d-block mb-2">Property Type</span>
+                <div
+                  class="btn-group"
+                  btnRadioGroup
+                  formControlName="PropertyType"
+                >
+                  <label
+                    *ngFor="let i of propertyType"
+                    btnRadio="{{ i }}"
+                    class="btn btn-outline-primary mb-0"
+                    >{{ i }}</label
+                  >
+                </div>
+              </div>
+              <div class="mb-3">
+                <span class="d-block mb-2">Furnish Type</span>
+                <div
+                  class="btn-group"
+                  btnRadioGroup
+                  formControlName="FurnishType"
+                >
+                  <label
+                    *ngFor="let i of furnishType"
+                    btnRadio="{{ i }}"
+                    class="btn btn-outline-primary mb-0"
+                    >{{ i }}</label
+                  >
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="Name" class="form-label"
+                  >Building/Society/Project name</label
+                >
+                <input
+                  type="text"
+                  id="Name"
+                  class="form-control"
+                  formControlName="name"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="City" class="form-label">City</label>
+                <input
+                  type="text"
+                  id="City"
+                  class="form-control"
+                  formControlName="City"
+                />
+              </div>
+              <div class="mb-3">
+                <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
+                <button
+                  class="btn btn-primary w-100"
+                  (click)="tabChangeBtn('pricingArea')"
+                >
+                  Next
+                </button>
+              </div>
             </div>
-          </div>
-          <div class="mb-3">
-            <span class="d-block mb-2">BHK ( Bedroom, Hall, and Kitchen )</span>
-            <div class="btn-group" btnRadioGroup formControlName="BHK">
-              <label
-                *ngFor="let i of bhk"
-                btnRadio="{{ i }}"
-                class="btn btn-outline-primary mb-0"
-                >{{ i }}</label
-              >
+            <!-- --------------------------------------------------------------------- -->
+            <!-- Pricing and Area Tab -->
+            <!-- --------------------------------------------------------------------- -->
+            <div
+              class="tab-pane fade"
+              id="pricing-area"
+              role="tabpanel"
+              aria-labelledby="pricing-area-tab"
+            >
+              <div class="mb-3">
+                <label for="pAPrice" class="form-label mt-3"
+                  >Price (in USD)</label
+                >
+                <input
+                  type="text"
+                  id="pAPrice"
+                  class="form-control"
+                  formControlName="pAPrice"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="pASecurity" class="form-label"
+                  >Security (in USD)</label
+                >
+                <input
+                  type="text"
+                  id="pASecurity"
+                  class="form-control"
+                  formControlName="pASecurity"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="pAMaintenance" class="form-label"
+                  >Maintenance (in USD)</label
+                >
+                <input
+                  type="text"
+                  id="pAMaintenance"
+                  class="form-control"
+                  formControlName="pAMaintenance"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="pABuiltArea" class="form-label"
+                  >Built Area (in sq.ft)</label
+                >
+                <input
+                  type="text"
+                  id="pABuiltArea"
+                  class="form-control"
+                  formControlName="pABuiltArea"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="pACarpetArea" class="form-label"
+                  >Carpet Area (in sq.ft)</label
+                >
+                <input
+                  type="text"
+                  id="pACarpetArea"
+                  class="form-control"
+                  formControlName="pACarpetArea"
+                />
+              </div>
+              <div class="mb-3">
+                <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
+                <button
+                  class="btn btn-primary w-100"
+                  (click)="tabChangeBtn('basicInfo')"
+                >
+                  Previous
+                </button>
+              </div>
+              <div class="mb-3">
+                <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
+                <button
+                  class="btn btn-primary w-100"
+                  (click)="tabChangeBtn('address')"
+                >
+                  Next
+                </button>
+              </div>
             </div>
-          </div>
-          <div class="mb-3">
-            <label for="Name" class="form-label">Name</label>
-            <input
-              type="text"
-              id="Name"
-              class="form-control"
-              formControlName="name"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="Type" class="form-label">Type</label>
-            <input
-              type="text"
-              id="Type"
-              class="form-control"
-              formControlName="type"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="Price" class="form-label">Price</label>
-            <input
-              type="text"
-              id="Price"
-              class="form-control"
-              formControlName="price"
-            />
-          </div>
-          <div class="mb-3">
-            <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
-            <button
-              class="btn btn-primary w-100"
-              (click)="tabChangeBtn('pricingArea')"
+            <!-- --------------------------------------------------------------------- -->
+            <!-- Address Tab -->
+            <!-- --------------------------------------------------------------------- -->
+            <div
+              class="tab-pane fade"
+              id="address"
+              role="tabpanel"
+              aria-labelledby="address-tab"
             >
-              Next
-            </button>
-          </div>
-        </div>
-        <!-- --------------------------------------------------------------------- -->
-        <!-- Pricing and Area Tab -->
-        <!-- --------------------------------------------------------------------- -->
-        <div
-          class="tab-pane fade"
-          id="pricing-area"
-          role="tabpanel"
-          aria-labelledby="pricing-area-tab"
-        >
-          <div class="mb-3">
-            <label for="pAPrice" class="form-label mt-3">Price (in USD)</label>
-            <input
-              type="text"
-              id="pAPrice"
-              class="form-control"
-              formControlName="pAPrice"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="pASecurity" class="form-label">Security (in USD)</label>
-            <input
-              type="text"
-              id="pASecurity"
-              class="form-control"
-              formControlName="pASecurity"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="pAMaintenance" class="form-label"
-              >Maintenance (in USD)</label
-            >
-            <input
-              type="text"
-              id="pAMaintenance"
-              class="form-control"
-              formControlName="pAMaintenance"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="pABuiltArea" class="form-label"
-              >Built Area (in sq.ft)</label
-            >
-            <input
-              type="text"
-              id="pABuiltArea"
-              class="form-control"
-              formControlName="pABuiltArea"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="pACarpetArea" class="form-label"
-              >Carpet Area (in sq.ft)</label
-            >
-            <input
-              type="text"
-              id="pACarpetArea"
-              class="form-control"
-              formControlName="pACarpetArea"
-            />
-          </div>
-          <div class="mb-3">
-            <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
-            <button
-              class="btn btn-primary w-100"
-              (click)="tabChangeBtn('basicInfo')"
-            >
-              Previous
-            </button>
-          </div>
-          <div class="mb-3">
-            <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
-            <button
-              class="btn btn-primary w-100"
-              (click)="tabChangeBtn('address')"
-            >
-              Next
-            </button>
-          </div>
-        </div>
-        <!-- --------------------------------------------------------------------- -->
-        <!-- Address Tab -->
-        <!-- --------------------------------------------------------------------- -->
-        <div
-          class="tab-pane fade"
-          id="address"
-          role="tabpanel"
-          aria-labelledby="address-tab"
-        >
-          <div class="mb-3 mt-3">
-            <label for="AddFloor" class="form-label">Floor</label>
-            <input
-              type="text"
-              id="AddFloor"
-              class="form-control"
-              formControlName="AddFloor"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="AddTotalFloors" class="form-label">Total floors</label>
-            <input
-              type="text"
-              id="AddTotalFloors"
-              class="form-control"
-              formControlName="AddTotalFloors"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="AddAddress" class="form-label">Address</label>
-            <input
-              type="text"
-              id="AddAddress"
-              class="form-control"
-              formControlName="AddAddress"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="AddLandmark" class="form-label">Landmark</label>
-            <input
-              type="text"
-              id="AddLandmark"
-              class="form-control"
-              formControlName="AddLandmark"
-            />
-          </div>
+              <div class="mb-3 mt-3">
+                <label for="AddFloor" class="form-label">Floor</label>
+                <input
+                  type="text"
+                  id="AddFloor"
+                  class="form-control"
+                  formControlName="AddFloor"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="AddTotalFloors" class="form-label"
+                  >Total floors</label
+                >
+                <input
+                  type="text"
+                  id="AddTotalFloors"
+                  class="form-control"
+                  formControlName="AddTotalFloors"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="AddAddress" class="form-label">Address</label>
+                <input
+                  type="text"
+                  id="AddAddress"
+                  class="form-control"
+                  formControlName="AddAddress"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="AddLandmark" class="form-label">Landmark</label>
+                <input
+                  type="text"
+                  id="AddLandmark"
+                  class="form-control"
+                  formControlName="AddLandmark"
+                />
+              </div>
 
-          <div class="mb-3">
-            <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
-            <button
-              class="btn btn-primary w-100"
-              (click)="tabChangeBtn('pricingArea')"
-            >
-              Previous
-            </button>
-          </div>
-          <div class="mb-3">
-            <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
-            <button
-              class="btn btn-primary w-100"
-              (click)="tabChangeBtn('otherDetails')"
-            >
-              Next
-            </button>
-          </div>
-        </div>
-        <!-- --------------------------------------------------------------------- -->
-        <!-- Other details Tab -->
-        <!-- --------------------------------------------------------------------- -->
-        <div
-          class="tab-pane fade"
-          id="other-details"
-          role="tabpanel"
-          aria-labelledby="other-details-tab"
-        >
-          <!-- Fields -->
-          <!--
-              Ready to move (options: Yes/No)
-              Available from (date)
-              Age of property
-              Gated community
-              Main entrance
-              Description
-            -->
-          <!-- {{ addPropertyForm.value | json }} -->
-          <div class="mb-3 mt-3">
-            <label for="AddLandmark" class="form-label me-3"
-              >Ready to move:</label
-            >
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                formControlName="otTabRTM"
-                id="inlineRadio1"
-                value="Yes"
-                checked
-              />
-              <label class="form-check-label" for="inlineRadio1">Yes</label>
+              <div class="mb-3">
+                <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
+                <button
+                  class="btn btn-primary w-100"
+                  (click)="tabChangeBtn('pricingArea')"
+                >
+                  Previous
+                </button>
+              </div>
+              <div class="mb-3">
+                <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
+                <button
+                  class="btn btn-primary w-100"
+                  (click)="tabChangeBtn('otherDetails')"
+                >
+                  Next
+                </button>
+              </div>
             </div>
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                type="radio"
-                formControlName="otTabRTM"
-                id="inlineRadio2"
-                value="No"
-              />
-              <label class="form-check-label" for="inlineRadio2">No</label>
-            </div>
-          </div>
-          <div class="mb-3">
-            <label for="otTabAF" class="form-label">Available from</label>
-            <input
-              type="date"
-              id="otTabAF"
-              class="form-control"
-              formControlName="otTabAF"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="otTabAOP" class="form-label">Age of property</label>
-            <input
-              type="text"
-              id="otTabAOP"
-              class="form-control"
-              formControlName="otTabAOP"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="otTabGC" class="form-label">Gated community</label>
-            <input
-              type="text"
-              id="otTabGC"
-              class="form-control"
-              formControlName="otTabGC"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="otTabME" class="form-label">Main entrance</label>
-            <input
-              type="text"
-              id="otTabME"
-              class="form-control"
-              formControlName="otTabME"
-            />
-          </div>
-          <div class="mb-3">
-            <div class="form-group">
-              <label for="otTabDesc">Description</label>
-              <textarea
-                class="form-control"
-                formControlName="otTabDesc"
-                id="otTabDesc"
-                rows="3"
-              ></textarea>
-            </div>
-          </div>
-          <div class="mb-3">
-            <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
-            <button
-              class="btn btn-primary w-100"
-              (click)="tabChangeBtn('address')"
+            <!-- --------------------------------------------------------------------- -->
+            <!-- Other details Tab -->
+            <!-- --------------------------------------------------------------------- -->
+            <div
+              class="tab-pane fade"
+              id="other-details"
+              role="tabpanel"
+              aria-labelledby="other-details-tab"
             >
-              Previous
-            </button>
-          </div>
-          <div class="mb-3">
-            <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
-            <button
-              class="btn btn-primary w-100"
-              (click)="tabChangeBtn('photos')"
+              <div class="mb-3 mt-3">
+                <label for="AddLandmark" class="form-label me-3 w-100"
+                  >Ready to move</label
+                >
+                <div class="btn-group" btnRadioGroup formControlName="otTabRTM">
+                  <label btnRadio="Yes" class="btn btn-outline-primary mb-0"
+                    >Yes</label
+                  >
+                  <label btnRadio="No" class="btn btn-outline-primary mb-0"
+                    >No</label
+                  >
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="otTabAF" class="form-label">Available from</label>
+                <!-- Ngx-bootstrap datepicker -->
+                <input
+                  type="text"
+                  placeholder="Datepicker"
+                  class="form-control"
+                  bsDatepicker
+                  [bsConfig]="bsConfig"
+                  formControlName="otTabAF"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="otTabAOP" class="form-label">Age of property</label>
+                <input
+                  type="text"
+                  id="otTabAOP"
+                  class="form-control"
+                  formControlName="otTabAOP"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="otTabGC" class="form-label w-100"
+                  >Gated community</label
+                >
+                <div class="btn-group" btnRadioGroup formControlName="otTabGC">
+                  <label btnRadio="Yes" class="btn btn-outline-primary mb-0"
+                    >Yes</label
+                  >
+                  <label btnRadio="No" class="btn btn-outline-primary mb-0"
+                    >No</label
+                  >
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="otTabME" class="form-label w-100"
+                  >Main entrance</label
+                >
+                <div class="btn-group" btnRadioGroup formControlName="otTabME">
+                  <label
+                    *ngFor="let i of mainEntrance"
+                    btnRadio="{{ i }}"
+                    class="btn btn-outline-primary mb-0"
+                    >{{ i }}</label
+                  >
+                </div>
+              </div>
+              <div class="mb-3">
+                <div class="form-group">
+                  <label for="otTabDesc">Description</label>
+                  <textarea
+                    class="form-control"
+                    formControlName="otTabDesc"
+                    id="otTabDesc"
+                    rows="3"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="mb-3">
+                <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
+                <button
+                  class="btn btn-primary w-100"
+                  (click)="tabChangeBtn('address')"
+                >
+                  Previous
+                </button>
+              </div>
+              <div class="mb-3">
+                <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
+                <button
+                  class="btn btn-primary w-100"
+                  (click)="tabChangeBtn('photos')"
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+            <!-- --------------------------------------------------------------------- -->
+            <!-- Photos Tab -->
+            <!-- --------------------------------------------------------------------- -->
+            <div
+              class="tab-pane fade"
+              id="photos"
+              role="tabpanel"
+              aria-labelledby="photos-tab"
             >
-              Next
-            </button>
-          </div>
-        </div>
-        <!-- --------------------------------------------------------------------- -->
-        <!-- Photos Tab -->
-        <!-- --------------------------------------------------------------------- -->
-        <div
-          class="tab-pane fade"
-          id="photos"
-          role="tabpanel"
-          aria-labelledby="photos-tab"
-        >
-          <div class="mt-3 mb-3 photo-tab">
-            {{ addPropertyForm.value | json }}
-            <div>
-              <label for="photo" class="form-label w-100">Upload photo</label
-              ><br />
-              <!-- <input
+              <div class="mt-3 mb-3 photo-tab">
+                {{ addPropertyForm.value | json }}
+                <div>
+                  <label for="photo" class="form-label w-100"
+                    >Upload photo</label
+                  ><br />
+                  <!-- <input
               type="text"
               id="otTabME"
               class="form-control"
               formControlName="otTabME"
             /> -->
-              <input type="file" class="form-control-file" id="photo" />
+                  <input type="file" class="form-control-file" id="photo" />
+                </div>
+              </div>
+              <div class="mb-3">
+                <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
+                <button
+                  class="btn btn-primary w-100"
+                  (click)="tabChangeBtn('otherDetails')"
+                >
+                  Previous
+                </button>
+              </div>
+              <div class="mb-3">
+                <button class="btn btn-primary w-100">Submit</button>
+              </div>
+              <div class="mb-3">
+                <button class="btn btn-primary w-100" (click)="onReset()">
+                  Reset
+                </button>
+              </div>
             </div>
           </div>
-          <div class="mb-3">
-            <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
-            <button
-              class="btn btn-primary w-100"
-              (click)="tabChangeBtn('otherDetails')"
-            >
-              Previous
-            </button>
-          </div>
-          <div class="mb-3">
-            <button class="btn btn-primary w-100">Submit</button>
-          </div>
-          <div class="mb-3">
-            <button class="btn btn-primary w-100" (click)="onReset()">
-              Reset
-            </button>
-          </div>
-        </div>
+        </form>
       </div>
-    </form>
+    </div>
+  </div>
+  <div class="col-lg-4">
+    <div class="card w-100 mt-3">
+      <div class="card-header">Property preview</div>
+      <div class="card-body">
+        <app-property-card [property]="propertyView"></app-property-card>
+      </div>
+    </div>
   </div>
 </div>

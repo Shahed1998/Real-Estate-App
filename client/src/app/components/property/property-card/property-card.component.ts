@@ -14,7 +14,7 @@ export class PropertyCardComponent implements OnInit {
   wishListed: boolean = false;
 
   ngOnInit(): void {
-    console.log(this.property);
+    // console.log(this.property);
   }
 
   onLogin() {
