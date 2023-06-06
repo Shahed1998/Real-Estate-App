@@ -8,6 +8,8 @@ import { IProperty } from '../Interfaces/iproperty';
 })
 export class PropertyCardComponent implements OnInit {
   @Input() property!: IProperty;
+  @Input() showWishList: boolean = true;
+  @Input() detailsBtnDisabled: boolean = false;
   @ViewChild('wishlistSpan') wishlistPressed!: ElementRef;
   imgLoading: boolean = true;
   loggedInUser!: string | null;

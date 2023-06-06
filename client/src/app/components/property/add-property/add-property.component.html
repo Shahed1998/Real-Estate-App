@@ -483,7 +483,11 @@
     <div class="card w-100 mt-3">
       <div class="card-header">Property preview</div>
       <div class="card-body">
-        <app-property-card [property]="propertyView"></app-property-card>
+        <app-property-card
+          [property]="propertyView"
+          [showWishList]="false"
+          [detailsBtnDisabled]="true"
+        ></app-property-card>
       </div>
     </div>
   </div>

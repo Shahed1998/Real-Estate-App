@@ -31,7 +31,7 @@
         }}
       </h2>
       <span
-        *ngIf="onLogin()"
+        *ngIf="onLogin() && showWishList"
         #wishlistSpan
         class="wishlist"
         tooltip="Add to wishlist"
@@ -50,6 +50,7 @@
     </div>
     <div class="details-btn mt-3">
       <button
+        [disabled]="detailsBtnDisabled"
         class="btn btn-secondary w-100 p-2"
         routerLink="/property-detail/{{ property.Id }}"
       >
