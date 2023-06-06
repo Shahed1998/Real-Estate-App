@@ -11,6 +11,7 @@ import {
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { TitleService } from 'src/app/services/title.service';
 
 @Component({
   selector: 'app-user-register',
@@ -23,10 +24,12 @@ export class UserRegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private titleService: TitleService
   ) {}
   ngOnInit(): void {
     this.createRegistrationForm();
+    this.titleService.setTitle('User Register');
   }
 
   createRegistrationForm() {

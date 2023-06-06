@@ -12,6 +12,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { IProperty } from '../Interfaces/iproperty';
+import { TitleService } from 'src/app/services/title.service';
 
 @Component({
   selector: 'app-add-property',
@@ -21,6 +22,7 @@ import { IProperty } from '../Interfaces/iproperty';
 export class AddPropertyComponent implements OnInit {
   addPropertyForm!: FormGroup;
   fb = inject(FormBuilder);
+  titleService = inject(TitleService);
   bhk = [1, 2, 3, 4];
   propertyType = ['House', 'Apartment', 'Duplex'];
   furnishType = ['Fully', 'Semi', 'Unfurnished'];
@@ -49,6 +51,7 @@ export class AddPropertyComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    this.titleService.setTitle('List Property Free');
     this.addPropertyFormBuilder();
     if (this.Name.valid && this.Price.valid && this.Type.valid) {
       this.pricingAreaTabDisabled = false;

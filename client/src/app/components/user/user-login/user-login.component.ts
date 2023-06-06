@@ -8,6 +8,7 @@ import {
 import { AuthService } from 'src/app/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { TitleService } from 'src/app/services/title.service';
 
 @Component({
   selector: 'app-user-login',
@@ -18,6 +19,7 @@ export class UserLoginComponent implements OnInit {
   loginForm!: FormGroup;
   // Dependency injections: only available from angular 14
   fb = inject(FormBuilder);
+  titleService = inject(TitleService);
   authService = inject(AuthService);
   toastr = inject(ToastrService);
   router = inject(Router);
@@ -26,6 +28,7 @@ export class UserLoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginFormBuilder();
+    this.titleService.setTitle('User Login');
   }
 
   // -------------------------------------------------------------------------

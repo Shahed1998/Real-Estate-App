@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { IProperty } from '../Interfaces/iproperty';
+import { TitleService } from 'src/app/services/title.service';
 
 @Component({
   selector: 'app-property-list',
@@ -14,13 +15,17 @@ export class PropertyListComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private apiservice: ApiService
+    private apiservice: ApiService,
+    private titleService: TitleService
   ) {}
 
   ngOnInit(): void {
     var param = this.activatedRoute.snapshot.url.toString();
     if (param) {
       this.SellRent = 2;
+      this.titleService.setTitle(`Rent Property`);
+    } else {
+      this.titleService.setTitle(`Buy Property`);
     }
     this.apiservice.getAllProperties(this.SellRent).subscribe(
       (res) => {
