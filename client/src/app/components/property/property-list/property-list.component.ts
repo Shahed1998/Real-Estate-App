@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
-import { IProperty } from '../Interfaces/iproperty';
+import { IPropertyBase } from 'src/app/model/iproperty-base';
 import { TitleService } from 'src/app/services/title.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { TitleService } from 'src/app/services/title.service';
   styleUrls: ['./property-list.component.css'],
 })
 export class PropertyListComponent implements OnInit {
-  properties!: Array<IProperty>;
+  properties!: Array<IPropertyBase>;
   SellRent: number = 1;
 
   constructor(

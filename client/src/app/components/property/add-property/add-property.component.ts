@@ -11,7 +11,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { IProperty } from '../Interfaces/iproperty';
+// import { IProperty } from '../Interfaces/iproperty';
+import { IPropertyBase } from 'src/app/model/iproperty-base';
 import { TitleService } from 'src/app/services/title.service';
 
 @Component({
@@ -33,13 +34,17 @@ export class AddPropertyComponent implements OnInit {
     containerClass: 'theme-dark-blue',
     dateInputFormat: 'DD/MM/YYYY',
   };
-  propertyView: IProperty = {
+  propertyView: IPropertyBase = {
     Id: null,
     SellRent: null,
     Name: '',
-    Type: '',
+    PropertyType: '',
     Price: null,
     Image: '',
+    FurnishType: '',
+    BHK: null,
+    BuiltArea: null,
+    ReadyToMove: null,
   };
   pricingAreaTabDisabled = true;
   @ViewChild('pricingArea') pA!: ElementRef;
@@ -62,7 +67,7 @@ export class AddPropertyComponent implements OnInit {
     // detects value change in the form
     this.addPropertyForm.valueChanges.subscribe((data) => {
       this.propertyView.Name = data.name;
-      this.propertyView.Type = data.PropertyType;
+      this.propertyView.PropertyType = data.PropertyType;
       this.propertyView.Price = data.pAPrice;
     });
   }

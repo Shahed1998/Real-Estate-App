@@ -3,7 +3,7 @@
     "Id": 1,
     "SellRent": 1,
     "Name": "Alfonzo",
-    "Type": "Apartment",
+    "PropertyType": "Apartment",
     "Price": 35000,
     "Image": "prop-1"
   },
@@ -11,7 +11,7 @@
     "Id": 2,
     "SellRent": 1,
     "Name": "Birla",
-    "Type": "Building",
+    "PropertyType": "Building",
     "Price": 135000,
     "Image": "prop-2"
   },
@@ -19,14 +19,15 @@
     "Id": 3,
     "SellRent": 1,
     "Name": "Prof. Ansar",
-    "Type": "Apartment",
-    "Price": 15000
+    "PropertyType": "Apartment",
+    "Price": 15000,
+    "Image": ""
   },
   {
     "Id": 4,
     "SellRent": 2,
     "Name": "Chowdhury",
-    "Type": "Apartment",
+    "PropertyType": "Apartment",
     "Price": 45000,
     "Image": "prop-3"
   }

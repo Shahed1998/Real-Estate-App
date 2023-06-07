@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { IProperty } from '../Interfaces/iproperty';
+import { IPropertyBase } from 'src/app/model/iproperty-base';
 
 @Component({
   selector: 'app-property-card',
@@ -7,7 +7,7 @@ import { IProperty } from '../Interfaces/iproperty';
   styleUrls: ['./property-card.component.css'],
 })
 export class PropertyCardComponent implements OnInit {
-  @Input() property!: IProperty;
+  @Input() property!: IPropertyBase;
   @Input() showWishList: boolean = true;
   @Input() detailsBtnDisabled: boolean = false;
   @ViewChild('wishlistSpan') wishlistPressed!: ElementRef;
