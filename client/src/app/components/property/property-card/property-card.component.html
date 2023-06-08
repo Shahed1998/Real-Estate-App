@@ -1,4 +1,4 @@
-<div class="card shadow-lg mt-3 mb-5" style="width: 18rem">
+<div class="card shadow-lg mx-auto my-4" style="width: 18rem">
   <div class="img-wrapper w-100">
     <div
       class="image-loading w-100 h-100 d-flex align-items-center justify-content-center"
@@ -7,15 +7,23 @@
       Loading...
     </div>
     <img
-      *ngIf="!property.Image"
-      src="assets/images/prop-default.jpg"
+      *ngIf="!property.Image && detailsBtnDisabled === false"
+      src="assets/images/image-not-found.jpg"
       class="card-img-top"
       alt="..."
       (load)="imgLoading = false"
     />
     <img
-      *ngIf="property.Image"
+      *ngIf="property.Image && detailsBtnDisabled === false"
       src="assets/images/{{ property.Image }}.jpg"
+      (error)="imageFailed()"
+      class="card-img-top"
+      alt="..."
+      (load)="imgLoading = false"
+    />
+    <img
+      *ngIf="!property.Image && detailsBtnDisabled === true"
+      src="assets/images/prop-default.jpg"
       class="card-img-top"
       alt="..."
       (load)="imgLoading = false"

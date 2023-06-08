@@ -16,7 +16,9 @@ export class PropertyCardComponent implements OnInit {
   wishListed: boolean = false;
 
   ngOnInit(): void {
-    // console.log(this.property);
+    if (!this.property.Name) {
+      this.property.Name = 'Not found';
+    }
   }
 
   onLogin() {
@@ -33,5 +35,9 @@ export class PropertyCardComponent implements OnInit {
       this.wishListed = false;
       this.wishlistPressed.nativeElement.classList.remove('wishlist-pressed');
     }
+  }
+
+  imageFailed() {
+    this.property.Image = 'image-not-found';
   }
 }
