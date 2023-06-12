@@ -10,6 +10,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { PropertyCardComponent } from './components/property/property-card/property-card.component';
 import { PropertyListComponent } from './components/property/property-list/property-list.component';
@@ -67,6 +68,7 @@ const appRoutes: Routes = [
     TooltipModule.forRoot(),
     ButtonsModule.forRoot(),
     BsDatepickerModule.forRoot(),
+    ModalModule.forRoot(),
   ],
   providers: [ApiService, UserService, AuthService, TitleService],
   bootstrap: [AppComponent],

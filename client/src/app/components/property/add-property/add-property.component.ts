@@ -4,6 +4,7 @@ import {
   OnInit,
   ViewChild,
   inject,
+  TemplateRef,
 } from '@angular/core';
 import {
   FormBuilder,
@@ -14,6 +15,7 @@ import {
 // import { IProperty } from '../Interfaces/iproperty';
 import { IPropertyBase } from 'src/app/model/iproperty-base';
 import { TitleService } from 'src/app/services/title.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-add-property',
@@ -23,6 +25,7 @@ import { TitleService } from 'src/app/services/title.service';
 export class AddPropertyComponent implements OnInit {
   addPropertyForm!: FormGroup;
   fb = inject(FormBuilder);
+  modalService = inject(BsModalService);
   titleService = inject(TitleService);
   bhk = [1, 2, 3, 4];
   propertyType = ['House', 'Apartment', 'Duplex'];
@@ -34,6 +37,8 @@ export class AddPropertyComponent implements OnInit {
     containerClass: 'theme-dark-blue',
     dateInputFormat: 'DD/MM/YYYY',
   };
+  // Ngx-bootstrap modal
+  modalRef?: BsModalRef;
   propertyView: IPropertyBase = {
     Id: null,
     SellRent: null,
@@ -45,6 +50,7 @@ export class AddPropertyComponent implements OnInit {
     BHK: null,
     BuiltArea: null,
     ReadyToMove: null,
+    City: '',
   };
   pricingAreaTabDisabled = true;
   @ViewChild('pricingArea') pA!: ElementRef;
@@ -68,7 +74,9 @@ export class AddPropertyComponent implements OnInit {
     this.addPropertyForm.valueChanges.subscribe((data) => {
       this.propertyView.Name = data.name;
       this.propertyView.PropertyType = data.PropertyType;
+      this.propertyView.City = data.City;
       this.propertyView.Price = data.pAPrice;
+      this.propertyView.BHK = data.BHK;
     });
   }
 
@@ -123,6 +131,10 @@ export class AddPropertyComponent implements OnInit {
   }
 
   onSubmit() {}
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
 
   onReset() {
     this.addPropertyForm.reset();

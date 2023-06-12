@@ -1,8 +1,39 @@
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Property preview</h4>
+    <button
+      type="button"
+      class="btn-close close pull-right"
+      aria-label="Close"
+      (click)="modalRef?.hide()"
+    >
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="card-body">
+      <app-property-card
+        [property]="propertyView"
+        [showWishList]="false"
+        [detailsBtnDisabled]="true"
+      ></app-property-card>
+    </div>
+  </div>
+</ng-template>
+
 <!-- Reactive form -->
 <div class="row">
   <div class="col-lg-8">
     <div class="card w-100 form-card mx-auto mt-3">
-      <div class="card-header">Add new property</div>
+      <div class="card-header">
+        <p class="my-2 d-inline-block">Add new property</p>
+        <button
+          class="btn btn-secondary float-end show-modal-btn"
+          (click)="openModal(template)"
+        >
+          Preview
+        </button>
+      </div>
       <div class="card-body">
         <form [formGroup]="addPropertyForm">
           <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -479,7 +510,7 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-4">
+  <div class="col-lg-4 property-preview">
     <div class="card w-100 mt-3">
       <div class="card-header">Property preview</div>
       <div class="card-body">

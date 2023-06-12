@@ -9,4 +9,5 @@ export interface IPropertyBase {
   BuiltArea: number | null;
   ReadyToMove: number | null;
   Image: string;
+  City: string;
 }

@@ -15,11 +15,7 @@ export class PropertyCardComponent implements OnInit {
   loggedInUser!: string | null;
   wishListed: boolean = false;
 
-  ngOnInit(): void {
-    if (!this.property.Name) {
-      this.property.Name = 'Not found';
-    }
-  }
+  ngOnInit(): void {}
 
   onLogin() {
     this.loggedInUser = localStorage.getItem('token');

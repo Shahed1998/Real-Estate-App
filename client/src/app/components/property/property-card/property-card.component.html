@@ -31,13 +31,13 @@
   </div>
   <div class="card-body">
     <div class="card-text">
-      <h2>
+      <p class="propertyName">
         {{
-          property.Name.length > 10
-            ? property.Name.slice(0, 10) + "..."
+          property.Name.length > 15
+            ? property.Name.slice(0, 15) + "..."
             : property.Name
         }}
-      </h2>
+      </p>
       <span
         *ngIf="onLogin() && showWishList"
         #wishlistSpan
@@ -53,8 +53,22 @@
           class="fa-solid fa-heart"
         ></i>
       </span>
-      <h5>{{ property.PropertyType }}</h5>
-      <h5>{{ property.Price }}</h5>
+    </div>
+    <div
+      *ngIf="property.PropertyType.length > 0 && property.City.length > 0"
+      class="address-details"
+    >
+      {{ property.PropertyType }} in {{ property.City }}
+    </div>
+    <div *ngIf="property.BHK" class="bhk-details">
+      {{ property.BHK }} Bedroom, Hall, and Kitchen
+    </div>
+    <div
+      *ngIf="property.Price"
+      class="price-details"
+      style="color: green; font-weight: 700"
+    >
+      US$ {{ property.Price }}
     </div>
     <div class="details-btn mt-3">
       <button
