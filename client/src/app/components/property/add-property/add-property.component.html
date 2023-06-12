@@ -247,7 +247,7 @@
                   formControlName="pAPrice"
                 />
               </div>
-              <div class="mb-3">
+              <div *ngIf="SellRent === 'rent'" class="mb-3">
                 <label for="pASecurity" class="form-label"
                   >Security (in USD)</label
                 >
@@ -258,7 +258,7 @@
                   formControlName="pASecurity"
                 />
               </div>
-              <div class="mb-3">
+              <div *ngIf="SellRent === 'rent'" class="mb-3">
                 <label for="pAMaintenance" class="form-label"
                   >Maintenance (in USD)</label
                 >

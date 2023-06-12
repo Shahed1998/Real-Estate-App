@@ -64,10 +64,8 @@ export class AddPropertyComponent implements OnInit {
   ngOnInit(): void {
     this.titleService.setTitle('List Property Free');
     this.addPropertyFormBuilder();
-
     // detects value change in the form
     this.addPropertyForm.valueChanges.subscribe((data) => {
-      console.log(data);
       this.propertyView.Name = data.BasicInfo.name;
       this.propertyView.PropertyType = data.BasicInfo.PropertyType;
       this.propertyView.City = data.BasicInfo.City;
@@ -82,7 +80,7 @@ export class AddPropertyComponent implements OnInit {
       BasicInfo: this.fb.group({
         name: ['', [Validators.required, Validators.minLength(5)]],
         City: ['', [Validators.required]],
-        SellRent: ['', [Validators.required]],
+        SellRent: ['sell', [Validators.required]],
         BHK: ['', [Validators.required]],
         PropertyType: ['', [Validators.required]],
         FurnishType: ['', [Validators.required]],
@@ -122,6 +120,10 @@ export class AddPropertyComponent implements OnInit {
     return this.addPropertyForm.get('PropertyType') as FormControl;
   }
 
+  get SellRent() {
+    return this.BasicInfo.get('SellRent')?.value;
+  }
+
   get Price() {
     return this.addPropertyForm.get('price') as FormControl;
   }
@@ -150,13 +152,11 @@ export class AddPropertyComponent implements OnInit {
     if (openTab === 'photos') this.photo.nativeElement.click();
   }
 
-  onSubmit() {
-    console.log(this.BasicInfo, this.PriceInfo);
-  }
-
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
+
+  onSubmit() {}
 
   onReset() {
     this.addPropertyForm.reset();
