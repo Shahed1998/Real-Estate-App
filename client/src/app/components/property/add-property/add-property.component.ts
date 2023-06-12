@@ -64,49 +64,53 @@ export class AddPropertyComponent implements OnInit {
   ngOnInit(): void {
     this.titleService.setTitle('List Property Free');
     this.addPropertyFormBuilder();
-    if (this.Name.valid && this.Price.valid && this.Type.valid) {
-      this.pricingAreaTabDisabled = false;
-    } else {
-      this.pricingAreaTabDisabled = true;
-    }
 
     // detects value change in the form
     this.addPropertyForm.valueChanges.subscribe((data) => {
-      this.propertyView.Name = data.name;
-      this.propertyView.PropertyType = data.PropertyType;
-      this.propertyView.City = data.City;
-      this.propertyView.Price = data.pAPrice;
-      this.propertyView.BHK = data.BHK;
+      console.log(data);
+      this.propertyView.Name = data.BasicInfo.name;
+      this.propertyView.PropertyType = data.BasicInfo.PropertyType;
+      this.propertyView.City = data.BasicInfo.City;
+      this.propertyView.Price = data.PriceInfo.pAPrice;
+      this.propertyView.BHK = data.BasicInfo.BHK;
     });
   }
 
   addPropertyFormBuilder() {
     this.addPropertyForm = this.fb.group({
       // Basic info tab
-      name: ['', [Validators.required, Validators.minLength(5)]],
-      City: ['', [Validators.required]],
-      SellRent: ['', [Validators.required]],
-      BHK: ['', [Validators.required]],
-      PropertyType: ['', [Validators.required]],
-      FurnishType: ['', [Validators.required]],
+      BasicInfo: this.fb.group({
+        name: ['', [Validators.required, Validators.minLength(5)]],
+        City: ['', [Validators.required]],
+        SellRent: ['', [Validators.required]],
+        BHK: ['', [Validators.required]],
+        PropertyType: ['', [Validators.required]],
+        FurnishType: ['', [Validators.required]],
+      }),
       // Pricing and Area tab
-      pAPrice: ['', [Validators.required]],
-      pASecurity: ['', [Validators.required]],
-      pAMaintenance: ['', [Validators.required]],
-      pABuiltArea: ['', [Validators.required]],
-      pACarpetArea: ['', [Validators.required]],
+      PriceInfo: this.fb.group({
+        pAPrice: ['', [Validators.required]],
+        pASecurity: ['', [Validators.required]],
+        pAMaintenance: ['', [Validators.required]],
+        pABuiltArea: ['', [Validators.required]],
+        pACarpetArea: ['', [Validators.required]],
+      }),
       // Address tab
-      AddFloor: ['', Validators.required],
-      AddTotalFloors: ['', Validators.required],
-      AddAddress: ['', Validators.required],
-      AddLandmark: ['', Validators.required],
+      AddressInfo: this.fb.group({
+        AddFloor: ['', Validators.required],
+        AddTotalFloors: ['', Validators.required],
+        AddAddress: ['', Validators.required],
+        AddLandmark: ['', Validators.required],
+      }),
       // Others tab
-      otTabRTM: ['', Validators.required], // ready to move field
-      otTabAF: [new Date(), [Validators.required]], // sets date to current date initially
-      otTabAOP: ['', [Validators.required]], // Age of property
-      otTabGC: ['', [Validators.required]], // Gated community
-      otTabME: ['', [Validators.required]], // Main entrance
-      otTabDesc: ['', [Validators.required]], // Description
+      OtherInfo: this.fb.group({
+        otTabRTM: ['', Validators.required], // ready to move field
+        otTabAF: [new Date(), [Validators.required]], // sets date to current date initially
+        otTabAOP: ['', [Validators.required]], // Age of property
+        otTabGC: ['', [Validators.required]], // Gated community
+        otTabME: ['', [Validators.required]], // Main entrance
+        otTabDesc: ['', [Validators.required]], // Description
+      }),
     });
   }
 
@@ -122,6 +126,22 @@ export class AddPropertyComponent implements OnInit {
     return this.addPropertyForm.get('price') as FormControl;
   }
 
+  get BasicInfo() {
+    return this.addPropertyForm.get('BasicInfo') as FormControl;
+  }
+
+  get PriceInfo() {
+    return this.addPropertyForm.get('PriceInfo') as FormControl;
+  }
+
+  get AddressInfo() {
+    return this.addPropertyForm.get('AddressInfo') as FormControl;
+  }
+
+  get OtherInfo() {
+    return this.addPropertyForm.get('OtherInfo') as FormControl;
+  }
+
   tabChangeBtn(openTab: string) {
     if (openTab === 'basicInfo') this.bI.nativeElement.click();
     if (openTab === 'pricingArea') this.pA.nativeElement.click();
@@ -130,7 +150,9 @@ export class AddPropertyComponent implements OnInit {
     if (openTab === 'photos') this.photo.nativeElement.click();
   }
 
-  onSubmit() {}
+  onSubmit() {
+    console.log(this.BasicInfo, this.PriceInfo);
+  }
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
@@ -138,16 +160,22 @@ export class AddPropertyComponent implements OnInit {
 
   onReset() {
     this.addPropertyForm.reset();
-    this.addPropertyForm.patchValue({
+    this.addPropertyForm.controls['OtherInfo'].patchValue({
       otTabAF: new Date(),
-      // // Basic info
-      // SellRent: 'sell',
-      // BHK: '1',
-      // PropertyType: 'House',
-      // FurnishType: 'Fully',
-      // // Other details
-      // otTabRTM: 'Yes',
-      // otTabGC: 'Yes',
     });
+    this.propertyView = {
+      Id: null,
+      SellRent: null,
+      Name: '',
+      PropertyType: '',
+      Price: null,
+      Image: '',
+      FurnishType: '',
+      BHK: null,
+      BuiltArea: null,
+      ReadyToMove: null,
+      City: '',
+    };
+    this.bI.nativeElement.click();
   }
 }
