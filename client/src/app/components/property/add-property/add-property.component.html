@@ -48,6 +48,7 @@
                 aria-controls="basic-info"
                 aria-selected="true"
                 #basicInfo
+                (click)="tabActive()"
               >
                 Basic info
               </button>
@@ -64,6 +65,7 @@
                 aria-selected="false"
                 #pricingArea
                 [disabled]="BasicInfo.invalid"
+                (click)="tabActive()"
               >
                 Pricing and Area
               </button>
@@ -80,6 +82,7 @@
                 aria-selected="false"
                 #address
                 [disabled]="BasicInfo.invalid || PriceInfo.invalid"
+                (click)="tabActive()"
               >
                 Address
               </button>
@@ -98,6 +101,7 @@
                 [disabled]="
                   BasicInfo.invalid || PriceInfo.invalid || AddressInfo.invalid
                 "
+                (click)="tabActive()"
               >
                 Other details
               </button>
@@ -119,6 +123,7 @@
                   AddressInfo.invalid ||
                   OtherInfo.invalid
                 "
+                (click)="tabActive()"
               >
                 Photos
                 <!-- Fields -->
@@ -151,6 +156,11 @@
                     >Rent</label
                   >
                 </div>
+                <span
+                  class="err-msg d-block mt-2"
+                  *ngIf="!BasicInfo.value.SellRent && nextClicked"
+                  >* Please select Sell or Rent</span
+                >
               </div>
               <div class="mb-3">
                 <span class="d-block mb-2"
@@ -164,6 +174,11 @@
                     >{{ i }}</label
                   >
                 </div>
+                <span
+                  class="err-msg d-block mt-2"
+                  *ngIf="!BasicInfo.value.BHK && nextClicked"
+                  >* Please select BHK</span
+                >
               </div>
               <div class="mb-3">
                 <span class="d-block mb-2">Property Type</span>
@@ -179,6 +194,11 @@
                     >{{ i }}</label
                   >
                 </div>
+                <span
+                  class="err-msg d-block mt-2"
+                  *ngIf="!BasicInfo.value.PropertyType && nextClicked"
+                  >* Please select Property Type</span
+                >
               </div>
               <div class="mb-3">
                 <span class="d-block mb-2">Furnish Type</span>
@@ -194,6 +214,11 @@
                     >{{ i }}</label
                   >
                 </div>
+                <span
+                  class="err-msg d-block mt-2"
+                  *ngIf="!BasicInfo.value.FurnishType && nextClicked"
+                  >* Please select Furnish Type</span
+                >
               </div>
               <div class="mb-3">
                 <label for="Name" class="form-label"
@@ -205,6 +230,13 @@
                   class="form-control"
                   formControlName="name"
                 />
+                <span
+                  class="err-msg d-block mt-2"
+                  *ngIf="
+                    !PropertyName.value && (nextClicked || PropertyName.touched)
+                  "
+                  >* Please select Building/Society/Project name</span
+                >
               </div>
               <div class="mb-3">
                 <label for="City" class="form-label">City</label>
@@ -214,13 +246,17 @@
                   class="form-control"
                   formControlName="City"
                 />
+                <span
+                  class="err-msg d-block mt-2"
+                  *ngIf="!CityName.value && (nextClicked || CityName.touched)"
+                  >* Please select City</span
+                >
               </div>
               <div class="mb-3">
-                <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
+                <!-- [disabled]="BasicInfo.invalid" -->
                 <button
                   class="btn btn-primary w-100"
                   (click)="tabChangeBtn('pricingArea')"
-                  [disabled]="BasicInfo.invalid"
                 >
                   Next
                 </button>
@@ -246,8 +282,13 @@
                   class="form-control"
                   formControlName="pAPrice"
                 />
+                <span
+                  class="err-msg d-block mt-2"
+                  *ngIf="!Price.value && (nextClicked || Price.touched)"
+                  >* Please enter Price</span
+                >
               </div>
-              <div *ngIf="SellRent === 'rent'" class="mb-3">
+              <div *ngIf="BasicInfo.value.SellRent === 'rent'" class="mb-3">
                 <label for="pASecurity" class="form-label"
                   >Security (in USD)</label
                 >
@@ -258,7 +299,7 @@
                   formControlName="pASecurity"
                 />
               </div>
-              <div *ngIf="SellRent === 'rent'" class="mb-3">
+              <div *ngIf="BasicInfo.value.SellRent === 'rent'" class="mb-3">
                 <label for="pAMaintenance" class="form-label"
                   >Maintenance (in USD)</label
                 >

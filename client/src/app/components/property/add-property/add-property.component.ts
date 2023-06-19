@@ -31,6 +31,7 @@ export class AddPropertyComponent implements OnInit {
   propertyType = ['House', 'Apartment', 'Duplex'];
   furnishType = ['Fully', 'Semi', 'Unfurnished'];
   mainEntrance = ['East', 'West', 'North', 'South'];
+  nextClicked = false;
   // <!-- Ngx-bootstrap datepicker -->
   bsConfig = {
     isAnimated: true,
@@ -72,6 +73,7 @@ export class AddPropertyComponent implements OnInit {
       this.propertyView.Price = data.PriceInfo.pAPrice;
       this.propertyView.BHK = data.BasicInfo.BHK;
     });
+    console.log(this.PropertyName);
   }
 
   addPropertyFormBuilder() {
@@ -88,10 +90,10 @@ export class AddPropertyComponent implements OnInit {
       // Pricing and Area tab
       PriceInfo: this.fb.group({
         pAPrice: ['', [Validators.required]],
-        pASecurity: ['', [Validators.required]],
-        pAMaintenance: ['', [Validators.required]],
+        pASecurity: ['', []],
+        pAMaintenance: ['', []],
         pABuiltArea: ['', [Validators.required]],
-        pACarpetArea: ['', [Validators.required]],
+        pACarpetArea: ['', []],
       }),
       // Address tab
       AddressInfo: this.fb.group({
@@ -112,39 +114,8 @@ export class AddPropertyComponent implements OnInit {
     });
   }
 
-  get Name() {
-    return this.addPropertyForm.get('name') as FormControl;
-  }
-
-  get Type() {
-    return this.addPropertyForm.get('PropertyType') as FormControl;
-  }
-
-  get SellRent() {
-    return this.BasicInfo.get('SellRent')?.value;
-  }
-
-  get Price() {
-    return this.addPropertyForm.get('price') as FormControl;
-  }
-
-  get BasicInfo() {
-    return this.addPropertyForm.get('BasicInfo') as FormControl;
-  }
-
-  get PriceInfo() {
-    return this.addPropertyForm.get('PriceInfo') as FormControl;
-  }
-
-  get AddressInfo() {
-    return this.addPropertyForm.get('AddressInfo') as FormControl;
-  }
-
-  get OtherInfo() {
-    return this.addPropertyForm.get('OtherInfo') as FormControl;
-  }
-
   tabChangeBtn(openTab: string) {
+    this.nextClicked = true;
     if (openTab === 'basicInfo') this.bI.nativeElement.click();
     if (openTab === 'pricingArea') this.pA.nativeElement.click();
     if (openTab === 'address') this.add.nativeElement.click();
@@ -152,11 +123,18 @@ export class AddPropertyComponent implements OnInit {
     if (openTab === 'photos') this.photo.nativeElement.click();
   }
 
+  //
+  tabActive() {
+    this.nextClicked = false;
+  }
+
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
 
-  onSubmit() {}
+  onSubmit() {
+    console.log(this.addPropertyForm);
+  }
 
   onReset() {
     this.addPropertyForm.reset();
@@ -177,5 +155,38 @@ export class AddPropertyComponent implements OnInit {
       City: '',
     };
     this.bI.nativeElement.click();
+  }
+
+  // --------------------------------------------------------------------------
+  // Getter Methods
+  // --------------------------------------------------------------------------
+
+  get BasicInfo() {
+    return this.addPropertyForm.get('BasicInfo') as FormControl;
+  }
+
+  get PriceInfo() {
+    return this.addPropertyForm.get('PriceInfo') as FormControl;
+  }
+
+  get AddressInfo() {
+    return this.addPropertyForm.get('AddressInfo') as FormControl;
+  }
+
+  get OtherInfo() {
+    return this.addPropertyForm.get('OtherInfo') as FormControl;
+  }
+
+  // Getters for Basic Info Tab
+  get PropertyName() {
+    return this.BasicInfo.get('name') as FormControl;
+  }
+  get CityName() {
+    return this.BasicInfo.get('City') as FormControl;
+  }
+
+  // Getters for Pricing and Area Tab
+  get Price() {
+    return this.PriceInfo.get('pAPrice') as FormControl;
   }
 }
