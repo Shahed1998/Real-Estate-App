@@ -256,7 +256,7 @@
                 <!-- [disabled]="BasicInfo.invalid" -->
                 <button
                   class="btn btn-primary w-100"
-                  (click)="tabChangeBtn('pricingArea')"
+                  (click)="tabChangeBtn('pricingArea', true)"
                 >
                   Next
                 </button>
@@ -320,6 +320,11 @@
                   class="form-control"
                   formControlName="pABuiltArea"
                 />
+                <span
+                  class="err-msg d-block mt-2"
+                  *ngIf="!BuiltArea.value && (nextClicked || BuiltArea.touched)"
+                  >* Please enter Built Area</span
+                >
               </div>
               <div class="mb-3">
                 <label for="pACarpetArea" class="form-label"
@@ -345,8 +350,7 @@
                 <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
                 <button
                   class="btn btn-primary w-100"
-                  (click)="tabChangeBtn('address')"
-                  [disabled]="BasicInfo.invalid || PriceInfo.invalid"
+                  (click)="tabChangeBtn('address', true)"
                 >
                   Next
                 </button>
@@ -390,6 +394,11 @@
                   class="form-control"
                   formControlName="AddAddress"
                 />
+                <span
+                  class="err-msg d-block mt-2"
+                  *ngIf="!Address.value && (nextClicked || Address.touched)"
+                  >* Please enter Address</span
+                >
               </div>
               <div class="mb-3">
                 <label for="AddLandmark" class="form-label">Landmark</label>
@@ -414,12 +423,7 @@
                 <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
                 <button
                   class="btn btn-primary w-100"
-                  (click)="tabChangeBtn('otherDetails')"
-                  [disabled]="
-                    BasicInfo.invalid ||
-                    PriceInfo.invalid ||
-                    AddressInfo.invalid
-                  "
+                  (click)="tabChangeBtn('otherDetails', true)"
                 >
                   Next
                 </button>
@@ -448,7 +452,7 @@
                   >
                 </div>
               </div>
-              <div class="mb-3">
+              <div *ngIf="ReadyToMove.value === 'No'" class="mb-3">
                 <label for="otTabAF" class="form-label">Available from</label>
                 <!-- Ngx-bootstrap datepicker -->
                 <input
@@ -519,13 +523,7 @@
                 <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
                 <button
                   class="btn btn-primary w-100"
-                  (click)="tabChangeBtn('photos')"
-                  [disabled]="
-                    BasicInfo.invalid ||
-                    PriceInfo.invalid ||
-                    AddressInfo.invalid ||
-                    OtherInfo.invalid
-                  "
+                  (click)="tabChangeBtn('photos', true)"
                 >
                   Next
                 </button>

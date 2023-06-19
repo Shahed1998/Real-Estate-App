@@ -90,37 +90,69 @@ export class AddPropertyComponent implements OnInit {
       // Pricing and Area tab
       PriceInfo: this.fb.group({
         pAPrice: ['', [Validators.required]],
-        pASecurity: ['', []],
-        pAMaintenance: ['', []],
+        pASecurity: [''],
+        pAMaintenance: [''],
         pABuiltArea: ['', [Validators.required]],
-        pACarpetArea: ['', []],
+        pACarpetArea: [''],
       }),
       // Address tab
       AddressInfo: this.fb.group({
-        AddFloor: ['', Validators.required],
-        AddTotalFloors: ['', Validators.required],
-        AddAddress: ['', Validators.required],
-        AddLandmark: ['', Validators.required],
+        AddFloor: [''],
+        AddTotalFloors: [''],
+        AddAddress: ['', [Validators.required]],
+        AddLandmark: [''],
       }),
       // Others tab
       OtherInfo: this.fb.group({
         otTabRTM: ['', Validators.required], // ready to move field
-        otTabAF: [new Date(), [Validators.required]], // sets date to current date initially
-        otTabAOP: ['', [Validators.required]], // Age of property
-        otTabGC: ['', [Validators.required]], // Gated community
-        otTabME: ['', [Validators.required]], // Main entrance
-        otTabDesc: ['', [Validators.required]], // Description
+        otTabAF: [new Date()], // sets date to current date initially
+        otTabAOP: [''], // Age of property
+        otTabGC: [''], // Gated community
+        otTabME: [''], // Main entrance
+        otTabDesc: [''], // Description
       }),
     });
   }
 
-  tabChangeBtn(openTab: string) {
+  tabChangeBtn(openTab: string, btnPressedNext: boolean = false) {
     this.nextClicked = true;
-    if (openTab === 'basicInfo') this.bI.nativeElement.click();
-    if (openTab === 'pricingArea') this.pA.nativeElement.click();
-    if (openTab === 'address') this.add.nativeElement.click();
-    if (openTab === 'otherDetails') this.odt.nativeElement.click();
-    if (openTab === 'photos') this.photo.nativeElement.click();
+    if (btnPressedNext) {
+      if (openTab === 'pricingArea' && this.BasicInfo.valid) {
+        this.pA.nativeElement.click();
+      }
+
+      if (
+        openTab === 'address' &&
+        this.BasicInfo.valid &&
+        this.PriceInfo.valid
+      ) {
+        this.add.nativeElement.click();
+      }
+
+      if (
+        openTab === 'otherDetails' &&
+        this.BasicInfo.valid &&
+        this.PriceInfo.valid &&
+        this.AddressInfo.valid
+      ) {
+        this.odt.nativeElement.click();
+      }
+      if (
+        openTab === 'photos' &&
+        this.BasicInfo.valid &&
+        this.PriceInfo.valid &&
+        this.AddressInfo.valid &&
+        this.OtherInfo.valid
+      ) {
+        this.photo.nativeElement.click();
+      }
+    } else {
+      if (openTab === 'basicInfo') this.bI.nativeElement.click();
+      if (openTab === 'pricingArea') this.pA.nativeElement.click();
+      if (openTab === 'address') this.add.nativeElement.click();
+      if (openTab === 'otherDetails') this.odt.nativeElement.click();
+      if (openTab === 'photos') this.photo.nativeElement.click();
+    }
   }
 
   //
@@ -188,5 +220,16 @@ export class AddPropertyComponent implements OnInit {
   // Getters for Pricing and Area Tab
   get Price() {
     return this.PriceInfo.get('pAPrice') as FormControl;
+  }
+  get BuiltArea() {
+    return this.PriceInfo.get('pABuiltArea') as FormControl;
+  }
+  // Getters for Address Tab
+  get Address() {
+    return this.AddressInfo.get('AddAddress') as FormControl;
+  }
+  // Getters for Others Tab
+  get ReadyToMove() {
+    return this.OtherInfo.get('otTabRTM') as FormControl;
   }
 }
