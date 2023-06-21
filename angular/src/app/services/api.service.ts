@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
-import { IPropertyBase } from '../model/iproperty-base';
+import { IPropertyBase } from '../model/property/iproperty-base';
+import { Property } from '../model/property/property';
 
 @Injectable({
   providedIn: 'root',
@@ -21,5 +22,9 @@ export class ApiService {
         return properties;
       })
     );
+  }
+
+  addProperty(property: Property): void {
+    localStorage.setItem('property', JSON.stringify(property));
   }
 }

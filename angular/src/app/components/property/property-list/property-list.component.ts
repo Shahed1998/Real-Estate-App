@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
-import { IPropertyBase } from 'src/app/model/iproperty-base';
+import { IPropertyBase } from 'src/app/model/property/iproperty-base';
 import { TitleService } from 'src/app/services/title.service';
 
 @Component({

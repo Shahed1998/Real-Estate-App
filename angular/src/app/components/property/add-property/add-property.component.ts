@@ -13,9 +13,11 @@ import {
   Validators,
 } from '@angular/forms';
 // import { IProperty } from '../Interfaces/iproperty';
-import { IPropertyBase } from 'src/app/model/iproperty-base';
+import { IPropertyBase } from 'src/app/model/property/iproperty-base';
 import { TitleService } from 'src/app/services/title.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Property } from 'src/app/model/property/property';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-add-property',
@@ -25,6 +27,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 export class AddPropertyComponent implements OnInit {
   addPropertyForm!: FormGroup;
   fb = inject(FormBuilder);
+  propertyService = inject(ApiService);
   modalService = inject(BsModalService);
   titleService = inject(TitleService);
   bhk = [1, 2, 3, 4];
@@ -52,8 +55,10 @@ export class AddPropertyComponent implements OnInit {
     BuiltArea: null,
     ReadyToMove: null,
     City: '',
+    Address: '',
   };
   pricingAreaTabDisabled = true;
+  property = new Property();
   @ViewChild('pricingArea') pA!: ElementRef;
   @ViewChild('basicInfo') bI!: ElementRef;
   @ViewChild('address') add!: ElementRef;
@@ -82,7 +87,7 @@ export class AddPropertyComponent implements OnInit {
       BasicInfo: this.fb.group({
         name: ['', [Validators.required, Validators.minLength(5)]],
         City: ['', [Validators.required]],
-        SellRent: ['sell', [Validators.required]],
+        SellRent: ['1', [Validators.required]],
         BHK: ['', [Validators.required]],
         PropertyType: ['', [Validators.required]],
         FurnishType: ['', [Validators.required]],
@@ -164,8 +169,35 @@ export class AddPropertyComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   }
 
-  onSubmit() {
-    console.log(this.addPropertyForm);
+  onSubmit(): void {
+    this.propertyService.addProperty(this.mapProperty());
+  }
+
+  mapProperty(): Property {
+    this.property.Id = null;
+    this.property.SellRent = this.BasicInfo.value.SellRent;
+    this.property.BHK = this.BasicInfo.value.BHK;
+    this.property.PropertyType = this.BasicInfo.value.PropertyType;
+    this.property.FurnishType = this.BasicInfo.value.FurnishType;
+    this.property.Name = this.BasicInfo.value.name;
+    this.property.City = this.BasicInfo.value.City;
+    this.property.Price = this.PriceInfo.value.pAPrice;
+    this.property.Security = this.PriceInfo.value.pASecurity;
+    this.property.Maintenance = this.PriceInfo.value.pAMaintenance;
+    this.property.BuiltArea = this.PriceInfo.value.pABuiltArea;
+    this.property.CarpetArea = this.PriceInfo.value.pACarpetArea;
+    this.property.Floor = this.AddressInfo.value.AddFloor;
+    this.property.TotalFloors = this.AddressInfo.value.AddTotalFloors;
+    this.property.Address = this.AddressInfo.value.AddAddress;
+    this.property.Landmark = this.AddressInfo.value.AddLandmark;
+    this.property.ReadyToMove = this.OtherInfo.value.otTabRTM;
+    this.property.AvailableFrom = this.OtherInfo.value.otTabAF.toString();
+    this.property.AOP = this.OtherInfo.value.otTabAOP;
+    this.property.GatedCommunity = this.OtherInfo.value.otTabGC;
+    this.property.MainEntrance = this.OtherInfo.value.otTabME;
+    this.property.Description = this.OtherInfo.value.otTabDesc;
+    this.property.PostedOn = new Date().toString();
+    return this.property;
   }
 
   onReset() {
@@ -185,6 +217,7 @@ export class AddPropertyComponent implements OnInit {
       BuiltArea: null,
       ReadyToMove: null,
       City: '',
+      Address: '',
     };
     this.bI.nativeElement.click();
   }

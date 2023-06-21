@@ -149,10 +149,10 @@
               <div class="mt-3 mb-3">
                 <span class="d-block mb-2">I want to</span>
                 <div class="btn-group" btnRadioGroup formControlName="SellRent">
-                  <label btnRadio="sell" class="btn btn-outline-primary mb-0"
+                  <label btnRadio="1" class="btn btn-outline-primary mb-0"
                     >Sell</label
                   >
-                  <label btnRadio="rent" class="btn btn-outline-primary mb-0"
+                  <label btnRadio="2" class="btn btn-outline-primary mb-0"
                     >Rent</label
                   >
                 </div>
@@ -288,7 +288,7 @@
                   >* Please enter Price</span
                 >
               </div>
-              <div *ngIf="BasicInfo.value.SellRent === 'rent'" class="mb-3">
+              <div *ngIf="BasicInfo.value.SellRent === '2'" class="mb-3">
                 <label for="pASecurity" class="form-label"
                   >Security (in USD)</label
                 >
@@ -299,7 +299,7 @@
                   formControlName="pASecurity"
                 />
               </div>
-              <div *ngIf="BasicInfo.value.SellRent === 'rent'" class="mb-3">
+              <div *ngIf="BasicInfo.value.SellRent === '2'" class="mb-3">
                 <label for="pAMaintenance" class="form-label"
                   >Maintenance (in USD)</label
                 >
@@ -451,6 +451,11 @@
                     >No</label
                   >
                 </div>
+                <span
+                  class="err-msg d-block mt-2"
+                  *ngIf="!ReadyToMove.value && nextClicked"
+                  >* Please select Ready to move</span
+                >
               </div>
               <div *ngIf="ReadyToMove.value === 'No'" class="mb-3">
                 <label for="otTabAF" class="form-label">Available from</label>
