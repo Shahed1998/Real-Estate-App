@@ -64,6 +64,8 @@ export class AddPropertyComponent implements OnInit {
   @ViewChild('address') add!: ElementRef;
   @ViewChild('otherDetails') odt!: ElementRef;
   @ViewChild('photos') photo!: ElementRef;
+  files: File[] = [];
+  disableImageUpload: boolean = false;
 
   constructor() {}
 
@@ -78,7 +80,7 @@ export class AddPropertyComponent implements OnInit {
       this.propertyView.Price = data.PriceInfo.pAPrice;
       this.propertyView.BHK = data.BasicInfo.BHK;
     });
-    console.log(this.PropertyName);
+    // console.log(this.PropertyName);
   }
 
   addPropertyFormBuilder() {
@@ -220,6 +222,17 @@ export class AddPropertyComponent implements OnInit {
       Address: '',
     };
     this.bI.nativeElement.click();
+  }
+
+  onSelect(event: any) {
+    console.log(event);
+    this.disableImageUpload = true;
+    this.files.push(...event.addedFiles);
+  }
+
+  onRemove(event: any) {
+    this.disableImageUpload = false;
+    this.files.splice(this.files.indexOf(event), 1);
   }
 
   // --------------------------------------------------------------------------

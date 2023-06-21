@@ -11,6 +11,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { NgxDropzoneModule } from 'ngx-dropzone';
 
 import { PropertyCardComponent } from './components/property/property-card/property-card.component';
 import { PropertyListComponent } from './components/property/property-list/property-list.component';
@@ -60,6 +61,7 @@ const appRoutes: Routes = [
     LazyLoadImageModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxDropzoneModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 3000,

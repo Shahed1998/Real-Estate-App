@@ -117,14 +117,14 @@
                 aria-controls="photos"
                 aria-selected="false"
                 #photos
-                [disabled]="
+                (click)="tabActive()"
+              >
+                <!-- [disabled]="
                   BasicInfo.invalid ||
                   PriceInfo.invalid ||
                   AddressInfo.invalid ||
                   OtherInfo.invalid
-                "
-                (click)="tabActive()"
-              >
+                " -->
                 Photos
                 <!-- Fields -->
                 <!-- Photo upload option -->
@@ -543,21 +543,37 @@
               role="tabpanel"
               aria-labelledby="photos-tab"
             >
-              <div class="mt-3 mb-3 photo-tab">
-                {{ addPropertyForm.value | json }}
-                <div>
-                  <label for="photo" class="form-label w-100"
-                    >Upload photo</label
-                  ><br />
-                  <!-- <input
-              type="text"
-              id="otTabME"
-              class="form-control"
-              formControlName="otTabME"
-            /> -->
-                  <input type="file" class="form-control-file" id="photo" />
-                </div>
-              </div>
+              <!-- Ngx Dropzone for image upload by drag and drop -->
+              <ngx-dropzone
+                [multiple]="false"
+                class="mt-3 mb-3 photo-tab"
+                (change)="onSelect($event)"
+                accept="image/jpeg,image/jpg,image/png,image/gif"
+                [disableClick]="disableImageUpload"
+                style="background-color: #f7f7f7"
+              >
+                <ngx-dropzone-label style="font-size: 150%">
+                  <i
+                    style="color: #0a6ebd"
+                    class="fa-solid fa-cloud-arrow-up"
+                  ></i>
+                  Drop your property image here
+                </ngx-dropzone-label>
+
+                <ngx-dropzone-image-preview
+                  ngProjectAs="ngx-dropzone-preview"
+                  *ngFor="let f of files"
+                  [removable]="true"
+                  (removed)="onRemove(f)"
+                  [file]="f"
+                  class="position-relative uploaded-img"
+                >
+                  <ngx-dropzone-label
+                    class="position-absolute uploaded-img-name"
+                    >{{ f.name }}</ngx-dropzone-label
+                  >
+                </ngx-dropzone-image-preview>
+              </ngx-dropzone>
               <div class="mb-3">
                 <!-- [disabled]="Name.invalid || Type.invalid || Price.invalid" -->
                 <button
