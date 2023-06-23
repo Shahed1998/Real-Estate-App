@@ -25,6 +25,10 @@ import { ApiService } from 'src/app/services/api.service';
   styleUrls: ['./add-property.component.css'],
 })
 export class AddPropertyComponent implements OnInit {
+  // --------------------------------------------------------------------------------
+  // Class properties declarations
+  // --------------------------------------------------------------------------------
+  clickModal!: number; // undefined so that it does not trigger the modal initially
   addPropertyForm!: FormGroup;
   fb = inject(FormBuilder);
   propertyService = inject(ApiService);
@@ -67,6 +71,9 @@ export class AddPropertyComponent implements OnInit {
   files: File[] = [];
   disableImageUpload: boolean = false;
 
+  // --------------------------------------------------------------------------------
+  // Method declarations
+  // --------------------------------------------------------------------------------
   constructor() {}
 
   ngOnInit(): void {
@@ -172,7 +179,10 @@ export class AddPropertyComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.propertyService.addProperty(this.mapProperty());
+    if (this.addPropertyForm.valid) {
+      this.propertyService.addProperty(this.mapProperty());
+    }
+    return;
   }
 
   mapProperty(): Property {
@@ -237,7 +247,6 @@ export class AddPropertyComponent implements OnInit {
 
   // --------------------------------------------------------------------------
   // Getter Methods
-  // --------------------------------------------------------------------------
 
   get BasicInfo() {
     return this.addPropertyForm.get('BasicInfo') as FormControl;
@@ -277,5 +286,16 @@ export class AddPropertyComponent implements OnInit {
   // Getters for Others Tab
   get ReadyToMove() {
     return this.OtherInfo.get('otTabRTM') as FormControl;
+  }
+
+  // --------------------------------------------------------------------------
+  // Method for activating property preview modal
+  // Initially the clickModal property is undefined, so the modal doesn't show.
+  // When the preview button is pressed, value of the clickModal is changed,
+  // the changed clickModal property is sent to the child app-property-preview component
+  // to activate the ngOnChanges lifecycle hook in app-property-preview component
+  modalActive() {
+    if (this.clickModal === 1) this.clickModal = 2;
+    else this.clickModal = 1;
   }
 }

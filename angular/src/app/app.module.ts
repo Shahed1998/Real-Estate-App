@@ -27,6 +27,7 @@ import { WishlistComponent } from './components/user/wishlist/wishlist.component
 import { CartComponent } from './components/user/cart/cart.component';
 import { TitleService } from './services/title.service';
 import { AddPropertyComponent } from './components/property/add-property/add-property.component';
+import { PropertyPreviewComponent } from './components/property/add-property/property-preview/property-preview.component';
 
 const appRoutes: Routes = [
   { path: '', component: PropertyListComponent },
@@ -53,6 +54,7 @@ const appRoutes: Routes = [
     UserRegisterComponent,
     WishlistComponent,
     CartComponent,
+    PropertyPreviewComponent,
   ],
   imports: [
     BrowserModule,
