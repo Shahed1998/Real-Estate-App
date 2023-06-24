@@ -12,12 +12,13 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-// import { IProperty } from '../Interfaces/iproperty';
+import { ToastrService } from 'ngx-toastr';
 import { IPropertyBase } from 'src/app/model/property/iproperty-base';
 import { TitleService } from 'src/app/services/title.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Property } from 'src/app/model/property/property';
 import { ApiService } from 'src/app/services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-property',
@@ -28,25 +29,40 @@ export class AddPropertyComponent implements OnInit {
   // --------------------------------------------------------------------------------
   // Class properties declarations
   // --------------------------------------------------------------------------------
+  // Ngx-bootstrap modal
+  modalRef?: BsModalRef;
   clickModal!: number; // undefined so that it does not trigger the modal initially
-  addPropertyForm!: FormGroup;
+
+  // Dependency injections
   fb = inject(FormBuilder);
   propertyService = inject(ApiService);
   modalService = inject(BsModalService);
   titleService = inject(TitleService);
+  toastrService = inject(ToastrService);
+  router = inject(Router);
+
+  // View-child
+  // Access child components or elements in the template
+  @ViewChild('pricingArea') pA!: ElementRef;
+  @ViewChild('basicInfo') bI!: ElementRef;
+  @ViewChild('address') add!: ElementRef;
+  @ViewChild('otherDetails') odt!: ElementRef;
+  @ViewChild('photos') photo!: ElementRef;
+
+  // Reactive form properties
+  addPropertyForm!: FormGroup;
   bhk = [1, 2, 3, 4];
   propertyType = ['House', 'Apartment', 'Duplex'];
   furnishType = ['Fully', 'Semi', 'Unfurnished'];
   mainEntrance = ['East', 'West', 'North', 'South'];
   nextClicked = false;
-  // <!-- Ngx-bootstrap datepicker -->
+  // <!-- Ngx-bootstrap datepicker configuration -->
   bsConfig = {
     isAnimated: true,
     containerClass: 'theme-dark-blue',
     dateInputFormat: 'DD/MM/YYYY',
   };
-  // Ngx-bootstrap modal
-  modalRef?: BsModalRef;
+  // It is used to bind the form inputs with the preview property card
   propertyView: IPropertyBase = {
     Id: null,
     SellRent: null,
@@ -61,13 +77,9 @@ export class AddPropertyComponent implements OnInit {
     City: '',
     Address: '',
   };
-  pricingAreaTabDisabled = true;
+  // used for mapping on-submit
   property = new Property();
-  @ViewChild('pricingArea') pA!: ElementRef;
-  @ViewChild('basicInfo') bI!: ElementRef;
-  @ViewChild('address') add!: ElementRef;
-  @ViewChild('otherDetails') odt!: ElementRef;
-  @ViewChild('photos') photo!: ElementRef;
+  // Image tab specific
   files: File[] = [];
   disableImageUpload: boolean = false;
 
@@ -181,8 +193,15 @@ export class AddPropertyComponent implements OnInit {
   onSubmit(): void {
     if (this.addPropertyForm.valid) {
       this.propertyService.addProperty(this.mapProperty());
+      this.toastrService.success('Product added successfully', 'Success');
+      if (this.BasicInfo.value.SellRent === '2') {
+        this.router.navigate(['/rent-property']);
+      } else {
+        this.router.navigate(['/']);
+      }
+    } else {
+      this.toastrService.error('Unable to add product', 'Failed');
     }
-    return;
   }
 
   mapProperty(): Property {

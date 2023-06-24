@@ -78,9 +78,7 @@ export class UserRegisterComponent implements OnInit {
     if (this.registrationForm.valid) {
       this.userService.addUsers(this.userData());
       // Toaster message
-      this.toastr.success('User added', 'Success', {
-        timeOut: 3000,
-      });
+      this.toastr.success('User added successfully', 'Success');
       this.registrationForm.reset();
     }
   }
