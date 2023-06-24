@@ -25,6 +25,15 @@ export class ApiService {
   }
 
   addProperty(property: Property): void {
+    // ----------------------Removed when DB added----------------------
+    let pid = Number(localStorage.getItem('PID'));
+
+    if (!pid) pid = 101;
+    else pid += 1;
+
+    property.Id = pid;
+    localStorage.setItem('PID', `${pid}`);
     localStorage.setItem('property', JSON.stringify(property));
+    // ------------------------------------------------------------------
   }
 }

@@ -30,6 +30,12 @@ export class PropertyListComponent implements OnInit {
     this.apiservice.getAllProperties(this.SellRent).subscribe(
       (res) => {
         this.properties = res;
+        if (localStorage.getItem('property')) {
+          let newProp = JSON.parse(localStorage.getItem('property')!);
+          // type checking is intentionally ignored below
+          if (newProp.SellRent == this.SellRent)
+            this.properties = [newProp, ...res];
+        }
       },
       (err) => {
         console.log(err);
