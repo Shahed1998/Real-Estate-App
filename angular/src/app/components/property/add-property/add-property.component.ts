@@ -197,7 +197,7 @@ export class AddPropertyComponent implements OnInit {
       if (this.BasicInfo.value.SellRent === '2') {
         this.router.navigate(['/rent-property']);
       } else {
-        this.router.navigate(['/']);
+        this.router.navigate(['/buy-property']);
       }
     } else {
       this.toastrService.error('Unable to add product', 'Failed');

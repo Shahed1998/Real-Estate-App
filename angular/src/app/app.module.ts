@@ -28,9 +28,11 @@ import { CartComponent } from './components/user/cart/cart.component';
 import { TitleService } from './services/title.service';
 import { AddPropertyComponent } from './components/property/add-property/add-property.component';
 import { PropertyPreviewComponent } from './components/property/add-property/property-preview/property-preview.component';
+import { HomeComponent } from './components/home/home.component';
 
 const appRoutes: Routes = [
-  { path: '', component: PropertyListComponent },
+  { path: '', pathMatch: 'full', component: HomeComponent },
+  { path: 'buy-property', component: PropertyListComponent },
   { path: 'rent-property', component: PropertyListComponent },
   { path: 'add-property', component: AddPropertyComponent },
   { path: 'property-detail/:id', component: PropertyDetailComponent },
@@ -55,6 +57,7 @@ const appRoutes: Routes = [
     WishlistComponent,
     CartComponent,
     PropertyPreviewComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
