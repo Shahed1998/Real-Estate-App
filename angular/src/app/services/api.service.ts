@@ -24,8 +24,31 @@ export class ApiService {
     );
   }
 
+  getPropertyById(id: number): Observable<IPropertyBase> {
+    // ----------------------Will be updated when DB added----------------------
+    return this.http.get('data/properties.json').pipe(
+      map((data: any) => {
+        let property!: IPropertyBase;
+        property = data.find((prop: IPropertyBase) => prop.Id === Number(id));
+        // If property not available in json data, it checks localStorage
+        if (!property) {
+          let storedProps: Array<IPropertyBase> = JSON.parse(
+            localStorage.getItem('property')!
+          );
+          // If property not available in localStorage, returns null
+          if (storedProps) {
+            property = storedProps.find(
+              (prop: IPropertyBase) => prop.Id === Number(id)
+            )!;
+          }
+        }
+        return property;
+      })
+    );
+  }
+
   addProperty(property: Property): void {
-    // ----------------------Removed when DB added----------------------
+    // ----------------------Will be updated when DB added----------------------
     let pid = Number(localStorage.getItem('PID'));
     let storedProperty: Array<Property> = [];
 
