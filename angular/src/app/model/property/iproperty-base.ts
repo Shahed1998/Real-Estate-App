@@ -15,7 +15,7 @@ export interface IPropertyBase {
   TotalFloors?: number;
   Address: string;
   Landmark?: string;
-  ReadyToMove: number | null;
+  ReadyToMove: string;
   AvailableFrom?: string;
   AOP?: number; // Age Of Property
   GatedCommunity?: number;

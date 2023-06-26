@@ -73,7 +73,7 @@ export class AddPropertyComponent implements OnInit {
     FurnishType: '',
     BHK: null,
     BuiltArea: null,
-    ReadyToMove: null,
+    ReadyToMove: '',
     City: '',
     Address: '',
   };
@@ -106,7 +106,14 @@ export class AddPropertyComponent implements OnInit {
     this.addPropertyForm = this.fb.group({
       // Basic info tab
       BasicInfo: this.fb.group({
-        name: ['', [Validators.required, Validators.minLength(5)]],
+        name: [
+          '',
+          [
+            Validators.required,
+            Validators.minLength(5),
+            Validators.maxLength(20),
+          ],
+        ],
         City: ['', [Validators.required]],
         SellRent: ['1', [Validators.required]],
         BHK: ['', [Validators.required]],
@@ -246,7 +253,7 @@ export class AddPropertyComponent implements OnInit {
       FurnishType: '',
       BHK: null,
       BuiltArea: null,
-      ReadyToMove: null,
+      ReadyToMove: '',
       City: '',
       Address: '',
     };

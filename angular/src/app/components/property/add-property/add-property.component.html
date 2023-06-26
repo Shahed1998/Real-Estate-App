@@ -218,6 +218,25 @@
                   "
                   >* Please select Building/Society/Project name</span
                 >
+                <span
+                  class="err-msg d-block mt-2"
+                  *ngIf="
+                    PropertyName.value.length > 0 &&
+                    PropertyName.value.length < 5 &&
+                    (nextClicked || PropertyName.touched)
+                  "
+                  >* Building/Society/Project name must be greater than 5
+                  characters</span
+                >
+                <span
+                  class="err-msg d-block mt-2"
+                  *ngIf="
+                    PropertyName.value.length > 20 &&
+                    (nextClicked || PropertyName.touched)
+                  "
+                  >* Building/Society/Project name must not be greater than 20
+                  characters</span
+                >
               </div>
               <div class="mb-3">
                 <label for="City" class="form-label">City</label>

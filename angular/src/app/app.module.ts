@@ -12,6 +12,7 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 import { PropertyCardComponent } from './components/property/property-card/property-card.component';
 import { PropertyListComponent } from './components/property/property-list/property-list.component';
@@ -76,6 +77,7 @@ const appRoutes: Routes = [
     ButtonsModule.forRoot(),
     BsDatepickerModule.forRoot(),
     ModalModule.forRoot(),
+    TabsModule.forRoot(),
   ],
   providers: [ApiService, UserService, AuthService, TitleService],
   bootstrap: [AppComponent],

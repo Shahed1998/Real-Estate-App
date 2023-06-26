@@ -34,6 +34,6 @@ export class PropertyCardComponent implements OnInit {
   }
 
   imageFailed() {
-    this.property.Image = 'image-not-found';
+    this.property.Image = 'image-not-found.jpg';
   }
 }
