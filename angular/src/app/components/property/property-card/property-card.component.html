@@ -55,10 +55,10 @@
       </span>
     </div>
     <div
-      *ngIf="property.PropertyType.length > 0 && property.City.length > 0"
       class="address-details"
+      *ngIf="property.PropertyType.length > 0 && City"
     >
-      {{ property.PropertyType }} in {{ property.City }}
+      {{ property.PropertyType }} in {{ City }}
     </div>
     <div *ngIf="property.BHK" class="bhk-details">
       {{ property.BHK }} Bedroom, Hall, and Kitchen

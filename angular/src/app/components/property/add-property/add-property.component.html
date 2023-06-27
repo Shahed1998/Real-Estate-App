@@ -64,9 +64,9 @@
                 aria-controls="address"
                 aria-selected="false"
                 #address
-                [disabled]="BasicInfo.invalid || PriceInfo.invalid"
                 (click)="tabActive()"
               >
+                <!-- [disabled]="BasicInfo.invalid || PriceInfo.invalid" -->
                 Address
               </button>
             </li>
@@ -239,20 +239,6 @@
                 >
               </div>
               <div class="mb-3">
-                <label for="City" class="form-label">City</label>
-                <input
-                  type="text"
-                  id="City"
-                  class="form-control"
-                  formControlName="City"
-                />
-                <span
-                  class="err-msg d-block mt-2"
-                  *ngIf="!CityName.value && (nextClicked || CityName.touched)"
-                  >* Please select City</span
-                >
-              </div>
-              <div class="mb-3">
                 <!-- [disabled]="BasicInfo.invalid" -->
                 <button
                   class="btn btn-primary w-100"
@@ -359,6 +345,7 @@
             <!-- --------------------------------------------------------------------- -->
             <!-- Address Tab -->
             <!-- --------------------------------------------------------------------- -->
+            {{ addPropertyForm.value | json }}
             <div
               class="tab-pane fade"
               id="address"
@@ -366,7 +353,48 @@
               aria-labelledby="address-tab"
               formGroupName="AddressInfo"
             >
-              <div class="mb-3 mt-3">
+              <!-- Country Selection -->
+              <div class="mb-3 mt-3 w-50">
+                <label for="Country" class="form-label">Country</label>
+                <!-- Dropdown start -->
+                <ng-select
+                  [items]="countries"
+                  bindLabel="name"
+                  bindValue="id"
+                  placeholder="Select a country"
+                  formControlName="Country"
+                  dropdownPosition="bottom"
+                >
+                </ng-select>
+                <!-- Dropdown end -->
+                <span
+                  class="err-msg d-block mt-2"
+                  *ngIf="!Country.value && (nextClicked || Country.touched)"
+                  >* Please select a country</span
+                >
+              </div>
+              <!-- City Selection -->
+              <!-- Select city field -->
+              <div *ngIf="Country.value" class="mb-3 mt-3 w-50">
+                <label for="City" class="form-label">City</label>
+                <!-- Dropdown start -->
+                <ng-select
+                  [items]="cities"
+                  bindLabel="name"
+                  bindValue="id"
+                  formControlName="City"
+                  dropdownPosition="bottom"
+                  placeholder="Select a city"
+                >
+                </ng-select>
+                <!-- Dropdown end -->
+                <span
+                  class="err-msg d-block mt-2"
+                  *ngIf="!CityName.value && (nextClicked || CityName.touched)"
+                  >* Please select City</span
+                >
+              </div>
+              <div class="mb-3">
                 <label for="AddFloor" class="form-label">Floor</label>
                 <input
                   type="text"

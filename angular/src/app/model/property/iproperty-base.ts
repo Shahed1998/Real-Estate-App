@@ -5,7 +5,8 @@ export interface IPropertyBase {
   PropertyType: string;
   FurnishType: string;
   Name: string;
-  City: string;
+  City: number | null;
+  Country: number | null;
   Price: number | null;
   Security?: string;
   Maintenance?: string;

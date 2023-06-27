@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TitleService } from 'src/app/services/title.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,8 +7,8 @@ import { TitleService } from 'src/app/services/title.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private titleService: TitleService) {}
+  constructor(private route: Router) {}
   ngOnInit(): void {
-    this.titleService.setTitle('');
+    this.route.navigate(['/buy-property']);
   }
 }

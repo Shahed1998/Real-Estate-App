@@ -16,6 +16,26 @@ export class PropertyDetailComponent implements OnInit {
 
   propertyId!: number;
 
+  // Countries
+  countries = [
+    { id: 1, name: 'Bangladesh' },
+    { id: 2, name: 'India' },
+    { id: 3, name: 'USA' },
+  ];
+
+  // Cities of Bangladesh
+  cities = [
+    { id: 1, name: 'Dhaka' },
+    { id: 2, name: 'Sylhet' },
+    { id: 3, name: 'Chittagong' },
+    { id: 4, name: 'Khulna' },
+    { id: 5, name: 'Rajshahi' },
+    { id: 6, name: 'Barisal' },
+    { id: 7, name: 'Mymensingh' },
+    { id: 7, name: 'Comilla' },
+    { id: 8, name: 'Rangpur' },
+  ];
+
   // Had to initialize so that property doesn't give undefined error
   property: IPropertyBase = {
     Id: null,
@@ -24,7 +44,8 @@ export class PropertyDetailComponent implements OnInit {
     PropertyType: '',
     FurnishType: '',
     Name: '',
-    City: '',
+    City: null,
+    Country: null,
     Price: null,
     BuiltArea: null,
     Address: '',
@@ -71,7 +92,11 @@ export class PropertyDetailComponent implements OnInit {
   }
 
   get City() {
-    return this.property.City;
+    return this.cities.find((x) => x.id == this.property.City)?.name;
+  }
+
+  get Country() {
+    return this.countries.find((x) => x.id == this.property.Country)?.name;
   }
 
   get BuiltArea() {
@@ -123,5 +148,17 @@ export class PropertyDetailComponent implements OnInit {
 
   get Image() {
     return this.property.Image;
+  }
+
+  get Address() {
+    let address = `${this.property.Address}`;
+    if (this.City) {
+      address += `, ${this.City}`;
+    }
+
+    if (this.Country) {
+      address += `, ${this.Country}`;
+    }
+    return address;
   }
 }

@@ -74,7 +74,8 @@ export class AddPropertyComponent implements OnInit {
     BHK: null,
     BuiltArea: null,
     ReadyToMove: '',
-    City: '',
+    City: null,
+    Country: null,
     Address: '',
   };
   // used for mapping on-submit
@@ -82,6 +83,25 @@ export class AddPropertyComponent implements OnInit {
   // Image tab specific
   files: File[] = [];
   disableImageUpload: boolean = false;
+  // Countries
+  countries = [
+    { id: 1, name: 'Bangladesh' },
+    { id: 2, name: 'India' },
+    { id: 3, name: 'USA' },
+  ];
+  // Cities will be dynamically loaded according to countries
+  // Major cities of Bangladesh
+  cities = [
+    { id: 1, name: 'Dhaka' },
+    { id: 2, name: 'Sylhet' },
+    { id: 3, name: 'Chittagong' },
+    { id: 4, name: 'Khulna' },
+    { id: 5, name: 'Rajshahi' },
+    { id: 6, name: 'Barisal' },
+    { id: 7, name: 'Mymensingh' },
+    { id: 7, name: 'Comilla' },
+    { id: 8, name: 'Rangpur' },
+  ];
 
   // --------------------------------------------------------------------------------
   // Method declarations
@@ -95,7 +115,7 @@ export class AddPropertyComponent implements OnInit {
     this.addPropertyForm.valueChanges.subscribe((data) => {
       this.propertyView.Name = data.BasicInfo.name;
       this.propertyView.PropertyType = data.BasicInfo.PropertyType;
-      this.propertyView.City = data.BasicInfo.City;
+      this.propertyView.City = data.AddressInfo.City;
       this.propertyView.Price = data.PriceInfo.pAPrice;
       this.propertyView.BHK = data.BasicInfo.BHK;
     });
@@ -114,7 +134,6 @@ export class AddPropertyComponent implements OnInit {
             Validators.maxLength(20),
           ],
         ],
-        City: ['', [Validators.required]],
         SellRent: ['1', [Validators.required]],
         BHK: ['', [Validators.required]],
         PropertyType: ['', [Validators.required]],
@@ -130,6 +149,8 @@ export class AddPropertyComponent implements OnInit {
       }),
       // Address tab
       AddressInfo: this.fb.group({
+        Country: [null, [Validators.required]],
+        City: [null, [Validators.required]],
         AddFloor: [''],
         AddTotalFloors: [''],
         AddAddress: ['', [Validators.required]],
@@ -213,21 +234,26 @@ export class AddPropertyComponent implements OnInit {
 
   mapProperty(): Property {
     this.property.Id = null;
+    // Basic Info Tab
     this.property.SellRent = this.BasicInfo.value.SellRent;
     this.property.BHK = this.BasicInfo.value.BHK;
     this.property.PropertyType = this.BasicInfo.value.PropertyType;
     this.property.FurnishType = this.BasicInfo.value.FurnishType;
     this.property.Name = this.BasicInfo.value.name;
-    this.property.City = this.BasicInfo.value.City;
+    // Pricing Tab
     this.property.Price = this.PriceInfo.value.pAPrice;
     this.property.Security = this.PriceInfo.value.pASecurity;
     this.property.Maintenance = this.PriceInfo.value.pAMaintenance;
     this.property.BuiltArea = this.PriceInfo.value.pABuiltArea;
     this.property.CarpetArea = this.PriceInfo.value.pACarpetArea;
+    // Address Tab
+    this.property.City = this.AddressInfo.value.City;
+    this.property.Country = this.AddressInfo.value.Country;
     this.property.Floor = this.AddressInfo.value.AddFloor;
     this.property.TotalFloors = this.AddressInfo.value.AddTotalFloors;
     this.property.Address = this.AddressInfo.value.AddAddress;
     this.property.Landmark = this.AddressInfo.value.AddLandmark;
+    // Other Info Tab
     this.property.ReadyToMove = this.OtherInfo.value.otTabRTM;
     this.property.AvailableFrom = this.OtherInfo.value.otTabAF.toString();
     this.property.AOP = this.OtherInfo.value.otTabAOP;
@@ -254,7 +280,8 @@ export class AddPropertyComponent implements OnInit {
       BHK: null,
       BuiltArea: null,
       ReadyToMove: '',
-      City: '',
+      City: null,
+      Country: null,
       Address: '',
     };
     this.bI.nativeElement.click();
@@ -294,9 +321,6 @@ export class AddPropertyComponent implements OnInit {
   get PropertyName() {
     return this.BasicInfo.get('name') as FormControl;
   }
-  get CityName() {
-    return this.BasicInfo.get('City') as FormControl;
-  }
 
   // Getters for Pricing and Area Tab
   get Price() {
@@ -305,10 +329,20 @@ export class AddPropertyComponent implements OnInit {
   get BuiltArea() {
     return this.PriceInfo.get('pABuiltArea') as FormControl;
   }
+
   // Getters for Address Tab
+  get Country() {
+    return this.AddressInfo.get('Country') as FormControl;
+  }
+
+  get CityName() {
+    return this.AddressInfo.get('City') as FormControl;
+  }
+
   get Address() {
     return this.AddressInfo.get('AddAddress') as FormControl;
   }
+
   // Getters for Others Tab
   get ReadyToMove() {
     return this.OtherInfo.get('otTabRTM') as FormControl;

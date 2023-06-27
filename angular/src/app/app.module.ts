@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { Routes, RouterModule } from '@angular/router';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -65,6 +66,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     LazyLoadImageModule,
+    NgSelectModule,
     FormsModule,
     ReactiveFormsModule,
     NgxDropzoneModule,
