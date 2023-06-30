@@ -31,13 +31,18 @@ import { TitleService } from './services/title.service';
 import { AddPropertyComponent } from './components/property/add-property/add-property.component';
 import { PropertyPreviewComponent } from './components/property/add-property/property-preview/property-preview.component';
 import { HomeComponent } from './components/home/home.component';
+import { PropertyDetailResolverService } from './services/property-detail-resolver.service';
 
 const appRoutes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent },
   { path: 'buy-property', component: PropertyListComponent },
   { path: 'rent-property', component: PropertyListComponent },
   { path: 'add-property', component: AddPropertyComponent },
-  { path: 'property-detail/:id', component: PropertyDetailComponent },
+  {
+    path: 'property-detail/:id',
+    component: PropertyDetailComponent,
+    resolve: { prop: PropertyDetailResolverService },
+  },
   { path: 'user/login', component: UserLoginComponent },
   { path: 'user/register', component: UserRegisterComponent },
   { path: 'wishlist', component: WishlistComponent },
@@ -81,7 +86,13 @@ const appRoutes: Routes = [
     ModalModule.forRoot(),
     TabsModule.forRoot(),
   ],
-  providers: [ApiService, UserService, AuthService, TitleService],
+  providers: [
+    ApiService,
+    UserService,
+    AuthService,
+    TitleService,
+    PropertyDetailResolverService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

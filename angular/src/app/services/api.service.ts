@@ -10,10 +10,10 @@ import { Property } from '../model/property/property';
 export class ApiService {
   constructor(private http: HttpClient) {}
 
-  getAllProperties(SellRent: number): Observable<IPropertyBase[]> {
+  getAllProperties(SellRent: number): Observable<Property[]> {
     return this.http.get('data/properties.json').pipe(
       map((data: any) => {
-        const properties: Array<IPropertyBase> = [];
+        const properties: Array<Property> = [];
         for (const id in data) {
           if (data.hasOwnProperty(id) && data[id].SellRent === SellRent) {
             properties.push(data[id]);
@@ -24,23 +24,26 @@ export class ApiService {
     );
   }
 
-  getPropertyById(id: number): Observable<IPropertyBase> {
+  getPropertyById(id: number): Observable<Property> {
     // ----------------------Will be updated when DB added----------------------
     return this.http.get('data/properties.json').pipe(
       map((data: any) => {
-        let property!: IPropertyBase;
-        property = data.find((prop: IPropertyBase) => prop.Id === Number(id));
+        let property!: Property;
+        property = data.find((prop: Property) => prop.Id === Number(id));
         // If property not available in json data, it checks localStorage
         if (!property) {
-          let storedProps: Array<IPropertyBase> = JSON.parse(
+          let storedProps: Array<Property> = JSON.parse(
             localStorage.getItem('property')!
           );
           // If property not available in localStorage, returns null
           if (storedProps) {
             property = storedProps.find(
-              (prop: IPropertyBase) => prop.Id === Number(id)
+              (prop: Property) => prop.Id === Number(id)
             )!;
           }
+        }
+        if (!property) {
+          throw new Error('Unable to find product');
         }
         return property;
       })

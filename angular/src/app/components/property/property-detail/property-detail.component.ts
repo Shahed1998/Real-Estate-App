@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IPropertyBase } from 'src/app/model/property/iproperty-base';
+import { Property } from 'src/app/model/property/property';
 import { ApiService } from 'src/app/services/api.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class PropertyDetailComponent implements OnInit {
   propertyService = inject(ApiService);
   activatedRoute = inject(ActivatedRoute);
   router = inject(Router);
+  route = inject(ActivatedRoute);
 
   propertyId!: number;
 
@@ -55,12 +57,8 @@ export class PropertyDetailComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.propertyId = this.activatedRoute.snapshot.params['id'];
-    // console.log(this.propertyId);
-    // this.router.navigate(['/']);
-    this.propertyService.getPropertyById(this.propertyId).subscribe((res) => {
-      this.property = res;
-      console.log(this.property);
+    this.route.data.subscribe((data) => {
+      this.property = data['prop'];
     });
   }
 
