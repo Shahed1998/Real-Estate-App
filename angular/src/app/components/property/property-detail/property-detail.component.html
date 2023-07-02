@@ -105,8 +105,13 @@
               </div>
             </div>
           </tab>
+          <!-- Image gallery -->
           <tab heading="Photos">
-            <h1 class="mt-2">Photos</h1>
+            <ngx-gallery
+              [options]="galleryOptions"
+              [images]="galleryImages"
+              class="ngx-gallery"
+            ></ngx-gallery>
           </tab>
           <tab heading="Contact">
             <h1 class="mt-2">Contact</h1>

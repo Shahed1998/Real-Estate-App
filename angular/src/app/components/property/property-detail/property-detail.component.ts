@@ -3,6 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IPropertyBase } from 'src/app/model/property/iproperty-base';
 import { Property } from 'src/app/model/property/property';
 import { ApiService } from 'src/app/services/api.service';
+import { NgxGalleryOptions } from '@kolkov/ngx-gallery';
+import { NgxGalleryImage } from '@kolkov/ngx-gallery';
+import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
 
 @Component({
   selector: 'app-property-detail',
@@ -54,12 +57,67 @@ export class PropertyDetailComponent implements OnInit {
     ReadyToMove: '',
   };
 
+  // Image gallery
+  galleryOptions!: NgxGalleryOptions[];
+  galleryImages!: NgxGalleryImage[];
+
   constructor() {}
 
   ngOnInit(): void {
     this.route.data.subscribe((data) => {
       this.property = data['prop'];
     });
+    this.galleryOptions = [
+      {
+        width: '100%',
+        height: '400px',
+        thumbnailsColumns: 4,
+        imageAnimation: NgxGalleryAnimation.Slide,
+      },
+      // max-width 800
+      {
+        breakpoint: 800,
+        width: '100%',
+        height: '600px',
+        imagePercent: 80,
+        thumbnailsPercent: 20,
+        thumbnailsMargin: 20,
+        thumbnailMargin: 20,
+      },
+      // max-width 400
+      {
+        breakpoint: 400,
+        preview: false,
+      },
+    ];
+
+    this.galleryImages = [
+      {
+        small: 'assets/images/gallery/master-bedroom.jpg',
+        medium: 'assets/images/gallery/master-bedroom.jpg',
+        big: 'assets/images/gallery/master-bedroom.jpg',
+      },
+      {
+        small: 'assets/images/gallery/guest-room.jpg',
+        medium: 'assets/images/gallery/guest-room.jpg',
+        big: 'assets/images/gallery/guest-room.jpg',
+      },
+      {
+        small: 'assets/images/gallery/kitchen.jpg',
+        medium: 'assets/images/gallery/kitchen.jpg',
+        big: 'assets/images/gallery/kitchen.jpg',
+      },
+      {
+        small: 'assets/images/gallery/dining-room.jpg',
+        medium: 'assets/images/gallery/dining-room.jpg',
+        big: 'assets/images/gallery/dining-room.jpg',
+      },
+      {
+        small: 'assets/images/gallery/drone-view.jpg',
+        medium: 'assets/images/gallery/drone-view.jpg',
+        big: 'assets/images/gallery/drone-view.jpg',
+      },
+    ];
   }
 
   // assigns a default image if image not found
