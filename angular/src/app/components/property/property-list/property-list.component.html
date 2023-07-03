@@ -16,6 +16,10 @@
         >
         </ng-select>
       </div>
+
+      <button class="mx-2" (click)="searchCity()">
+        Search <i class="fa-solid fa-filter"></i>
+      </button>
       <button class="ms-2" (click)="reverseSortOrder()">
         Price
         <!-- Descending -->
@@ -28,9 +32,6 @@
           *ngIf="sortOrder === 'Ascending'"
           class="fa-solid fa-arrow-up-wide-short"
         ></i>
-      </button>
-      <button class="mx-2" (click)="searchCity()">
-        Search <i class="fa-solid fa-filter"></i>
       </button>
     </div>
   </div>
