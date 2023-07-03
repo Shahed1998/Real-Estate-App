@@ -33,11 +33,29 @@ import { AddPropertyComponent } from './components/property/add-property/add-pro
 import { PropertyPreviewComponent } from './components/property/add-property/property-preview/property-preview.component';
 import { HomeComponent } from './components/home/home.component';
 import { PropertyDetailResolverService } from './services/property-detail-resolver.service';
+// Angular pipes
+import { FilterPipe } from './pipes/filter.pipe';
+import { SortPipe } from './pipes/sort.pipe';
+import { PropertyListResolverService } from './services/property-list-resolver.service';
+import { HomeResolverService } from './services/home-resolver.service';
 
 const appRoutes: Routes = [
-  { path: '', pathMatch: 'full', component: HomeComponent },
-  { path: 'buy-property', component: PropertyListComponent },
-  { path: 'rent-property', component: PropertyListComponent },
+  {
+    path: '',
+    pathMatch: 'full',
+    component: HomeComponent,
+    resolve: { HomeResolverService },
+  },
+  {
+    path: 'buy-property',
+    component: PropertyListComponent,
+    resolve: { propList: PropertyListResolverService },
+  },
+  {
+    path: 'rent-property',
+    component: PropertyListComponent,
+    resolve: { propList: PropertyListResolverService },
+  },
   { path: 'add-property', component: AddPropertyComponent },
   {
     path: 'property-detail/:id',
@@ -66,6 +84,8 @@ const appRoutes: Routes = [
     CartComponent,
     PropertyPreviewComponent,
     HomeComponent,
+    FilterPipe,
+    SortPipe,
   ],
   imports: [
     BrowserModule,
@@ -94,6 +114,7 @@ const appRoutes: Routes = [
     AuthService,
     TitleService,
     PropertyDetailResolverService,
+    PropertyListResolverService,
   ],
   bootstrap: [AppComponent],
 })

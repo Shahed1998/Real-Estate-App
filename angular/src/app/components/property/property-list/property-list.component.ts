@@ -1,8 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService } from 'src/app/services/api.service';
-import { IPropertyBase } from 'src/app/model/property/iproperty-base';
-import { TitleService } from 'src/app/services/title.service';
 import { Property } from 'src/app/model/property/property';
 
 @Component({
@@ -11,41 +8,42 @@ import { Property } from 'src/app/model/property/property';
   styleUrls: ['./property-list.component.css'],
 })
 export class PropertyListComponent implements OnInit {
-  properties!: Array<IPropertyBase>;
-  SellRent: number = 1;
+  properties!: Array<Property>;
+  route = inject(ActivatedRoute);
+  cities = [
+    { id: 1, name: 'Dhaka' },
+    { id: 2, name: 'Sylhet' },
+    { id: 3, name: 'Chittagong' },
+    { id: 4, name: 'Khulna' },
+    { id: 5, name: 'Rajshahi' },
+    { id: 6, name: 'Barisal' },
+    { id: 7, name: 'Mymensingh' },
+    { id: 7, name: 'Comilla' },
+    { id: 8, name: 'Rangpur' },
+  ];
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private apiservice: ApiService,
-    private titleService: TitleService
-  ) {}
+  cityName!: number;
+  searchedCity: string = '';
+  sortOrder: string = 'Ascending';
+
+  constructor() {}
 
   ngOnInit(): void {
-    var param = this.activatedRoute.snapshot.url.toString();
-    if (param === 'rent-property') {
-      this.SellRent = 2;
-      this.titleService.setTitle(`Rent Property`);
-    } else {
-      this.titleService.setTitle(`Buy Property`);
-    }
-    this.apiservice.getAllProperties(this.SellRent).subscribe(
-      (res) => {
-        this.properties = res; // list of properties from json data
-        if (localStorage.getItem('property')) {
-          // Gets a list of property from the localStorage
-          let propertyList = JSON.parse(localStorage.getItem('property')!);
+    this.route.data.subscribe((data) => {
+      this.properties = data['propList'];
+    });
+  }
 
-          propertyList.forEach((prop: Property) => {
-            // type checking is intentionally ignored below
-            if (prop.SellRent == this.SellRent)
-              // this.properties = [prop, ...res];
-              this.properties.push(prop);
-          });
-        }
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
+  searchCity(): void {
+    if (this.cityName) this.searchedCity = String(this.cityName);
+    else this.searchedCity = '';
+  }
+
+  reverseSortOrder(): void {
+    if (this.sortOrder === 'Ascending') {
+      this.sortOrder = 'Descending';
+    } else if (this.sortOrder === 'Descending') {
+      this.sortOrder = 'Ascending';
+    }
   }
 }

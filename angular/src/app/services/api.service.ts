@@ -19,6 +19,16 @@ export class ApiService {
             properties.push(data[id]);
           }
         }
+        if (localStorage.getItem('property')) {
+          // Gets a list of property from the localStorage
+          let propertyList = JSON.parse(localStorage.getItem('property')!);
+          propertyList.forEach((prop: Property) => {
+            // type checking is intentionally ignored below
+            if (prop.SellRent == SellRent)
+              // this.properties = [prop, ...res];
+              properties.push(prop);
+          });
+        }
         return properties;
       })
     );
