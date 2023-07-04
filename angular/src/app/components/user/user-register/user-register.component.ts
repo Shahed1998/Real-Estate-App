@@ -43,6 +43,10 @@ export class UserRegisterComponent implements OnInit {
     console.log(this.countries);
     this.titleService.setTitle('User Register');
     this.createRegistrationForm();
+    this.CountryCode;
+    this.registrationForm.valueChanges.subscribe((res) => {
+      this.CountryCode;
+    });
   }
 
   createRegistrationForm() {
@@ -85,6 +89,17 @@ export class UserRegisterComponent implements OnInit {
   get PhoneNumber() {
     return this.registrationForm.get('phoneNumber') as FormControl;
   }
+  get Country() {
+    return this.registrationForm.get('country') as FormControl;
+  }
+  get CountryCode() {
+    let countryId = this.Country.value;
+    if (!this.Country.value) {
+      return;
+    }
+    return this.countries.find((x) => x.id == countryId)?.countryCallingCode;
+  }
+
   // -------------------------------------------------------------------------
   // Form submission
   // -------------------------------------------------------------------------

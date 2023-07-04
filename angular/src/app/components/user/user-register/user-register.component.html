@@ -3,7 +3,7 @@
   <div class="card-header">Register</div>
   <div class="card-body">
     <!-- Test -->
-    <!-- {{ registrationForm.value | json }} -->
+    {{ registrationForm.value | json }}
     <!-- Using pipe to convert to json -->
     <!-- {{ registrationForm.status | json }} -->
     <!-- Test -->
@@ -93,26 +93,37 @@
       <!-- ----------------------------------------------------------------- -->
       <div class="mb-3">
         <label for="phone" class="form-label">Phone number</label>
-        <!-- Country select -->
-        <!--Using items input-->
-        <ng-select formControlName="country" placeholder="Select Country Code">
-          <ng-option *ngFor="let country of countries" [value]="country.id">
-            <img
-              src="{{ country.flag }}"
-              alt=""
-              width="28px"
-              class="d-inline-block m-auto"
-            />
-            {{ country.internetCountryCode }}
-          </ng-option>
-        </ng-select>
         <!-- Phone number -->
-        <input
-          type="text"
-          class="form-control"
-          id="phone"
-          formControlName="phoneNumber"
-        />
+        <div class="row">
+          <div class="col-lg-6">
+            <!-- Country select -->
+            <!--Using items input-->
+            <ng-select
+              class="w-100 mb-2"
+              formControlName="country"
+              placeholder="Select Country"
+            >
+              <ng-option *ngFor="let country of countries" [value]="country.id">
+                <div class="d-flex align-items-center">
+                  <img src="{{ country.flag }}" alt="" class="" height="24px" />
+                  <span class="country-code"
+                    >{{ country.internetCountryCode }}
+                  </span>
+                  {{ country.countryCallingCode }}
+                </div>
+              </ng-option>
+            </ng-select>
+          </div>
+          <div class="col-12">
+            <input
+              type="text"
+              class="form-control w-100"
+              id="phone"
+              formControlName="phoneNumber"
+              placeholder="Enter phone number"
+            />
+          </div>
+        </div>
         <span class="err-msg" *ngIf="!PhoneNumber.valid && PhoneNumber.touched"
           >Please provide phone number</span
         >
