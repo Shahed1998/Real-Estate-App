@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -12,6 +12,9 @@ import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { TitleService } from 'src/app/services/title.service';
+import { CountryService } from 'src/app/services/country/country.service';
+import { ICountry } from 'src/app/model/icountry';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-register',
@@ -19,17 +22,27 @@ import { TitleService } from 'src/app/services/title.service';
   styleUrls: ['./user-register.component.css'],
 })
 export class UserRegisterComponent implements OnInit {
+  // Dependency Injections
+  fb = inject(FormBuilder);
+  userService = inject(UserService);
+  toastr = inject(ToastrService);
+  titleService = inject(TitleService);
+  activatedRoute = inject(ActivatedRoute);
+
+  // Properties
   registrationForm!: FormGroup;
   users!: User;
-  constructor(
-    private fb: FormBuilder,
-    private userService: UserService,
-    private toastr: ToastrService,
-    private titleService: TitleService
-  ) {}
+  countries!: ICountry[];
+
+  constructor(private countryService: CountryService) {}
+
   ngOnInit(): void {
-    this.createRegistrationForm();
+    this.activatedRoute.data.subscribe((data) => {
+      this.countries = data['countries'];
+    });
+    console.log(this.countries);
     this.titleService.setTitle('User Register');
+    this.createRegistrationForm();
   }
 
   createRegistrationForm() {
@@ -38,6 +51,7 @@ export class UserRegisterComponent implements OnInit {
         name: [null, [Validators.required]],
         email: [null, [Validators.required, Validators.email]],
         password: [null, [Validators.required, Validators.minLength(8)]],
+        country: [null, [Validators.required]],
         confirmPassword: [null, [Validators.required]],
         phoneNumber: [null, [Validators.required, Validators.maxLength(11)]],
       },

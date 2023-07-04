@@ -38,6 +38,8 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { SortPipe } from './pipes/sort.pipe';
 import { PropertyListResolverService } from './services/property-list-resolver.service';
 import { HomeResolverService } from './services/home-resolver.service';
+import { UserRegistrationResolverService } from './services/user/registration/user-registration-resolver.service';
+import { CountryResolverService } from './services/country/country-resolver.service';
 
 const appRoutes: Routes = [
   {
@@ -63,7 +65,11 @@ const appRoutes: Routes = [
     resolve: { prop: PropertyDetailResolverService },
   },
   { path: 'user/login', component: UserLoginComponent },
-  { path: 'user/register', component: UserRegisterComponent },
+  {
+    path: 'user/register',
+    component: UserRegisterComponent,
+    resolve: { countries: CountryResolverService },
+  },
   { path: 'wishlist', component: WishlistComponent },
   { path: 'cart', component: CartComponent },
   { path: '**', component: PageNotFoundComponent, data: { navbar: false } },
@@ -113,8 +119,11 @@ const appRoutes: Routes = [
     UserService,
     AuthService,
     TitleService,
+    // Resolvers
     PropertyDetailResolverService,
     PropertyListResolverService,
+    UserRegistrationResolverService,
+    CountryResolverService,
   ],
   bootstrap: [AppComponent],
 })

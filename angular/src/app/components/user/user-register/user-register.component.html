@@ -93,6 +93,20 @@
       <!-- ----------------------------------------------------------------- -->
       <div class="mb-3">
         <label for="phone" class="form-label">Phone number</label>
+        <!-- Country select -->
+        <!--Using items input-->
+        <ng-select formControlName="country" placeholder="Select Country Code">
+          <ng-option *ngFor="let country of countries" [value]="country.id">
+            <img
+              src="{{ country.flag }}"
+              alt=""
+              width="28px"
+              class="d-inline-block m-auto"
+            />
+            {{ country.internetCountryCode }}
+          </ng-option>
+        </ng-select>
+        <!-- Phone number -->
         <input
           type="text"
           class="form-control"
