@@ -3,23 +3,30 @@
   <div class="card-header">Register</div>
   <div class="card-body">
     <!-- Test -->
-    {{ registrationForm.value | json }}
+    <!-- {{ registrationForm.value | json }} -->
     <!-- Using pipe to convert to json -->
-    <!-- {{ registrationForm.status | json }} -->
+    <!-- {{ registrationForm.errors | json }}
+    {{ registrationForm.status | json }} -->
+
     <!-- Test -->
     <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
       <!-- ----------------------------------------------------------------- -->
       <!-- Name -->
       <!-- ----------------------------------------------------------------- -->
       <div class="mb-3">
-        <label for="name" class="form-label">Name</label>
+        <label for="name" class="form-label"
+          >Name <span class="required-field-asterisk">*</span></label
+        >
         <input
           type="text"
           class="form-control"
           id="name"
           formControlName="name"
+          placeholder="Enter name"
         />
-        <span class="err-msg" *ngIf="!Name.valid && Name.touched"
+        <span
+          class="err-msg"
+          *ngIf="!Name.valid && (Name.touched || registerBtnPressed)"
           >Please provide name</span
         >
       </div>
@@ -27,32 +34,46 @@
       <!-- Email address -->
       <!-- ----------------------------------------------------------------- -->
       <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
+        <label for="email" class="form-label"
+          >Email <span class="required-field-asterisk">*</span></label
+        >
         <input
           type="text"
           class="form-control"
           id="email"
           formControlName="email"
+          placeholder="Enter email"
         />
-        <span class="err-msg" *ngIf="!Email.valid && Email.touched">
+        <span
+          class="err-msg"
+          *ngIf="!Email.valid && (Email.touched || registerBtnPressed)"
+        >
           <span *ngIf="Email.hasError('required')">Please provide email</span>
-          <span *ngIf="Email.hasError('email')"
-            >Please provide a valid email</span
-          >
         </span>
+        <span
+          class="err-msg"
+          *ngIf="registrationForm.hasError('invalidEmail') && Email.valid"
+          >Invalid email</span
+        >
       </div>
       <!-- ----------------------------------------------------------------- -->
       <!-- Password -->
       <!-- ----------------------------------------------------------------- -->
       <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
+        <label for="password" class="form-label"
+          >Password <span class="required-field-asterisk">*</span></label
+        >
         <input
           type="password"
           class="form-control"
           id="password"
           formControlName="password"
+          placeholder="Enter password"
         />
-        <span class="err-msg" *ngIf="!Password.valid && Password.touched">
+        <span
+          class="err-msg"
+          *ngIf="!Password.valid && (Password.touched || registerBtnPressed)"
+        >
           <span *ngIf="Password.hasError('required')"
             >Please provide password</span
           >
@@ -65,16 +86,23 @@
       <!-- Confirm Password -->
       <!-- ----------------------------------------------------------------- -->
       <div class="mb-3">
-        <label for="cpassword" class="form-label">Confirm Password</label>
+        <label for="cpassword" class="form-label"
+          >Confirm Password
+          <span class="required-field-asterisk">*</span></label
+        >
         <input
           type="password"
           class="form-control"
           id="cpassword"
           formControlName="confirmPassword"
+          placeholder="Enter confirm password"
         />
         <span
           class="err-msg"
-          *ngIf="!ConfirmPassword.valid && ConfirmPassword.touched"
+          *ngIf="
+            !ConfirmPassword.valid &&
+            (ConfirmPassword.touched || registerBtnPressed)
+          "
         >
           <span *ngIf="ConfirmPassword.hasError('required')"
             >Please provide confirm password</span
@@ -83,7 +111,8 @@
         <span
           class="err-msg"
           *ngIf="
-            registrationForm.hasError('notmatched') && ConfirmPassword.valid
+            registrationForm.hasError('confirmPassNotMatched') &&
+            ConfirmPassword.valid
           "
           >Password not matched</span
         >
@@ -92,14 +121,16 @@
       <!-- Phone number -->
       <!-- ----------------------------------------------------------------- -->
       <div class="mb-3">
-        <label for="phone" class="form-label">Phone number</label>
+        <label for="phone" class="form-label"
+          >Phone number <span class="required-field-asterisk">*</span></label
+        >
         <!-- Phone number -->
         <div class="row">
           <div class="col-lg-6">
             <!-- Country select -->
             <!--Using items input-->
             <ng-select
-              class="w-100 mb-2"
+              class="w-100 mb-1"
               formControlName="country"
               placeholder="Select Country"
             >
@@ -113,6 +144,11 @@
                 </div>
               </ng-option>
             </ng-select>
+            <span
+              class="err-msg d-block mb-1"
+              *ngIf="!Country.valid && (Country.touched || registerBtnPressed)"
+              >Please select country</span
+            >
           </div>
           <div class="col-12">
             <input
@@ -124,7 +160,11 @@
             />
           </div>
         </div>
-        <span class="err-msg" *ngIf="!PhoneNumber.valid && PhoneNumber.touched"
+        <span
+          class="err-msg"
+          *ngIf="
+            !PhoneNumber.valid && (PhoneNumber.touched || registerBtnPressed)
+          "
           >Please provide phone number</span
         >
       </div>
@@ -132,12 +172,9 @@
       <!-- Form buttons -->
       <!-- ----------------------------------------------------------------- -->
       <button type="reset" class="btn btn-danger me-2">Cancel</button>
-      <button
-        [disabled]="!registrationForm.valid"
-        type="submit"
-        class="btn btn-primary"
-      >
-        Save
+      <!-- [disabled]="!registrationForm.valid" -->
+      <button type="submit" class="btn btn-primary" (click)="register()">
+        Register
       </button>
     </form>
   </div>

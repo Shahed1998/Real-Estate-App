@@ -33,6 +33,7 @@ export class UserRegisterComponent implements OnInit {
   registrationForm!: FormGroup;
   users!: User;
   countries!: ICountry[];
+  registerBtnPressed: boolean = false;
 
   constructor(private countryService: CountryService) {}
 
@@ -44,22 +45,24 @@ export class UserRegisterComponent implements OnInit {
     this.titleService.setTitle('User Register');
     this.createRegistrationForm();
     this.CountryCode;
-    this.registrationForm.valueChanges.subscribe((res) => {
-      this.CountryCode;
-    });
+    // this.registrationForm.valueChanges.subscribe((res) => {
+    //   // this.CountryCode;
+    // });
   }
 
   createRegistrationForm() {
     this.registrationForm = this.fb.group(
       {
         name: [null, [Validators.required]],
-        email: [null, [Validators.required, Validators.email]],
+        email: [null, [Validators.required]],
         password: [null, [Validators.required, Validators.minLength(8)]],
         country: [null, [Validators.required]],
         confirmPassword: [null, [Validators.required]],
         phoneNumber: [null, [Validators.required, Validators.maxLength(11)]],
       },
-      { validators: [this.confirmPasswordValidationFn] }
+      {
+        validators: [this.emailValidationFn, this.confirmPasswordValidationFn],
+      }
     );
   }
 
@@ -68,7 +71,25 @@ export class UserRegisterComponent implements OnInit {
     return control.get('password')?.value ===
       control.get('confirmPassword')?.value
       ? null
-      : { notmatched: true };
+      : { confirmPassNotMatched: true };
+  }
+
+  // Email validation function
+  emailValidationFn(control: AbstractControl) {
+    // Email validation regular expression
+    var regex =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regex.test(control.get('email')!.value)
+      ? null
+      : { invalidEmail: true };
+  }
+
+  // Register
+  register() {
+    this.registerBtnPressed = true;
+    console.log(this.registrationForm.hasError('invalidEmail'));
+    if (!this.registrationForm.valid) {
+    }
   }
 
   // -------------------------------------------------------------------------
@@ -122,24 +143,3 @@ export class UserRegisterComponent implements OnInit {
     });
   }
 }
-
-// // Refactored
-//   ngOnInit(): void {
-//     // this.registrationForm = new FormGroup(
-//     //   {
-//     //     name: new FormControl(null, Validators.required),
-//     //     email: new FormControl(null, [Validators.required, Validators.email]),
-//     //     password: new FormControl(null, [
-//     //       Validators.required,
-//     //       Validators.minLength(8),
-//     //     ]),
-//     //     confirmPassword: new FormControl(null, [Validators.required]),
-//     //     phoneNumber: new FormControl(null, [
-//     //       Validators.required,
-//     //       Validators.maxLength(11),
-//     //     ]),
-//     //   },
-//     //   // Custom validation
-//     //   { validators: [this.confirmPasswordValidationFn] }
-//     // );
-//   }
