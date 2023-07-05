@@ -72,7 +72,10 @@ const appRoutes: Routes = [
   },
   { path: 'wishlist', component: WishlistComponent },
   { path: 'cart', component: CartComponent },
-  { path: '**', component: PageNotFoundComponent, data: { navbar: false } },
+  {
+    path: '**',
+    component: PageNotFoundComponent,
+  },
 ];
 
 @NgModule({

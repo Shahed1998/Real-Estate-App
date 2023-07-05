@@ -20,8 +20,9 @@ export class CountryResolverService implements Resolve<ICountry[]> {
   ): ICountry[] | Observable<ICountry[]> | Promise<ICountry[]> {
     return this.countryService.getAllCountries().pipe(
       catchError((error) => {
-        // this.router.navigate(['/error']);
-        console.log(error);
+        this.router.navigate(['/error'], {
+          state: { data: { message: 'Internal Server Error', errorCode: 500 } },
+        });
         return of();
       })
     );

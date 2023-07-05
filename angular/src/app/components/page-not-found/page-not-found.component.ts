@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  DoCheck,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { TitleService } from 'src/app/services/title.service';
 
 @Component({
@@ -6,10 +13,29 @@ import { TitleService } from 'src/app/services/title.service';
   templateUrl: './page-not-found.component.html',
   styleUrls: ['./page-not-found.component.css'],
 })
-export class PageNotFoundComponent implements OnInit {
-  constructor(private titleService: TitleService) {}
+export class PageNotFoundComponent implements OnInit, DoCheck {
+  // Properties
+  errorCode: number = 400;
+  message: string = 'Page not found';
+
+  constructor(
+    private titleService: TitleService,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.titleService.setTitle('Error: 404- Page Not Found');
+    if (history.state.data) {
+      this.errorCode = history.state.data['errorCode'];
+      this.message = history.state.data['message'];
+    }
+    this.titleService.setTitle(`Error: ${this.errorCode}`);
+  }
+  // implemented after onInit
+  ngDoCheck(): void {
+    if (history.state.data) {
+      this.errorCode = history.state.data['errorCode'];
+      this.message = history.state.data['message'];
+      this.titleService.setTitle(`Error: ${this.errorCode}`);
+    }
   }
 }
