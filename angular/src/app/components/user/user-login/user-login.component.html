@@ -6,7 +6,9 @@
       <!-- Email address -->
       <!-- ----------------------------------------------------------------- -->
       <div class="">
-        <label for="email" class="form-label">Email</label>
+        <label for="email" class="form-label"
+          >Email <span class="required-field-asterisk">*</span></label
+        >
         <input
           type="text"
           class="form-control"
@@ -14,15 +16,19 @@
           formControlName="email"
           [placeholder]="'Enter email address'"
         />
-        <span class="err-msg" *ngIf="!Email.valid && Email.touched"
-          >*Email is required</span
+        <span
+          class="err-msg"
+          *ngIf="!Email.valid && (Email.touched || loginBtnPressed)"
+          >Email is required</span
         >
       </div>
       <!-- ----------------------------------------------------------------- -->
       <!-- Password -->
       <!-- ----------------------------------------------------------------- -->
       <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
+        <label for="password" class="form-label"
+          >Password <span class="required-field-asterisk">*</span></label
+        >
         <input
           type="password"
           class="form-control"
@@ -30,8 +36,10 @@
           formControlName="password"
           [placeholder]="'Enter password'"
         />
-        <span class="err-msg" *ngIf="!Password.valid && Password.touched"
-          >*Password is required</span
+        <span
+          class="err-msg"
+          *ngIf="!Password.valid && (Password.touched || loginBtnPressed)"
+          >Password is required</span
         >
       </div>
 
@@ -39,14 +47,12 @@
       <!-- Form buttons -->
       <!-- ----------------------------------------------------------------- -->
       <button type="reset" class="btn btn-danger me-2">Cancel</button>
-      <button
-        [disabled]="!loginForm.valid"
-        type="submit"
-        (click)="login()"
-        class="btn btn-primary"
-      >
+      <button type="submit" (click)="login()" class="btn btn-primary">
         Login
       </button>
     </form>
+  </div>
+  <div class="card-footer">
+    Don't have an account? <a [routerLink]="['/user/register']">Register</a>
   </div>
 </div>

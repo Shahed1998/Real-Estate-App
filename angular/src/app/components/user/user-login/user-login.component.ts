@@ -16,13 +16,15 @@ import { TitleService } from 'src/app/services/title.service';
   styleUrls: ['./user-login.component.css'],
 })
 export class UserLoginComponent implements OnInit {
-  loginForm!: FormGroup;
   // Dependency injections: only available from angular 14
   fb = inject(FormBuilder);
   titleService = inject(TitleService);
   authService = inject(AuthService);
   toastr = inject(ToastrService);
   router = inject(Router);
+
+  loginForm!: FormGroup;
+  loginBtnPressed: boolean = false;
 
   constructor() {}
 
@@ -55,13 +57,17 @@ export class UserLoginComponent implements OnInit {
   }
 
   login() {
-    let token = this.authService.authenticate(this.loginForm.value);
-    if (token) {
-      localStorage.setItem('token', token.name);
-      this.toastr.success(`Welcome ${token.name.split(' ')[0]}`);
-      this.router.navigate(['/']);
-    } else {
-      this.toastr.error('Failed to login');
+    this.loginBtnPressed = true;
+    if (this.loginForm.valid) {
+      let token = this.authService.authenticate(this.loginForm.value);
+      if (token) {
+        localStorage.setItem('token', token.name);
+        this.toastr.success(`Welcome ${token.name.split(' ')[0]}`);
+        this.router.navigate(['/']);
+      } else {
+        this.toastr.error('Failed to login');
+      }
+      this.loginBtnPressed = false;
     }
   }
 }

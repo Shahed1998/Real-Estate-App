@@ -10,7 +10,7 @@ export class UserService {
   // storing and retrieving data should be used using services
   addUsers(user: User) {
     let storedUsers = JSON.parse(localStorage.getItem('users')!);
-    let users = [];
+    let users!: User[];
     if (storedUsers === null) {
       users.push(user);
     } else {

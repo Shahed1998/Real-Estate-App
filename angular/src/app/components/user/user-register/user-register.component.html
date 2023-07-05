@@ -9,7 +9,7 @@
     {{ registrationForm.status | json }} -->
 
     <!-- Test -->
-    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="registrationForm">
       <!-- ----------------------------------------------------------------- -->
       <!-- Name -->
       <!-- ----------------------------------------------------------------- -->
@@ -26,8 +26,17 @@
         />
         <span
           class="err-msg"
-          *ngIf="!Name.valid && (Name.touched || registerBtnPressed)"
+          *ngIf="
+            Name.hasError('required') && (Name.touched || registerBtnPressed)
+          "
           >Please provide name</span
+        >
+        <span
+          class="err-msg"
+          *ngIf="
+            Name.hasError('minlength') && (Name.touched || registerBtnPressed)
+          "
+          >Name must be minimum two characters long</span
         >
       </div>
       <!-- ----------------------------------------------------------------- -->
@@ -42,7 +51,7 @@
           class="form-control"
           id="email"
           formControlName="email"
-          placeholder="Enter email"
+          placeholder="Enter email address"
         />
         <span
           class="err-msg"

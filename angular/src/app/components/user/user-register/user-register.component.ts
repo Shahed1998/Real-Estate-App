@@ -14,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 import { TitleService } from 'src/app/services/title.service';
 import { CountryService } from 'src/app/services/country/country.service';
 import { ICountry } from 'src/app/model/icountry';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-register',
@@ -28,6 +28,7 @@ export class UserRegisterComponent implements OnInit {
   toastr = inject(ToastrService);
   titleService = inject(TitleService);
   activatedRoute = inject(ActivatedRoute);
+  router = inject(Router);
 
   // Properties
   registrationForm!: FormGroup;
@@ -41,19 +42,14 @@ export class UserRegisterComponent implements OnInit {
     this.activatedRoute.data.subscribe((data) => {
       this.countries = data['countries'];
     });
-    console.log(this.countries);
     this.titleService.setTitle('User Register');
     this.createRegistrationForm();
-    this.CountryCode;
-    // this.registrationForm.valueChanges.subscribe((res) => {
-    //   // this.CountryCode;
-    // });
   }
 
   createRegistrationForm() {
     this.registrationForm = this.fb.group(
       {
-        name: [null, [Validators.required]],
+        name: [null, [Validators.required, Validators.minLength(2)]],
         email: [null, [Validators.required]],
         password: [null, [Validators.required, Validators.minLength(8)]],
         country: [null, [Validators.required]],
@@ -82,14 +78,6 @@ export class UserRegisterComponent implements OnInit {
     return regex.test(control.get('email')!.value)
       ? null
       : { invalidEmail: true };
-  }
-
-  // Register
-  register() {
-    this.registerBtnPressed = true;
-    console.log(this.registrationForm.hasError('invalidEmail'));
-    if (!this.registrationForm.valid) {
-    }
   }
 
   // -------------------------------------------------------------------------
@@ -124,22 +112,27 @@ export class UserRegisterComponent implements OnInit {
   // -------------------------------------------------------------------------
   // Form submission
   // -------------------------------------------------------------------------
-  onSubmit() {
-    if (this.registrationForm.valid) {
-      this.userService.addUsers(this.userData());
-      // Toaster message
-      this.toastr.success('User added successfully', 'Success');
-      this.registrationForm.reset();
-    }
-  }
 
-  // Mapping user to its model and using it onSubmit
+  // Mapping user to its interface and using it onSubmit
   userData(): User {
     return (this.users = {
       name: this.Name.value,
       email: this.Email.value,
       password: this.Password.value,
+      countryCode: this.CountryCode,
       phoneNumber: this.PhoneNumber.value,
     });
+  }
+
+  // Register
+  register() {
+    this.registerBtnPressed = true;
+    if (this.registrationForm.valid) {
+      this.userService.addUsers(this.userData());
+      this.registrationForm.reset();
+      this.registerBtnPressed = false;
+      // this.router.navigate(['/user/login']);
+      this.toastr.success('Registration successful', 'Success'); // Toaster message
+    }
   }
 }
