@@ -7,6 +7,7 @@ import { Title } from '@angular/platform-browser';
 export class TitleService {
   constructor(private titleService: Title) {}
   setTitle(title: string) {
+    console.log(title);
     if (title) this.titleService.setTitle(`Real Estate App | ${title}`);
     else this.titleService.setTitle(`Real Estate App`);
   }

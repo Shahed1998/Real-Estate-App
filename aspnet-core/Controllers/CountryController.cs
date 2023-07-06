@@ -1,6 +1,12 @@
-﻿using aspnet_core.Models;
+﻿using aspnet_core.Data;
+using aspnet_core.DTOs;
+using aspnet_core.Models;
+using aspnet_core.Repos;
+using aspnet_core.Repos.Interfaces;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace aspnet_core.Controllers
 {
@@ -8,24 +14,26 @@ namespace aspnet_core.Controllers
     [ApiController]
     public class CountryController : ControllerBase
     {
-        [HttpGet]
-        public IActionResult GetList()
+        private readonly ICountryRepo _countryRepo;
+
+        public CountryController(ICountryRepo countryRepo)
         {
-            
-            List<Country> countryList = new List<Country>();
+            _countryRepo = countryRepo;
+        }
+        
+        [HttpGet]
+        public async Task<IActionResult> GetList()
+        {
+            var config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Country, CountryDTO>();
+            });
 
-            countryList.Add(
-                new Country 
-                { 
-                    Id=1,
-                    Name="Bangladesh",
-                    InternetCountryCode= "BD",
-                    CountryCallingCode= "+880",
-                    Nationality="Bangladeshi",
-                    Flag= "assets/images/countries-flag/bd.flag.png"
-                });
+            var mapper = new Mapper(config);
 
-            return Ok(countryList);
+            var dbObj = await _countryRepo.Get();
+
+            return Ok(mapper.Map<List<CountryDTO>>(dbObj));
         }
     }
 }

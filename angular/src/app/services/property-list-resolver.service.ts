@@ -28,7 +28,6 @@ export class PropertyListResolverService implements Resolve<Property[]> {
     state: RouterStateSnapshot
   ): Property[] | Observable<Property[]> | Promise<Property[]> {
     var param = route.url.toString(); // gets the route
-
     if (param === 'rent-property') {
       this.SellRent = 2;
       this.titleService.setTitle(`Rent Property`);

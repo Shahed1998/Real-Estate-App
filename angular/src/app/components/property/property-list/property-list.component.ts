@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, DoCheck, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Property } from 'src/app/model/property/property';
 

@@ -5,7 +5,7 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TitleService } from 'src/app/services/title.service';
 
 @Component({
@@ -20,13 +20,15 @@ export class PageNotFoundComponent implements OnInit, DoCheck {
 
   constructor(
     private titleService: TitleService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     if (history.state.data) {
       this.errorCode = history.state.data['errorCode'];
       this.message = history.state.data['message'];
+      history.state.data = undefined;
     }
     this.titleService.setTitle(`Error: ${this.errorCode}`);
   }
@@ -37,5 +39,9 @@ export class PageNotFoundComponent implements OnInit, DoCheck {
       this.message = history.state.data['message'];
       this.titleService.setTitle(`Error: ${this.errorCode}`);
     }
+  }
+
+  goBack() {
+    this.router.navigate(['/']);
   }
 }

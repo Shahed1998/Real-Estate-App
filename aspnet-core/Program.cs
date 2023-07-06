@@ -1,3 +1,8 @@
+using aspnet_core.Data;
+using aspnet_core.Repos;
+using aspnet_core.Repos.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -12,6 +17,13 @@ builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
 {
     builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
 }));
+
+// database builder
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<DataContext>(opt => opt.UseSqlServer(connectionString));
+
+// Repositorties
+builder.Services.AddScoped<ICountryRepo, CountryRepo>();
 
 var app = builder.Build();
 
