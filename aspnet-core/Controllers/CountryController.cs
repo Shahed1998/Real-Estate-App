@@ -1,8 +1,7 @@
 ﻿using aspnet_core.Data;
-using aspnet_core.DTOs;
+using aspnet_core.DTOs.Country;
+using aspnet_core.Interfaces;
 using aspnet_core.Models;
-using aspnet_core.Repos;
-using aspnet_core.Repos.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,26 +13,49 @@ namespace aspnet_core.Controllers
     [ApiController]
     public class CountryController : ControllerBase
     {
-        private readonly ICountryRepo _countryRepo;
+        private readonly IUnitOfWork _uow; 
 
-        public CountryController(ICountryRepo countryRepo)
+        private static MapperConfiguration config = new(cfg =>
         {
-            _countryRepo = countryRepo;
+            cfg.CreateMap<Country, CountryDTO>();
+            cfg.CreateMap<CreateUpdateCountryDTO, Country>();
+        });
+
+        private Mapper mapper = new(config);
+
+        public CountryController(IUnitOfWork uow)
+        {
+            _uow = uow;
         }
         
         [HttpGet]
         public async Task<IActionResult> GetList()
         {
-            var config = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<Country, CountryDTO>();
-            });
-
-            var mapper = new Mapper(config);
-
-            var dbObj = await _countryRepo.Get();
-
+            var dbObj = await _uow.CountryRepo.Get();
             return Ok(mapper.Map<List<CountryDTO>>(dbObj));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddCountry(CreateUpdateCountryDTO dto)
+        {
+            var dbObj = mapper.Map<Country>(dto);
+            _uow.CountryRepo.Add(dbObj);
+            if(await _uow.SaveAsync()) {
+                return StatusCode(201);
+            }
+            return BadRequest();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteCountry(int id)
+        {
+            _uow.CountryRepo.Delete(id);
+
+            if (await _uow.SaveAsync())
+            {
+                return Ok(new { id });
+            }
+            return BadRequest("Country does not exist");
         }
     }
 }

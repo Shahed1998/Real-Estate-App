@@ -1,6 +1,5 @@
 using aspnet_core.Data;
-using aspnet_core.Repos;
-using aspnet_core.Repos.Interfaces;
+using aspnet_core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,7 +22,8 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<DataContext>(opt => opt.UseSqlServer(connectionString));
 
 // Repositorties
-builder.Services.AddScoped<ICountryRepo, CountryRepo>();
+// Dependency Inversion
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 

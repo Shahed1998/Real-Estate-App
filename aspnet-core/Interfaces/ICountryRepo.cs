@@ -1,6 +1,6 @@
 ﻿using aspnet_core.Models;
 
-namespace aspnet_core.Repos.Interfaces
+namespace aspnet_core.Interfaces
 {
     public interface ICountryRepo
     {
