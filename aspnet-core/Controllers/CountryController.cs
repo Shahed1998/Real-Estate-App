@@ -13,32 +13,26 @@ namespace aspnet_core.Controllers
     [ApiController]
     public class CountryController : ControllerBase
     {
-        private readonly IUnitOfWork _uow; 
+        private readonly IUnitOfWork _uow;
+        private readonly IMapper _mapper;
 
-        private static MapperConfiguration config = new(cfg =>
-        {
-            cfg.CreateMap<Country, CountryDTO>();
-            cfg.CreateMap<CreateUpdateCountryDTO, Country>();
-        });
-
-        private Mapper mapper = new(config);
-
-        public CountryController(IUnitOfWork uow)
+        public CountryController(IUnitOfWork uow, IMapper mapper)
         {
             _uow = uow;
+            _mapper = mapper;
         }
         
         [HttpGet]
         public async Task<IActionResult> GetList()
         {
             var dbObj = await _uow.CountryRepo.Get();
-            return Ok(mapper.Map<List<CountryDTO>>(dbObj));
+            return Ok(_mapper.Map<IEnumerable<CountryDTO>>(dbObj));
         }
 
         [HttpPost]
         public async Task<IActionResult> AddCountry(CreateUpdateCountryDTO dto)
         {
-            var dbObj = mapper.Map<Country>(dto);
+            var dbObj = _mapper.Map<Country>(dto);
             _uow.CountryRepo.Add(dbObj);
             if(await _uow.SaveAsync()) {
                 return StatusCode(201);

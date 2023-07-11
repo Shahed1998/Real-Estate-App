@@ -30,7 +30,7 @@ namespace aspnet_core.Data.Repos
             }
         }
 
-        public async Task<List<Country>> Get()
+        public async Task<IEnumerable<Country>> Get()
         {
             return await _dataContext.countries.AsNoTracking().ToListAsync();
         }

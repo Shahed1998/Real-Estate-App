@@ -1,4 +1,5 @@
 using aspnet_core.Data;
+using aspnet_core.Helpers;
 using aspnet_core.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,9 +22,12 @@ builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<DataContext>(opt => opt.UseSqlServer(connectionString));
 
-// Repositorties
 // Dependency Inversion
+// Repositorties
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+// Automapper services
+builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
 var app = builder.Build();
 

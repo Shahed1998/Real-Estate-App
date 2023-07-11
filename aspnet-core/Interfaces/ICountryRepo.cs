@@ -5,7 +5,7 @@ namespace aspnet_core.Interfaces
     public interface ICountryRepo
     {
         void Add(Country country);
-        Task<List<Country>> Get();
+        Task<IEnumerable<Country>> Get();
         Task<Country> Get(int id);
         void Update(Country country);
         void Delete(int id);
