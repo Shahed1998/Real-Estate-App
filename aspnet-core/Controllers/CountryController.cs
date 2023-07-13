@@ -1,11 +1,10 @@
-﻿using aspnet_core.Data;
-using aspnet_core.DTOs.Country;
+﻿using aspnet_core.DTOs.Country;
 using aspnet_core.Interfaces;
 using aspnet_core.Models;
 using AutoMapper;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace aspnet_core.Controllers
 {
@@ -21,7 +20,7 @@ namespace aspnet_core.Controllers
             _uow = uow;
             _mapper = mapper;
         }
-        
+
         [HttpGet]
         public async Task<IActionResult> GetList()
         {
@@ -34,7 +33,8 @@ namespace aspnet_core.Controllers
         {
             var dbObj = _mapper.Map<Country>(dto);
             _uow.CountryRepo.Add(dbObj);
-            if(await _uow.SaveAsync()) {
+            if (await _uow.SaveAsync())
+            {
                 return StatusCode(201);
             }
             return BadRequest();
@@ -51,5 +51,44 @@ namespace aspnet_core.Controllers
             }
             return BadRequest("Country does not exist");
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateCountryPut(int id, CreateUpdateCountryDTO dto)
+        {
+            var dbObj = await _uow.CountryRepo.Get(id);
+
+            if (dbObj == null)
+            {
+                return BadRequest("Country doesn't exist");
+            }
+
+            _uow.CountryRepo.Update(dbObj, dto);
+
+            await _uow.SaveAsync();
+
+            return Ok();
+        }
+
+        // -----------------------------------------------------
+        // NewtonSoft Patch is not secure, too much flexible 
+        // -----------------------------------------------------
+
+        //    [HttpPatch("{id}")]
+        //    public async Task<IActionResult> UpdateCountryPatch(int id, JsonPatchDocument<Country> countryToPatch)
+        //    {
+        //        var country = await _uow.CountryRepo.Get(id);
+
+        //        if (country == null)
+        //        {
+        //            return BadRequest("Country doesn't exist");
+        //        }
+
+        //        countryToPatch.ApplyTo(country, ModelState);
+
+        //        await _uow.SaveAsync();
+
+        //        return StatusCode(200);
+        //    }
+        //}
     }
 }

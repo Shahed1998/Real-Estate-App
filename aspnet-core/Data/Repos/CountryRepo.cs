@@ -1,5 +1,6 @@
 ﻿using aspnet_core.Data;
 using aspnet_core.DTOs;
+using aspnet_core.DTOs.Country;
 using aspnet_core.Interfaces;
 using aspnet_core.Models;
 using AutoMapper;
@@ -37,12 +38,16 @@ namespace aspnet_core.Data.Repos
 
         public async Task<Country> Get(int id)
         {
-            throw new NotImplementedException();
+            var obj = await _dataContext.countries.FirstOrDefaultAsync(x => x.Id == id);
+
+            if(obj != null) return obj;
+
+            return null;
         }
 
-        public void Update(Country country)
+        public void Update(Country country, CreateUpdateCountryDTO dto)
         {
-            throw new NotImplementedException();
+            _dataContext.Entry(country).CurrentValues.SetValues(dto);
         }
     }
 }

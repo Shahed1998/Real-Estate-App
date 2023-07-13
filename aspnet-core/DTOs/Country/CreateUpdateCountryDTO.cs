@@ -4,7 +4,6 @@ namespace aspnet_core.DTOs.Country
 {
     public class CreateUpdateCountryDTO
     {
-        public int Id { get; set; } = 0;
         [Required]
         public string Name { get; set; } = "";
         [Required]

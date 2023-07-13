@@ -1,4 +1,5 @@
-﻿using aspnet_core.Models;
+﻿using aspnet_core.DTOs.Country;
+using aspnet_core.Models;
 
 namespace aspnet_core.Interfaces
 {
@@ -7,7 +8,7 @@ namespace aspnet_core.Interfaces
         void Add(Country country);
         Task<IEnumerable<Country>> Get();
         Task<Country> Get(int id);
-        void Update(Country country);
+        void Update(Country country, CreateUpdateCountryDTO dto);
         void Delete(int id);
     }
 }
