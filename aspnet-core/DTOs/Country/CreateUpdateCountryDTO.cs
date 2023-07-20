@@ -7,6 +7,7 @@ namespace aspnet_core.DTOs.Country
         [Required]
         public string Name { get; set; } = "";
         [Required]
+        //[RegularExpression("(/^[A-Za-z]+$/)", ErrorMessage = "Only alphabets are allowed")]
         public string InternetCountryCode { get; set; } = "";
         [Required]
         public string CountryCallingCode { get; set; } = "";

@@ -1,7 +1,9 @@
 using aspnet_core.Data;
 using aspnet_core.Helpers;
 using aspnet_core.Interfaces;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +34,7 @@ builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 // Newtonsoft
 builder.Services.AddControllers().AddNewtonsoftJson();
 
+// Middlewares
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -39,6 +42,24 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+else
+{
+    // Handles Unhandled Exception during production
+    app.UseExceptionHandler(
+        options =>
+        {
+            options.Run(
+                async context =>
+                {
+                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    var ex = context.Features.Get<IExceptionHandlerFeature>();
+                    if(ex != null)
+                    {
+                        await context.Response.WriteAsync(ex.Error.Message);
+                    }
+                });
+        });
 }
 
 // Cors

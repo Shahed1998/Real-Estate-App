@@ -28,6 +28,18 @@ namespace aspnet_core.Controllers
             return Ok(_mapper.Map<IEnumerable<CountryDTO>>(dbObj));
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            var dbObj = await _uow.CountryRepo.Get(id);
+            if (dbObj == null)
+            {
+                return BadRequest("Country doesn't exist");
+            }
+
+            return Ok(_mapper.Map<CountryDTO>(dbObj));
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddCountry(CreateUpdateCountryDTO dto)
         {
