@@ -1,4 +1,5 @@
 using aspnet_core.Data;
+using aspnet_core.Middlewares;
 using aspnet_core.Helpers;
 using aspnet_core.Interfaces;
 using Microsoft.AspNetCore.Diagnostics;
@@ -27,6 +28,8 @@ builder.Services.AddDbContext<DataContext>(opt => opt.UseSqlServer(connectionStr
 // Dependency Inversion
 // Repositorties
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+// Global Error Handling Middleware Service
+builder.Services.AddTransient<GlobalExceptionHandlingMiddleware>();
 
 // Automapper services
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
@@ -45,21 +48,7 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    // Handles Unhandled Exception during production
-    app.UseExceptionHandler(
-        options =>
-        {
-            options.Run(
-                async context =>
-                {
-                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                    var ex = context.Features.Get<IExceptionHandlerFeature>();
-                    if(ex != null)
-                    {
-                        await context.Response.WriteAsync(ex.Error.Message);
-                    }
-                });
-        });
+    app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
 }
 
 // Cors
@@ -72,3 +61,27 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
+// --------------------------------------------------------------------------------------
+// Unused codes
+// --------------------------------------------------------------------------------------
+
+//else
+//{
+// Handles Unhandled Exception during production
+//app.UseExceptionHandler(
+//    options =>
+//    {
+//        options.Run(
+//            async context =>
+//            {
+//                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
+//                var ex = context.Features.Get<IExceptionHandlerFeature>();
+//                if(ex != null)
+//                {
+//                    await context.Response.WriteAsync(ex.Error.Message);
+//                }
+//            });
+//    });
+//}
