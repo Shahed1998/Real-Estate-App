@@ -11,5 +11,6 @@ namespace aspnet_core.Data
         // DbSets
         // -----------------------------------------------------------------------------
         public DbSet<Country> countries { get; set; }
+        public DbSet<User> users { get; set; }
     }
 }

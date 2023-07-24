@@ -46,11 +46,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-else
-{
-    app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
-}
 
+app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
 // Cors
 app.UseCors("corsapp");
 

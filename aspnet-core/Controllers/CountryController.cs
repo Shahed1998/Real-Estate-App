@@ -24,8 +24,6 @@ namespace aspnet_core.Controllers
         [HttpGet]
         public async Task<IActionResult> GetList()
         {
-            throw new Exception("Error by Shahed");
-            //throw new NotImplementedException();
             var dbObj = await _uow.CountryRepo.Get();
             return Ok(_mapper.Map<IEnumerable<CountryDTO>>(dbObj));
         }

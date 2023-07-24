@@ -11,6 +11,7 @@ namespace aspnet_core.Data
             _dataContext = dataContext;
         }
         public ICountryRepo CountryRepo => new CountryRepo(_dataContext);
+        public IUserRepo UserRepo => new UserRepo(_dataContext);
 
         public async Task<bool> SaveAsync()
         {
