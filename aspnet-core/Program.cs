@@ -5,6 +5,10 @@ using aspnet_core.Interfaces;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,8 +25,21 @@ builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
     builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
 }));
 
-// database builder
+// ----------------------------------------------------------------------------------------------------
+// database builder for retrieving password from the environment
+// ----------------------------------------------------------------------------------------------------
+
+//var dbStringBuilder = new SqlConnectionStringBuilder(
+//    builder.Configuration.GetConnectionString("DefaultConnection"));
+
+//dbStringBuilder.Password = builder.Configuration.GetSection("DBString").Value;
+
+//var connectionString = dbStringBuilder.ConnectionString;
+
+// ----------------------------------------------------------------------------------------------------
+
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
 builder.Services.AddDbContext<DataContext>(opt => opt.UseSqlServer(connectionString));
 
 // Dependency Inversion
@@ -33,6 +50,21 @@ builder.Services.AddTransient<GlobalExceptionHandlingMiddleware>();
 
 // Automapper services
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+
+// Authentication service
+var secretKey = builder.Configuration.GetSection("AppSettings:Key").Value;
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt => 
+{
+    opt.TokenValidationParameters = new TokenValidationParameters 
+    {
+        ValidateIssuerSigningKey = true,
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateLifetime = true,
+        ClockSkew = TimeSpan.Zero,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
+    };
+});
 
 // Newtonsoft
 builder.Services.AddControllers().AddNewtonsoftJson();
@@ -52,6 +84,8 @@ app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
 app.UseCors("corsapp");
 
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

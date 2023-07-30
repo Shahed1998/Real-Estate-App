@@ -17,16 +17,19 @@ namespace aspnet_core.Controllers
     {
         private readonly IUnitOfWork _uow;
         private readonly IMapper _mapper;
+        private readonly IConfiguration _configuration;
 
-        public AccountController(IUnitOfWork uow, IMapper mapper)
+        public AccountController(IUnitOfWork uow, IMapper mapper, IConfiguration configuration)
         {
             _uow = uow;
             _mapper = mapper;
+            _configuration = configuration;
         }
 
         private string GenerateJWT(User user)
         {
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("this is my custom Secret key for authentication"));
+            var secretKey = _configuration.GetSection("AppSettings:Key").Value;
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey));
 
             // Piece of informations about the user
             var claims = new Claim[]

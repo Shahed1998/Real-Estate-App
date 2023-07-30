@@ -2,13 +2,15 @@
 using aspnet_core.Interfaces;
 using aspnet_core.Models;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 
 
 namespace aspnet_core.Controllers
-{
+{   
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class CountryController : ControllerBase
     {
@@ -22,6 +24,7 @@ namespace aspnet_core.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> GetList()
         {
             var dbObj = await _uow.CountryRepo.Get();
